@@ -1,0 +1,5 @@
+.stack-work/
+cv-static.cabal
+_site
+_cache
+*~
