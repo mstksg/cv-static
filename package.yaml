@@ -39,11 +39,9 @@ library:
   - hakyll-dhall
   - hakyll-sass
   - hsass
-  - microlens
   - pandoc
   - text
   - th-printf
-  - vinyl
 
 executables:
   cv-static:
@@ -55,6 +53,7 @@ executables:
     - -with-rtsopts=-N
     dependencies:
     - cv-static
+    - dhall
     - hakyll
 
 # tests:

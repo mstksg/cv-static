@@ -27,6 +27,9 @@ renderPage
     -> H.Html
 renderPage Config{..} title desc css body = H.docTypeHtml $ do
     H.head $ do
+
+      mapM_ googleAnalyticsJs confGA
+
       H.title $ H.toHtml title
       H.meta ! A.name "description" ! A.content (H.textValue desc)
 
@@ -39,8 +42,6 @@ renderPage Config{..} title desc css body = H.docTypeHtml $ do
 
       forM_ css $ \u ->
         H.link ! A.href (H.textValue u) ! A.rel "stylesheet" ! A.type_ "text/css"
-
-      mapM_ googleAnalyticsJs confGA
 
     H.body $
       H.div ! A.id "body-container" ! A.class_ "container" $

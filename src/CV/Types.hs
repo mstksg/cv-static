@@ -21,6 +21,11 @@ data Config = Config
     , confGA       :: Maybe String
     }
 
+instance D.Interpret Config where
+    autoWith _ = D.record $
+      Config <$> D.field "baseUrl"  D.string
+             <*> D.field "ga"      (D.maybe D.string)
+
 
 -- CV
 
