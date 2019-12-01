@@ -22,8 +22,10 @@ p {
 
 
 h1:before {
-  // content: "‣";
   content: "λ. ";
+  @media (max-width: 480px) {
+    content: "";
+  }
 }
 
 h1 {
@@ -44,6 +46,9 @@ h2 {
   margin: 0 0 1em 0;
   letter-spacing: 0.1em;
   line-height: normal;
+  @media (max-width: 480px) {
+    letter-spacing: 0em;
+  }
 }
 
 .links {
@@ -135,7 +140,6 @@ div#main-container {
 .cvsection-pretitle a {
   font-size: 175%;
   margin-top: 0.1em;
-  // line-height: 5%;
   @media (max-width: 480px) {
     display: none;
   }
