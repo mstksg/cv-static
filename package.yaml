@@ -42,6 +42,7 @@ library:
   - microlens
   - pandoc
   - text
+  - th-printf
   - vinyl
 
 executables:

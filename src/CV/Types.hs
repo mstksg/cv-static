@@ -18,7 +18,7 @@ import qualified Dhall     as D
 
 data Config = Config
     { confHostBase :: String
-    , confGA       :: Maybe (Text, Text)
+    , confGA       :: Maybe String
     }
 
 
