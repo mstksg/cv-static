@@ -2,4 +2,5 @@
 cv-static.cabal
 _site
 _cache
+_build
 *~
