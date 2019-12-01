@@ -2,4 +2,4 @@
 
 Short hakyll + dhall project :)
 
-Online at <http://cv.jle.im>.
+Online at <https://cv.jle.im>.
