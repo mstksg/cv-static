@@ -1,10 +1,5 @@
 let types = ./types.dhall Text
 
-let map =
-      https://raw.githubusercontent.com/dhall-lang/dhall-lang/v9.0.0/Prelude/List/map
-
-let noTitle = λ(x : Text) → { _1 = None Text, _2 = types.CVLine.Simple x }
-
 let objectives =
       ./cv/objectives.dhall
         [ ''
@@ -29,6 +24,26 @@ let objectives =
           both the *cutting edge* and the *tried and tested* tools of the trade.
           ''
         ]
+
+      -- ''
+      -- I'm looking for a place I can apply my passion for finding the *story*
+      -- that data has to tell us.  My experience is in a wide collection of tools
+      -- from *statistics*, *math modeling*, *machine learning*, and *data
+      -- science* --- tools that I have proven effective in taming data in
+      -- geosciences, climate, resource allocation, finance, and
+      -- condensed matter physics.
+
+      -- As a *scientist and mathematician*, I focus not only on prediction, but also
+      -- in developing full mathematical and data-driven *frameworks* for fully
+      -- *understanding* and *exploring* processes and systems.  As a
+      -- *programmer*, I focus on developing *performant* and *robust* systems
+      -- that are statically *verifiable* and prioritized for long-term
+      -- *maintainability* and extensibility.
+
+      -- I'm someone who is passionate about *building systems* for conquering data
+      -- and expanding the horizons of what your data can do for you, equipped with
+      -- both the *cutting edge* and the *tried and tested* tools of the trade.
+      -- ''
 
 let education =
       [ { desc =
@@ -197,7 +212,7 @@ let publications =
           , journal =
               "AOGS 13^th^ Annual Meeting, Beijing, China"
           , year =
-              "Aug 2016"
+              "August 2016"
           }
         ]
 
@@ -213,19 +228,31 @@ in    { title =
           [github]: https://github.com/mstksg
           ''
       , sections =
-          [ { title = Some "Objectives", contents = objectives }
-          , { title = Some "Education", contents = education }
-          , { title = Some "Skills", contents = skills }
+          [ { title =
+                Some "Objectives"
+            , contents =
+                types.CVContents.Cols objectives
+            }
+          , { title =
+                Some "Education"
+            , contents =
+                types.CVContents.Cols education
+            }
+          , { title = Some "Skills", contents = types.CVContents.Cols skills }
           , { title =
                 Some "Selected Work and Research Experience"
             , contents =
-                ./cv/experience.dhall
+                types.CVContents.Cols ./cv/experience.dhall
             }
-          , { title = Some "Selected Publications", contents = publications }
+          , { title =
+                Some "Selected Publications"
+            , contents =
+                types.CVContents.Cols publications
+            }
           , { title =
                 Some "Selected Coursework"
             , contents =
-                ./cv/courses.dhall
+                types.CVContents.Cols ./cv/courses.dhall
             }
           ]
       }

@@ -8,6 +8,7 @@ module CV.Types (
   -- * CV
   , CVPage(..)
   , CVSection(..)
+  , CVContents(..)
   , CVLine(..)
   , CVEntry(..)
   ) where
@@ -33,8 +34,12 @@ data CVPage a = CVPage
 
 data CVSection a = CVSection
     { cvsTitle    :: Maybe Text
-    , cvsContents :: [(Maybe Text, CVLine a)]
+    , cvsContents :: CVContents a
     }
+  deriving (Functor, Foldable, Traversable)
+
+data CVContents a = CVCWide a
+                  | CVCCols [(Maybe Text, CVLine a)]
   deriving (Functor, Foldable, Traversable)
 
 data CVLine a = CVLSimple a
@@ -49,7 +54,7 @@ data CVEntry a = CVEntry
     , cveBody        :: Maybe a
     }
   deriving (Functor, Foldable, Traversable)
-    
+
 
 instance D.Interpret a => D.Interpret (CVPage a) where
     autoWith o = D.record $
@@ -61,7 +66,12 @@ instance D.Interpret a => D.Interpret (CVPage a) where
 instance D.Interpret a => D.Interpret (CVSection a) where
     autoWith o = D.record $
         CVSection <$> D.field "title" (D.maybe D.strictText)
-                  <*> D.field "contents" (D.list sections)
+                  <*> D.field "contents" (D.autoWith o)
+
+instance D.Interpret a => D.Interpret (CVContents a) where
+    autoWith o = D.union $
+           ( CVCWide <$> D.constructor "Wide" (D.autoWith o)   )
+        <> ( CVCCols <$> D.constructor "Cols" (D.list sections))
       where
         sections = D.record $
           (,) <$> D.field "desc" (D.maybe D.strictText)

@@ -64,34 +64,7 @@ app conf@Config{..} = do
             , "/css/font.css"
             , "/css/main.css"
             ]
-            (cvPage cv)
-
-
--- renderPage
---     :: FieldRec SiteInfo
---     -> Text         -- ^ Title
---     -> Text         -- ^ Description
---     -> [Text]       -- ^ CSS links
---     -> H.Html       -- ^ Body
---     -> H.Html
-
-        -- home1 <- itemBody <$> loadSnapshot "home/1.html" "index"
-        -- makeItem (home1 :: String)
-
--- archiveCompiler
---     :: (?config :: Config)
---     => ArchiveData Identifier
---     -> Compiler (Item String)
--- archiveCompiler ad = do
---     ad'     <- traverse ((compileTE =<<) . flip loadSnapshotBody "entry") ad
---     recents <- getRecentEntries
---     let title = T.pack (archiveTitle ad')
---         ai    = AI ad' recents
---         pd    = def { pageDataTitle = Just title
---                     , pageDataCss   = ["/css/page/archive.css"]
---                     , pageDataJs    = ["/js/disqus_count.js"]
---                     }
---     blazeCompiler pd (viewArchive ai)
+            (cvPage conf cv)
 
 
 renderSassUrl
