@@ -20,14 +20,16 @@ h1 {
   font-family: Vollkorn, serif;
   font-size: 600%;
   font-weight: 100;
-  margin: 0.5em 0; }
+  line-height: normal;
+  margin: 0; }
 
 h2 {
   font-weight: normal;
   font-weight: 100;
   font-size: 133%;
   margin: 0 0 1em 0;
-  letter-spacing: 0.1em; }
+  letter-spacing: 0.1em;
+  line-height: normal; }
 
 .links {
   font-size: 110%; }
@@ -39,13 +41,15 @@ h3 {
   font-weight: normal;
   font-style: italic;
   font-size: 175%;
-  margin: 0 0 0.5em 0; }
+  margin: 0 0 0.25em 0;
+  line-height: normal; }
 
 h4 {
   font-weight: normal;
   font-style: italic;
   font-size: 100%;
-  margin: 0; }
+  margin: 0;
+  line-height: normal; }
 
 .cvsection {
   margin: 0 0 2em 0; }
@@ -87,7 +91,14 @@ div#main-container {
 
 .cvsection-pretitle, .cvline-desc {
   text-align: right; }
+  @media (max-width: 480px) {
+    .cvsection-pretitle, .cvline-desc {
+      text-align: left;
+      margin-top: 1em; } }
 
 .cvsection-pretitle a {
   font-size: 175%;
-  line-height: 5%; }
+  margin-top: 0.1em; }
+  @media (max-width: 480px) {
+    .cvsection-pretitle a {
+      display: none; } }
