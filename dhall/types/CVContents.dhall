@@ -1,6 +1,25 @@
   λ(a : Type)
-→ < Wide :
+→ < Cols :
+      List
+      { body :
+          < Entry :
+              { body :
+                  Optional a
+              , grade :
+                  Optional Text
+              , institution :
+                  Optional Text
+              , location :
+                  Optional Text
+              , title :
+                  Optional Text
+              }
+          | Simple :
+              a
+          >
+      , desc :
+          Optional Text
+      }
+  | Wide :
       Text
-  | Cols :
-      List { desc : Optional Text, body : ./CVLine.dhall a }
   >

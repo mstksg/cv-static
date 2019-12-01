@@ -1,46 +1,171 @@
-let types = ../types.dhall Text
-
-let map =
-      https://raw.githubusercontent.com/dhall-lang/dhall-lang/v9.0.0/Prelude/List/map
-
-let Optional/map =
-      https://raw.githubusercontent.com/dhall-lang/dhall-lang/v9.0.0/Prelude/Optional/map
-
-let concatSep =
-      https://raw.githubusercontent.com/dhall-lang/dhall-lang/v9.0.0/Prelude/Text/concatSep
-
-let Publication =
-      { subject :
+  λ ( xs
+    : List
+      { author :
           Text
-      , author :
+      , journal :
           Text
       , secondary :
           Optional (List Text)
-      , title :
+      , subject :
           Text
-      , journal :
+      , title :
           Text
       , year :
           Text
       }
-
-let mkPublication =
-        λ(x : Publication)
-      → { desc =
-            Some x.subject
-        , body =
-            types.CVLine.Entry
-              { title =
-                  Some x.author
-              , institution =
-                  Optional/map (List Text) Text (concatSep ", ") x.secondary
-              , location =
-                  Some ("\"" ++ x.title ++ "\"")
+    )
+→ List/fold
+  { author :
+      Text
+  , journal :
+      Text
+  , secondary :
+      Optional (List Text)
+  , subject :
+      Text
+  , title :
+      Text
+  , year :
+      Text
+  }
+  xs
+  ( List
+    { body :
+        < Entry :
+            { body :
+                Optional Text
+            , grade :
+                Optional Text
+            , institution :
+                Optional Text
+            , location :
+                Optional Text
+            , title :
+                Optional Text
+            }
+        | Simple :
+            Text
+        >
+    , desc :
+        Optional Text
+    }
+  )
+  (   λ ( x
+        : { author :
+              Text
+          , journal :
+              Text
+          , secondary :
+              Optional (List Text)
+          , subject :
+              Text
+          , title :
+              Text
+          , year :
+              Text
+          }
+        )
+    → λ ( `as`
+        : List
+          { body :
+              < Entry :
+                  { body :
+                      Optional Text
+                  , grade :
+                      Optional Text
+                  , institution :
+                      Optional Text
+                  , location :
+                      Optional Text
+                  , title :
+                      Optional Text
+                  }
+              | Simple :
+                  Text
+              >
+          , desc :
+              Optional Text
+          }
+        )
+    →   [ { body =
+              < Entry :
+                  { body :
+                      Optional Text
+                  , grade :
+                      Optional Text
+                  , institution :
+                      Optional Text
+                  , location :
+                      Optional Text
+                  , title :
+                      Optional Text
+                  }
+              | Simple :
+                  Text
+              >.Entry
+              { body =
+                  Some "${x.journal} (${x.year})"
               , grade =
                   None Text
-              , body =
-                  Some (x.journal ++ " (" ++ x.year ++ ")")
+              , institution =
+                  Optional/fold
+                  (List Text)
+                  x.secondary
+                  (Optional Text)
+                  (   λ(x : List Text)
+                    → Some
+                      ( merge
+                        { Empty = "", NonEmpty = λ(result : Text) → result }
+                        ( List/fold
+                          Text
+                          x
+                          < Empty | NonEmpty : Text >
+                          (   λ(element : Text)
+                            → λ(status : < Empty | NonEmpty : Text >)
+                            → merge
+                              { Empty =
+                                  < Empty | NonEmpty : Text >.NonEmpty element
+                              , NonEmpty =
+                                    λ(result : Text)
+                                  → < Empty | NonEmpty : Text >.NonEmpty
+                                    "${element}, ${result}"
+                              }
+                              status
+                          )
+                          < Empty | NonEmpty : Text >.Empty
+                        )
+                      )
+                  )
+                  (None Text)
+              , location =
+                  Some "\"${x.title}\""
+              , title =
+                  Some x.author
               }
-        }
-
-in  map Publication { desc : Optional Text, body : types.CVLine } mkPublication
+          , desc =
+              Some x.subject
+          }
+        ]
+      # `as`
+  )
+  ( [] : List
+         { body :
+             < Entry :
+                 { body :
+                     Optional Text
+                 , grade :
+                     Optional Text
+                 , institution :
+                     Optional Text
+                 , location :
+                     Optional Text
+                 , title :
+                     Optional Text
+                 }
+             | Simple :
+                 Text
+             >
+         , desc :
+             Optional Text
+         }
+  )

@@ -1,10 +1,38 @@
   λ(a : Type)
-→ { title :
-      Text
-  , subtitle :
-      Optional Text
-  , links :
+→ { links :
       a
   , sections :
-      List (./CVSection.dhall a)
+      List
+      { contents :
+          < Cols :
+              List
+              { body :
+                  < Entry :
+                      { body :
+                          Optional a
+                      , grade :
+                          Optional Text
+                      , institution :
+                          Optional Text
+                      , location :
+                          Optional Text
+                      , title :
+                          Optional Text
+                      }
+                  | Simple :
+                      a
+                  >
+              , desc :
+                  Optional Text
+              }
+          | Wide :
+              Text
+          >
+      , title :
+          Optional Text
+      }
+  , subtitle :
+      Optional Text
+  , title :
+      Text
   }

@@ -1,12 +1,122 @@
   λ(a : Type)
-→ { CVLine =
-      ./types/CVLine.dhall a
+→ { CVContents =
+      < Cols :
+          List
+          { body :
+              < Entry :
+                  { body :
+                      Optional a
+                  , grade :
+                      Optional Text
+                  , institution :
+                      Optional Text
+                  , location :
+                      Optional Text
+                  , title :
+                      Optional Text
+                  }
+              | Simple :
+                  a
+              >
+          , desc :
+              Optional Text
+          }
+      | Wide :
+          Text
+      >
   , CVEntry =
-      ./types/CVEntry.dhall a
+      { body :
+          Optional a
+      , grade :
+          Optional Text
+      , institution :
+          Optional Text
+      , location :
+          Optional Text
+      , title :
+          Optional Text
+      }
+  , CVLine =
+      < Entry :
+          { body :
+              Optional a
+          , grade :
+              Optional Text
+          , institution :
+              Optional Text
+          , location :
+              Optional Text
+          , title :
+              Optional Text
+          }
+      | Simple :
+          a
+      >
   , CVPage =
-      ./types/CVPage.dhall a
+      { links :
+          a
+      , sections :
+          List
+          { contents :
+              < Cols :
+                  List
+                  { body :
+                      < Entry :
+                          { body :
+                              Optional a
+                          , grade :
+                              Optional Text
+                          , institution :
+                              Optional Text
+                          , location :
+                              Optional Text
+                          , title :
+                              Optional Text
+                          }
+                      | Simple :
+                          a
+                      >
+                  , desc :
+                      Optional Text
+                  }
+              | Wide :
+                  Text
+              >
+          , title :
+              Optional Text
+          }
+      , subtitle :
+          Optional Text
+      , title :
+          Text
+      }
   , CVSection =
-      ./types/CVSection.dhall a
-  , CVContents =
-      ./types/CVContents.dhall a
+      { contents :
+          < Cols :
+              List
+              { body :
+                  < Entry :
+                      { body :
+                          Optional a
+                      , grade :
+                          Optional Text
+                      , institution :
+                          Optional Text
+                      , location :
+                          Optional Text
+                      , title :
+                          Optional Text
+                      }
+                  | Simple :
+                      a
+                  >
+              , desc :
+                  Optional Text
+              }
+          | Wide :
+              Text
+          >
+      , title :
+          Optional Text
+      }
   }

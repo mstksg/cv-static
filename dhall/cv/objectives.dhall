@@ -1,8 +1,92 @@
-let types = ../types.dhall Text
-
-let map =
-      https://raw.githubusercontent.com/dhall-lang/dhall-lang/v9.0.0/Prelude/List/map
-
-let noTitle = λ(x : Text) → { desc = None Text, body = types.CVLine.Simple x }
-
-in  map Text { desc : Optional Text, body : types.CVLine } noTitle
+  λ(xs : List Text)
+→ List/fold
+  Text
+  xs
+  ( List
+    { body :
+        < Entry :
+            { body :
+                Optional Text
+            , grade :
+                Optional Text
+            , institution :
+                Optional Text
+            , location :
+                Optional Text
+            , title :
+                Optional Text
+            }
+        | Simple :
+            Text
+        >
+    , desc :
+        Optional Text
+    }
+  )
+  (   λ(x : Text)
+    → λ ( `as`
+        : List
+          { body :
+              < Entry :
+                  { body :
+                      Optional Text
+                  , grade :
+                      Optional Text
+                  , institution :
+                      Optional Text
+                  , location :
+                      Optional Text
+                  , title :
+                      Optional Text
+                  }
+              | Simple :
+                  Text
+              >
+          , desc :
+              Optional Text
+          }
+        )
+    →   [ { body =
+              < Entry :
+                  { body :
+                      Optional Text
+                  , grade :
+                      Optional Text
+                  , institution :
+                      Optional Text
+                  , location :
+                      Optional Text
+                  , title :
+                      Optional Text
+                  }
+              | Simple :
+                  Text
+              >.Simple
+              x
+          , desc =
+              None Text
+          }
+        ]
+      # `as`
+  )
+  ( [] : List
+         { body :
+             < Entry :
+                 { body :
+                     Optional Text
+                 , grade :
+                     Optional Text
+                 , institution :
+                     Optional Text
+                 , location :
+                     Optional Text
+                 , title :
+                     Optional Text
+                 }
+             | Simple :
+                 Text
+             >
+         , desc :
+             Optional Text
+         }
+  )

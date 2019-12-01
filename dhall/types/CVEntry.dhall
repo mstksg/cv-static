@@ -1,12 +1,12 @@
   λ(a : Type)
-→ { title :
+→ { body :
+      Optional a
+  , grade :
       Optional Text
   , institution :
       Optional Text
   , location :
       Optional Text
-  , grade :
+  , title :
       Optional Text
-  , body :
-      Optional a
   }

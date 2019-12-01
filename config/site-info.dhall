@@ -1,1 +1,1 @@
-{ ga = None { _1 : Text, _2 : Text }, baseUrl = "https://cv.jle.im" }
+{ baseUrl = "https://cv.jle.im", ga = None { _1 : Text, _2 : Text } }
