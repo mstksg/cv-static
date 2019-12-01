@@ -8,25 +8,25 @@ let noTitle = λ(x : Text) → { _1 = None Text, _2 = types.CVLine.Simple x }
 let objectives =
       ./cv/objectives.dhall
         [ ''
-          I'm looking for a place I can apply my passion for finding the **story**
+          I'm looking for a place I can apply my passion for finding the *story*
           that data has to tell us.  My experience is in a wide collection of tools
-          from **statistics**, **math modeling**, **machine learning**, and **data
-          science** --- tools that I have proven effective in taming data in
+          from *statistics*, *math modeling*, *machine learning*, and *data
+          science* --- tools that I have proven effective in taming data in
           geosciences, climate, resource allocation, finance, and
           condensed matter physics.
           ''
         , ''
           As a *scientist and mathematician*, I focus not only on prediction, but also
-          in developing full mathematical and data-driven **frameworks** for fully
-          **understanding** and **exploring** processes and systems.  As a
-          *programmer*, I focus on developing **performant** and **robust** systems
-          that are statically **verifiable** and prioritized for long-term
-          **maintainability** and extensibility.
+          in developing full mathematical and data-driven *frameworks* for fully
+          *understanding* and *exploring* processes and systems.  As a
+          *programmer*, I focus on developing *performant* and *robust* systems
+          that are statically *verifiable* and prioritized for long-term
+          *maintainability* and extensibility.
           ''
         , ''
-          I'm someone who is passionate about **building systems** for conquering data
+          I'm someone who is passionate about *building systems* for conquering data
           and expanding the horizons of what your data can do for you, equipped with
-          both the **cutting edge** and the **tried and tested** tools of the trade.
+          both the *cutting edge* and the *tried and tested* tools of the trade.
           ''
         ]
 
@@ -98,8 +98,6 @@ let skills =
           , skills =
               [ "Machine Learning (clustering, classification, artificial neural networks)"
               , "Large-scale data analytics"
-              , "Parallel and concurrent programming"
-              , "GPU Parallelism"
               , "Numerical algorithms (FEM, stochastic methods)"
               , "Digital signal processing"
               , "Functional programming"
@@ -110,7 +108,7 @@ let skills =
         , { subject =
               "Languages"
           , skills =
-              [ "C++", "Haskell", "Fortran", "Matlab", "R", "Python" ]
+              [ "C++", "Haskell", "Python", "Matlab", "R", "Fortran" ]
           }
         , { subject =
               "Mathematics"
@@ -131,7 +129,7 @@ let skills =
 let publications =
       ./cv/publications.dhall
         [ { subject =
-              "Geoscience / Machine Learning"
+              "Geoscience & Machine Learning"
           , author =
               "J. A. Le"
           , secondary =
@@ -144,7 +142,7 @@ let publications =
               "December 2019"
           }
         , { subject =
-              "Geoscience / Machine Learning"
+              "Geoscience & Machine Learning"
           , author =
               "J. A. Le"
           , secondary =
@@ -160,7 +158,7 @@ let publications =
               "January 2017"
           }
         , { subject =
-              "Geoscience / Machine Learning"
+              "Geoscience & Machine Learning"
           , author =
               "J. A. Le"
           , secondary =
@@ -189,7 +187,7 @@ let publications =
               "May 2018"
           }
         , { subject =
-              "Geoscience / Machine Learning"
+              "Geoscience & Machine Learning"
           , author =
               "H. M. El-Askary"
           , secondary =
@@ -206,9 +204,14 @@ let publications =
 in    { title =
           "Justin Le"
       , subtitle =
-          Some "Predictive Analytics / Machine Learning / Data Science"
+          Some "Predictive Analytics, Machine Learning & Data Science"
       , links =
-          ""
+          ''
+          <justin@jle.im> / [blog][] / [github][]
+
+          [blog]: https://blog.jle.im
+          [github]: https://github.com/mstksg
+          ''
       , sections =
           [ { title = Some "Objectives", contents = objectives }
           , { title = Some "Education", contents = education }

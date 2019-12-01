@@ -15,8 +15,7 @@ import           Dhall.TypeCheck
 import           Hakyll
 import           Hakyll.Web.Dhall
 import           Hakyll.Web.Sass
-import           System.FilePath
-import qualified Data.Text                       as T
+import           Text.Sass
 import qualified Dhall                           as D
 import qualified Text.Blaze.Html.Renderer.String as H
 
@@ -39,8 +38,7 @@ app conf@Config{..} = do
       route   $ gsubRoute "scss" (const "css")
       compile $ sassCompilerWith
                   def { sassIncludePaths = Just ["scss"]
-                      -- , sassFunctions    = Just $ renderSassUrl : concat (sassFunctions def)
-                      , sassFunctions    = Just $ concat (sassFunctions def)
+                      , sassFunctions    = Just $ renderSassUrl : concat (sassFunctions def)
                       }
 
     match "config/**.dhall" $ do
@@ -61,7 +59,11 @@ app conf@Config{..} = do
             conf
             "Justin Le"
             "Curriculum Vitae of Justin A. Le"
-            ["/css/grid.css", "/css/font.css"]
+            [ "/css/normalize.css"
+            , "/css/grid.css"
+            , "/css/font.css"
+            , "/css/main.css"
+            ]
             (cvPage cv)
 
 
@@ -91,3 +93,10 @@ app conf@Config{..} = do
 --                     }
 --     blazeCompiler pd (viewArchive ai)
 
+
+renderSassUrl
+    :: SassFunction
+renderSassUrl = SassFunction "render-url($x)" $ \v -> return $
+    case v of
+      SassList [SassString l] _ -> SassString $ "url(\"" ++ l ++ "\")"
+      _            -> v

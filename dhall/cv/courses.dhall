@@ -27,7 +27,7 @@ in  [ { desc =
       , body =
           types.CVLine.Entry
             { title =
-                Some "Time Series Analysis"
+                Some "Computational Methods in Financial Markets"
             , institution =
                 Some "Chapman University"
             , location =

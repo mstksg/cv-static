@@ -32,16 +32,17 @@ library:
   source-dirs: src
   dependencies:
   - blaze-html
-  - vinyl
-  - microlens
   - data-default
+  - dhall
   - filepath
   - hakyll
   - hakyll-dhall
   - hakyll-sass
-  - dhall
+  - hsass
+  - microlens
   - pandoc
   - text
+  - vinyl
 
 executables:
   cv-static:

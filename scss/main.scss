@@ -1,0 +1,118 @@
+$sans: Helvetica Neue, Helvetica, Arial, sans-serif;
+$serif: Vollkorn, serif;
+
+body {
+  background: #fcfcfc;
+}
+
+.clear {
+  clear: both;
+}
+
+html {
+  // font-size: 115%;
+  line-height: 125%;
+  font-family: $serif;
+  color: #1a1a1a;
+}
+
+h1:before {
+  content: "‣";
+}
+
+h1 {
+  font-family: $serif;
+  font-size: 600%;
+  font-weight: 100;
+  letter-spacing: 0.1em;
+  margin: 0.5em 0;
+}
+
+h2 {
+  font-weight: normal;
+  // font-style: italic;
+  font-weight: 100;
+  font-size: 125%;
+  margin: 0 0 0.5em 0;
+}
+
+.links {
+  font-size: 110%;
+
+}
+
+header {
+  margin-bottom: 3em;
+}
+
+h3 {
+  font-weight: normal;
+  font-style: italic;
+  font-size: 175%;
+  margin: 0 0 0.5em 0;
+}
+
+h4 {
+  font-weight: normal;
+  font-style: italic;
+  font-size: 100%;
+  margin: 0;
+}
+
+.cvsection {
+  margin: 0 0 2em 0;
+}
+
+.cvline {
+  margin: 0 0 0.5em 0;
+}
+
+.cventry-heading {
+  margin: 0 0 0.1em 0;
+}
+
+.cventry-heading > span {
+  margin: 0 0.5em 0 0;
+}
+
+.cventry-title {
+  font-weight: bold;
+}
+
+.cventry-institution {
+  font-style: italic;
+}
+
+div#section-skills p {
+  font-size: 95%;
+  line-height: 125%;
+  // font-style: italic;
+  // font-family: $sans;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  &:hover {
+    background-color: #eee;
+  }
+  &:visited {
+    color: #224;
+  }
+
+  text-decoration: none;
+  border-bottom: 1px dotted #bbb;
+  color: #447;
+}
+
+div#main-container {
+  max-width: 960px;
+  margin: 0 20px;
+}
+
+.cvline-desc {
+  text-align: right;
+
+}
