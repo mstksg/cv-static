@@ -1,3 +1,3 @@
 { baseUrl = "https://cv.jle.im"
-, ga = "UA-443711-9"
+, ga = Some "UA-443711-9"
 }
