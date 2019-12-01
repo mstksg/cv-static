@@ -665,7 +665,7 @@
                     Some "J. A. Le"
                 }
             , desc =
-                Some "Differentiable Programming"
+                Some "Machine Learning"
             }
           , { body =
                 < Entry :

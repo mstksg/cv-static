@@ -249,13 +249,13 @@
   min-height: 1px;
   padding-left: 20px;
   vertical-align: top; }
-  @media (max-width: 640px) {
+  @media (max-width: 700px) {
     .grid__col {
       display: block;
       margin-left: 0;
       margin-right: 0;
       width: auto; } }
-  @media (max-width: 640px) and (min-width: 480px) {
+  @media (max-width: 700px) and (min-width: 480px) {
     .grid__col[class*="grid__col--m-"] {
       display: inline-block;
       margin-right: -.24em; }

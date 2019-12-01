@@ -13,27 +13,34 @@ html {
 p {
   margin: 0; }
 
-h1:before {
-  content: "λ. "; }
-  @media (max-width: 480px) {
-    h1:before {
-      content: ""; } }
-
 h1 {
   font-family: Vollkorn, serif;
   font-size: 600%;
   font-weight: 100;
   line-height: normal;
   margin: 0; }
+  h1:before {
+    content: "λ. "; }
+    @media (max-width: 640px) {
+      h1:before {
+        content: ""; } }
+  @media (max-width: 800px) {
+    h1 {
+      font-size: 10vw; } }
+  @media (max-width: 640px) {
+    h1 {
+      font-size: 400%;
+      line-height: 110%;
+      margin: 0.1em 0; } }
 
 h2 {
   font-weight: normal;
   font-weight: 100;
   font-size: 133%;
-  margin: 0 0 1em 0;
+  margin: 0 0 0.66em 0;
   letter-spacing: 0.1em;
   line-height: normal; }
-  @media (max-width: 480px) {
+  @media (max-width: 640px) {
     h2 {
       letter-spacing: 0em; } }
 
@@ -41,7 +48,7 @@ h2 {
   font-size: 110%; }
 
 header {
-  margin-bottom: 3em; }
+  margin-bottom: 3.3em; }
 
 h3 {
   font-weight: normal;
@@ -92,12 +99,13 @@ a {
     color: #224; }
 
 div#main-container {
-  max-width: 960px;
-  margin: 0 20px; }
+  max-width: 860px;
+  margin: 10px 10px;
+  padding-right: 20px; }
 
 .cvsection-pretitle, .cvline-desc {
   text-align: right; }
-  @media (max-width: 480px) {
+  @media (max-width: 640px) {
     .cvsection-pretitle, .cvline-desc {
       text-align: left;
       margin-top: 1em; } }
@@ -105,6 +113,6 @@ div#main-container {
 .cvsection-pretitle a {
   font-size: 175%;
   margin-top: 0.1em; }
-  @media (max-width: 480px) {
+  @media (max-width: 640px) {
     .cvsection-pretitle a {
       display: none; } }
