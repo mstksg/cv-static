@@ -217,7 +217,7 @@ let publications =
         ]
 
 in    { title =
-          "Justin Le"
+          "Justin Le, Ph.D."
       , subtitle =
           Some "Predictive Analytics, Machine Learning & Data Science"
       , links =
