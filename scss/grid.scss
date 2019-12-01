@@ -54,7 +54,9 @@ $toast-col-groups: (2, 3, 4, 5, 6, 8, 12) !default;
 $toast-gutter-width: 20px !default;
 
 // Breakpoints
-$toast-breakpoint-medium: 700px !default;
+// @use not yet supported by hlibsass so
+// $toast-breakpoint-medium: 700px !default;
+$toast-breakpoint-medium: get-breakpoint() !default;
 $toast-breakpoint-small: 480px !default;
 
 // Pushes and pulls

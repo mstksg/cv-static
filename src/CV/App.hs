@@ -38,7 +38,9 @@ app conf@Config{..} = do
       route   $ gsubRoute "scss" (const "css")
       compile $ sassCompilerWith
                   def { sassIncludePaths = Just ["scss"]
-                      , sassFunctions    = Just $ renderSassUrl : concat (sassFunctions def)
+                      , sassFunctions    = Just $ getBreakpoint
+                                                : renderSassUrl
+                                                : concat (sassFunctions def)
                       }
 
     match "config/**.dhall" $ do
@@ -67,8 +69,14 @@ app conf@Config{..} = do
             (cvPage conf cv)
 
 
-renderSassUrl
-    :: SassFunction
+getBreakpoint :: SassFunction
+getBreakpoint= SassFunction "get-breakpoint()" . const . return $
+    SassNumber 640 "px"
+    -- case v of
+    --   SassList [SassString l] _ -> SassString $ "url(\"" ++ l ++ "\")"
+    --   _            -> v
+
+renderSassUrl :: SassFunction
 renderSassUrl = SassFunction "render-url($x)" $ \v -> return $
     case v of
       SassList [SassString l] _ -> SassString $ "url(\"" ++ l ++ "\")"
