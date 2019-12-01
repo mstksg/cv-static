@@ -5,33 +5,25 @@
 {-# LANGUAGE TypeOperators     #-}
 
 module CV.Render (
-    SiteInfo
-  , renderPage
+    renderPage
   ) where
 
-import           Data.Default
+import           CV.Types
 import           Data.Foldable
 import           Data.Text                   (Text)
-import           Data.Vinyl
-import           System.FilePath
 import           Text.Blaze.Html5            ((!))
 import qualified Data.Text                   as T
 import qualified Text.Blaze.Html5            as H
 import qualified Text.Blaze.Html5.Attributes as A
-import qualified Text.Pandoc                 as P
 
-type SiteInfo = '[ "ga"      ::: (Text, Text)
-                 , "baseUrl" ::: String
-                 ]
-              
 renderPage
-    :: FieldRec SiteInfo
+    :: Config
     -> Text         -- ^ Title
     -> Text         -- ^ Description
     -> [Text]       -- ^ CSS links
     -> H.Html       -- ^ Body
     -> H.Html
-renderPage siteInfo title desc css body = H.docTypeHtml $ do
+renderPage Config{..} title desc css body = H.docTypeHtml $ do
     H.head $ do
       H.title $ H.toHtml title
       H.meta ! A.name "description" ! A.content (H.textValue desc)
@@ -40,13 +32,13 @@ renderPage siteInfo title desc css body = H.docTypeHtml $ do
       H.meta ! A.name "viewport" ! A.content "width=device-width,initial-scale=1.0"
 
       H.link
-        ! A.href (H.textValue (T.pack $ rvalf #baseUrl siteInfo </> "favicon.ico"))
+        ! A.href (H.textValue "/favicon.ico")
         ! A.rel "shortcut icon"
 
       forM_ css $ \u ->
         H.link ! A.href (H.textValue u) ! A.rel "stylesheet" ! A.type_ "text/css"
 
-      uncurry googleAnalyticsJs $ rvalf #ga siteInfo
+      mapM_ (uncurry googleAnalyticsJs) confGA
 
     H.body $
       H.div ! A.id "body-container" ! A.class_ "container" $

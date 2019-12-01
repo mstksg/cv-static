@@ -7,49 +7,29 @@ module CV.App (
     app
   ) where
 
--- import           Blog.Compiler
--- import           Blog.Rule.Archive
--- import           Blog.Types
--- import           Blog.Util
--- import           Blog.Util.Sass
--- import           Blog.Util.Tag
--- import           Blog.View
--- import           Blog.View.Feed
--- import           Control.Monad
--- import           Control.Monad.Trans.Maybe
--- import           Data.Default
--- import           Data.Foldable
--- import           Data.List
--- import           Data.Maybe
--- import           Data.Monoid
--- import           Data.Ord
--- import           Data.Time.LocalTime
--- import           System.FilePath
--- import           Text.Jasmine
--- import           Text.Read                 (readMaybe)
--- import qualified Data.Map                  as M
--- import qualified Data.Text.Lazy            as TL
--- import qualified Data.Text.Lazy.Encoding   as TL
-
+import           CV.Render
 import           CV.Types
+import           CV.View
 import           Data.Default
-import           Data.Text        (Text)
 import           Dhall.TypeCheck
 import           Hakyll
 import           Hakyll.Web.Dhall
 import           Hakyll.Web.Sass
-import qualified Data.Text        as T
+import           System.FilePath
+import qualified Data.Text                       as T
+import qualified Dhall                           as D
+import qualified Text.Blaze.Html.Renderer.String as H
 
 app :: Config
     -> Rules ()
-app Config{..} = do
+app conf@Config{..} = do
     match "static/**" $ do
       route   $ gsubRoute "static/" (const "")
       compile copyFileCompiler
 
     create ["CNAME"] $ do
       route idRoute
-      compile . makeItem . T.unpack $ confHostBase <> "\n"
+      compile . makeItem $ confHostBase <> "\n"
 
     match "css/**" $ do
       route   idRoute
@@ -67,10 +47,47 @@ app Config{..} = do
       route idRoute
       compile $ dExprCompiler @X
 
--- renderSassUrl
+    match "dhall/**.dhall" $ do
+      route idRoute
+      compile $ dExprCompiler @X
+
+    create ["index.html"] $ do
+      route idRoute
+      compile $ do
+        cv <- fmap copyToHtml . itemBody <$> loadDhall D.auto "dhall/cv.dhall"
+
+        makeItem . H.renderHtml $
+          renderPage
+            conf
+            "Justin Le"
+            "Curriculum Vitae of Justin A. Le"
+            ["/css/grid.css", "/css/font.css"]
+            (cvPage cv)
+
+
+-- renderPage
+--     :: FieldRec SiteInfo
+--     -> Text         -- ^ Title
+--     -> Text         -- ^ Description
+--     -> [Text]       -- ^ CSS links
+--     -> H.Html       -- ^ Body
+--     -> H.Html
+
+        -- home1 <- itemBody <$> loadSnapshot "home/1.html" "index"
+        -- makeItem (home1 :: String)
+
+-- archiveCompiler
 --     :: (?config :: Config)
---     => SassFunction
--- renderSassUrl = SassFunction "render-url($x)" $ \v -> return $
---     case v of
---       SassList [SassString l] _ -> SassString $ "url(\"" ++ renderRootUrl' l ++ "\")"
---       _            -> v
+--     => ArchiveData Identifier
+--     -> Compiler (Item String)
+-- archiveCompiler ad = do
+--     ad'     <- traverse ((compileTE =<<) . flip loadSnapshotBody "entry") ad
+--     recents <- getRecentEntries
+--     let title = T.pack (archiveTitle ad')
+--         ai    = AI ad' recents
+--         pd    = def { pageDataTitle = Just title
+--                     , pageDataCss   = ["/css/page/archive.css"]
+--                     , pageDataJs    = ["/js/disqus_count.js"]
+--                     }
+--     blazeCompiler pd (viewArchive ai)
+
