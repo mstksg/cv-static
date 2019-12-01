@@ -844,5 +844,5 @@
 , subtitle =
     Some "Predictive Analytics, Machine Learning & Data Science"
 , title =
-    "Justin Le"
+    "Justin Le, Ph.D."
 }

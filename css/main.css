@@ -14,20 +14,20 @@ p {
   margin: 0; }
 
 h1:before {
-  content: "‣"; }
+  content: "λ. "; }
 
 h1 {
   font-family: Vollkorn, serif;
   font-size: 600%;
   font-weight: 100;
-  letter-spacing: 0.1em;
   margin: 0.5em 0; }
 
 h2 {
   font-weight: normal;
   font-weight: 100;
-  font-size: 125%;
-  margin: 0 0 0.5em 0; }
+  font-size: 133%;
+  margin: 0 0 1em 0;
+  letter-spacing: 0.1em; }
 
 .links {
   font-size: 110%; }
@@ -90,4 +90,4 @@ div#main-container {
 
 .cvsection-pretitle a {
   font-size: 175%;
-  line-height: 4%; }
+  line-height: 5%; }
