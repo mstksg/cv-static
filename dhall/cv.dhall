@@ -52,8 +52,8 @@
                 passion for finding the *story* that data has to tell us!  My
                 experience is in a wide collection of tools from *statistics*, *math
                 modeling*, *machine learning*, and *data science* --- tools that I
-                have proven effective in taming data in geosciences, climate,
-                resource allocation, finance, and condensed matter physics.
+                have proven effective in taming data in climate, energy, finance,
+                and condensed matter physics.
                 ''
             , desc =
                 None Text
@@ -375,13 +375,15 @@
                 { body =
                     Some
                     ''
-                    Developed an ensemble-based Machine Learning system for forecasting and
-                    predicting frequency and intensity of power outages for major utility
-                    company.  Developed mathematical models based on stochastic principles
-                    for analysis and pre-processing of data.  Worked with Neural Network,
-                    Self-Organizing Map, Stochastic models, and ARIMA models to provide a
-                    ensemble forecast.  Worked also on developing an on-line platform to
-                    manage updating models and generating predictions as weather data was
+                    Developed an ensemble-based Machine Learning system for
+                    forecasting and predicting frequency and intensity of power
+                    outages for major Energy and Utility company providing for
+                    over 3 million people.  Developed mathematical models based on
+                    stochastic principles for analysis and pre-processing of data.
+                    Worked with Neural Network, Self-Organizing Map, Stochastic
+                    models, and ARIMA models to provide a ensemble forecast.
+                    Worked also on developing an on-line platform to manage
+                    updating models and generating predictions as weather data was
                     submitted.
                     ''
                 , grade =
