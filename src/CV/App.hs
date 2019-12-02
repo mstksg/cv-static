@@ -59,8 +59,7 @@ app conf@Config{..} = do
         makeItem . H.renderHtml $
           renderPage
             conf
-            "Justin Le"
-            "Curriculum Vitae of Justin A. Le"
+            "img/photo_square.jpg"
             [ "/css/normalize.css"
             , "/css/grid.css"
             , "/css/font.css"

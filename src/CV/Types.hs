@@ -17,13 +17,19 @@ import           Data.Text (Text)
 import qualified Dhall     as D
 
 data Config = Config
-    { confHostBase :: String
+    { confName     :: Text
+    , confDesc     :: Text
+    , confHostBase :: String
+    , confTwitter  :: Maybe String
     , confGA       :: Maybe String
     }
 
 instance D.Interpret Config where
     autoWith _ = D.record $
-      Config <$> D.field "baseUrl"  D.string
+      Config <$> D.field "name"    D.strictText
+             <*> D.field "desc"    D.strictText
+             <*> D.field "baseUrl"  D.string
+             <*> D.field "twitter" (D.maybe D.string)
              <*> D.field "ga"      (D.maybe D.string)
 
 
