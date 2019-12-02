@@ -45,7 +45,8 @@ h2 {
       letter-spacing: 0em; } }
 
 .links {
-  font-size: 110%; }
+  font-size: 110%;
+  font-style: italic; }
 
 header {
   margin-bottom: 3.3em; }
