@@ -304,7 +304,7 @@
                 | Simple :
                     Text
                 >.Simple
-                "C++, Haskell, Python, Matlab, R, Fortran, Ruby"
+                "C++, Haskell, Python, Matlab, R, Ruby, Fortran"
             , desc =
                 Some "Languages"
             }
