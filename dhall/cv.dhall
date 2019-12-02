@@ -103,7 +103,7 @@ let skills =
         , { subject =
               "Languages"
           , skills =
-              [ "C++", "Haskell", "Python", "Matlab", "R", "Fortran" ]
+              [ "C++", "Haskell", "Python", "Matlab", "R", "Ruby", "Fortran" ]
           }
         , { subject =
               "Mathematics"
