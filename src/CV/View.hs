@@ -38,8 +38,6 @@ cvSection Config{..} CVSection{..} = titler (H.div ! A.class_ ("cvsection" <> ex
       CVCWide w  -> do
         H.div ! A.class_ "grid__col grid__col--6-of-6 cvsection-title" $
           mapM_ (H.h3 . H.toHtml) cvsTitle
-          -- H.a ! A.href "#" $
-          --   "top"
         H.div ! A.class_ "grid__col grid__col--6-of-6 cvsection-contents" $
           w
 
@@ -50,8 +48,6 @@ cvSection Config{..} CVSection{..} = titler (H.div ! A.class_ ("cvsection" <> ex
               "#"
         H.div ! A.class_ "grid__col grid__col--7-of-8 cvsection-title" $
           mapM_ (H.h3 . H.toHtml) cvsTitle
-          -- H.a ! A.class_ "top-link" ! A.href "#" $
-          --   "top"
         H.div ! A.class_ "cvsection-contents" $
           mapM_ (uncurry cvContents) cs
   where
