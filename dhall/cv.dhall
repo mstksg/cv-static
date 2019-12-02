@@ -231,6 +231,11 @@ in    { title =
                 types.CVContents.Cols publications
             }
           , { title =
+                Some "Selected Projects"
+            , contents =
+                types.CVContents.Cols ./cv/projects.dhall
+            }
+          , { title =
                 Some "Selected Coursework"
             , contents =
                 types.CVContents.Cols ./cv/courses.dhall
