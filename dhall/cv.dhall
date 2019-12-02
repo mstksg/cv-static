@@ -148,7 +148,7 @@ let publications =
           , title =
               "Long-term drought impact on the El Niño-driven precipitation over Southern California using recurrent neural networks"
           , journal =
-              "Atmospheric Research"
+              "Atmospheric Research <https://www.sciencedirect.com/science/article/pii/S0169809517300157>"
           , year =
               "January 2017"
           }
