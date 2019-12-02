@@ -561,19 +561,29 @@
                 >.Entry
                 { body =
                     Some
-                    "AGU 2019 Annual Meeting, San Francisco, CA (December 2019)"
+                    ''
+                    Authored and maintained open-source *[backprop][]*, *backprop-learn*
+                    platform/library for the Haskell language, providing automatic
+                    differentiation in support of differentiable programming and machine
+                    learning based projects.  Currently used by many in the Haskell open
+                    source community to build richer data science platforms.  Additionally,
+                    authored the *opto* platform for efficient extensible numerical
+                    optimization.
+                    
+                    [backprop]: https://backprop.jle.im/
+                    ''
                 , grade =
                     None Text
                 , institution =
-                    Some "H. M. El-Askary"
+                    Some "Numerical Computation / Computational Science"
                 , location =
-                    Some
-                    "\"Interperation of trained Recurrent Neural Networks and its role in advacement of climate science\""
+                    None Text
                 , title =
-                    Some "J. A. Le"
+                    Some
+                    "Differentiable Programming (Backpropagation) and Optimization Platform"
                 }
             , desc =
-                Some "Geoscience & Machine Learning"
+                Some "Machine Learning"
             }
           , { body =
                 < Entry :
@@ -592,15 +602,119 @@
                     Text
                 >.Entry
                 { body =
-                    Some "Atmospheric Research (January 2017)"
+                    Some
+                    ''
+                    Applied principles of the Feynman Path Integral Formulation of Quantum
+                    Mechanics to create real-time high-performance, parallelizable numeric
+                    simulations in multiple languages, including C++ and Fortran, for live
+                    analysis and exploration of ground state quantum systems.
+                    ''
                 , grade =
                     None Text
                 , institution =
+                    Some "Numerical Computation / Parallel Programming"
+                , location =
+                    None Text
+                , title =
+                    Some "Path Integral Monte Carlo Simulation"
+                }
+            , desc =
+                Some "Physics / Programming"
+            }
+          , { body =
+                < Entry :
+                    { body :
+                        Optional Text
+                    , grade :
+                        Optional Text
+                    , institution :
+                        Optional Text
+                    , location :
+                        Optional Text
+                    , title :
+                        Optional Text
+                    }
+                | Simple :
+                    Text
+                >.Entry
+                { body =
                     Some
-                    "H. M. El-Askary, D. C. Struppa (President, Chapman University)"
+                    ''
+                    Maintaining a top Functional Programming and Haskell blog with 50,000
+                    pageviews per year, appearing multiple times on the front page of
+                    high-visibility platforms such as *[Hacker News][]*.  Topics include
+                    mathematical models, functional programming, and dependently-typed and
+                    type-safe programming.
+                    
+                    [Hacker News]: https://news.ycombinator.com/
+                    ''
+                , grade =
+                    None Text
+                , institution =
+                    Some "Machine Learning / Computer Science"
+                , location =
+                    None Text
+                , title =
+                    Some "Functional Programming and Haskell Blog"
+                }
+            , desc =
+                Some "Education / Writing"
+            }
+          ]
+      , title =
+          Some "Selected Projects"
+      }
+    , { contents =
+          < Cols :
+              List
+              { body :
+                  < Entry :
+                      { body :
+                          Optional Text
+                      , grade :
+                          Optional Text
+                      , institution :
+                          Optional Text
+                      , location :
+                          Optional Text
+                      , title :
+                          Optional Text
+                      }
+                  | Simple :
+                      Text
+                  >
+              , desc :
+                  Optional Text
+              }
+          | Wide :
+              Text
+          >.Cols
+          [ { body =
+                < Entry :
+                    { body :
+                        Optional Text
+                    , grade :
+                        Optional Text
+                    , institution :
+                        Optional Text
+                    , location :
+                        Optional Text
+                    , title :
+                        Optional Text
+                    }
+                | Simple :
+                    Text
+                >.Entry
+                { body =
+                    Some
+                    "AGU 2019 Annual Meeting, San Francisco, CA (December 2019)"
+                , grade =
+                    None Text
+                , institution =
+                    Some "H. M. El-Askary"
                 , location =
                     Some
-                    "\"Long-term drought impact on the El Niño-driven precipitation over Southern California using recurrent neural networks\""
+                    "\"Interperation of trained Recurrent Neural Networks and its role in advacement of climate science\""
                 , title =
                     Some "J. A. Le"
                 }
@@ -705,152 +819,6 @@
           ]
       , title =
           Some "Selected Publications"
-      }
-    , { contents =
-          < Cols :
-              List
-              { body :
-                  < Entry :
-                      { body :
-                          Optional Text
-                      , grade :
-                          Optional Text
-                      , institution :
-                          Optional Text
-                      , location :
-                          Optional Text
-                      , title :
-                          Optional Text
-                      }
-                  | Simple :
-                      Text
-                  >
-              , desc :
-                  Optional Text
-              }
-          | Wide :
-              Text
-          >.Cols
-          [ { body =
-                < Entry :
-                    { body :
-                        Optional Text
-                    , grade :
-                        Optional Text
-                    , institution :
-                        Optional Text
-                    , location :
-                        Optional Text
-                    , title :
-                        Optional Text
-                    }
-                | Simple :
-                    Text
-                >.Entry
-                { body =
-                    Some
-                    ''
-                    Authored and maintained open-source *[backprop][]*, *backprop-learn*
-                    platform/library for the Haskell language, providing automatic
-                    differentiation in support of differentiable programming and machine
-                    learning based projects.  Currently used by many in the Haskell open
-                    source community to build richer data science platforms.  Additionally,
-                    authored the *opto* platform for efficient extensible numerical
-                    optimization.
-                    
-                    [backprop]: https://backprop.jle.im/
-                    ''
-                , grade =
-                    None Text
-                , institution =
-                    Some "Numerical Computation / Computational Science"
-                , location =
-                    None Text
-                , title =
-                    Some
-                    "Differentiable Programming (Backpropagation) and Optimization Platform"
-                }
-            , desc =
-                Some "Machine Learning"
-            }
-          , { body =
-                < Entry :
-                    { body :
-                        Optional Text
-                    , grade :
-                        Optional Text
-                    , institution :
-                        Optional Text
-                    , location :
-                        Optional Text
-                    , title :
-                        Optional Text
-                    }
-                | Simple :
-                    Text
-                >.Entry
-                { body =
-                    Some
-                    ''
-                    Applied principles of the Feynman Path Integral Formulation of Quantum
-                    Mechanics to create real-time high-performance, parallelizable numeric
-                    simulations in multiple languages, including C++ and Fortran, for live
-                    analysis and exploration of ground state quantum systems.
-                    ''
-                , grade =
-                    None Text
-                , institution =
-                    Some "Numerical Computation / Parallel Programming"
-                , location =
-                    None Text
-                , title =
-                    Some "Path Integral Monte Carlo Simulation"
-                }
-            , desc =
-                Some "Physics / Programming"
-            }
-          , { body =
-                < Entry :
-                    { body :
-                        Optional Text
-                    , grade :
-                        Optional Text
-                    , institution :
-                        Optional Text
-                    , location :
-                        Optional Text
-                    , title :
-                        Optional Text
-                    }
-                | Simple :
-                    Text
-                >.Entry
-                { body =
-                    Some
-                    ''
-                    Maintaining a top Functional Programming and Haskell blog with 50,000
-                    pageviews per year, appearing multiple times on the front page of
-                    high-visibility platforms such as *[Hacker News][]*.  Topics include
-                    mathematical models, functional programming, and dependently-typed and
-                    type-safe programming.
-                    
-                    [Hacker News]: https://news.ycombinator.com/
-                    ''
-                , grade =
-                    None Text
-                , institution =
-                    Some "Machine Learning / Computer Science"
-                , location =
-                    None Text
-                , title =
-                    Some "Functional Programming and Haskell Blog"
-                }
-            , desc =
-                Some "Education / Writing"
-            }
-          ]
-      , title =
-          Some "Selected Projects"
       }
     , { contents =
           < Cols :
