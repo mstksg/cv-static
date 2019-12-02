@@ -101,7 +101,7 @@ a {
 
 div#main-container {
   max-width: 860px;
-  margin: 10px 10px;
+  margin: 10px 10px 250px 0;
   padding-right: 20px; }
 
 .cvsection-pretitle, .cvline-desc {

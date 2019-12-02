@@ -1,8 +1,9 @@
 { links =
     ''
-    <justin@jle.im> / [blog][] / [github][] / Orange County, CA
+    <justin@jle.im> / [blog][] / [twitter][] / [github][] / Orange County, CA
     
     [blog]: https://blog.jle.im
+    [twitter]: https://twitter.com/mstk
     [github]: https://github.com/mstksg
     ''
 , sections =
