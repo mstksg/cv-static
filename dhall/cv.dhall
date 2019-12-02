@@ -209,7 +209,7 @@ in    { title =
           ''
       , sections =
           [ { title =
-                Some "Objectives"
+                Some "Who am I?"
             , contents =
                 types.CVContents.Cols objectives
             }
