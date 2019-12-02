@@ -85,7 +85,7 @@ in  [ { desc =
             , institution =
                 Some "Dynes Lab, UCSD Physics Department"
             , location =
-                Some "Irvine, CA"
+                Some "La Jolla, CA"
             , grade =
                 None Text
             , body =
