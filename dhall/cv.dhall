@@ -504,7 +504,7 @@
                 , institution =
                     Some "Dynes Lab, UCSD Physics Department"
                 , location =
-                    Some "Irvine, CA"
+                    Some "La Jolla, CA"
                 , title =
                     Some "Condensed Matter Modeling and Simulation"
                 }
