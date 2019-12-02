@@ -202,7 +202,7 @@ in    { title =
           Some "Predictive Analytics, Machine Learning & Data Science"
       , links =
           ''
-          <justin@jle.im> / [blog][] / [github][]
+          <justin@jle.im> / [blog][] / [github][] / Orange County, CA
 
           [blog]: https://blog.jle.im
           [github]: https://github.com/mstksg
