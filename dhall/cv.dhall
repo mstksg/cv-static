@@ -153,22 +153,6 @@ let publications =
               "January 2017"
           }
         , { subject =
-              "Geoscience & Machine Learning"
-          , author =
-              "J. A. Le"
-          , secondary =
-              Some
-              [ "H. M. El-Askary"
-              , "D. C. Struppa (President, Chapman University)"
-              ]
-          , title =
-              "Long-term drought impact on the El Niño-driven precipitation over Southern California using recurrent neural networks"
-          , journal =
-              "Atmospheric Research"
-          , year =
-              "January 2017"
-          }
-        , { subject =
               "Machine Learning"
           , author =
               "J. A. Le"
@@ -226,14 +210,14 @@ in    { title =
                 types.CVContents.Cols ./cv/experience.dhall
             }
           , { title =
-                Some "Selected Publications"
-            , contents =
-                types.CVContents.Cols publications
-            }
-          , { title =
                 Some "Selected Projects"
             , contents =
                 types.CVContents.Cols ./cv/projects.dhall
+            }
+          , { title =
+                Some "Selected Publications"
+            , contents =
+                types.CVContents.Cols publications
             }
           , { title =
                 Some "Selected Coursework"
