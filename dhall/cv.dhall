@@ -132,7 +132,7 @@ let publications =
           , title =
               "Interperation of trained Recurrent Neural Networks and its role in advacement of climate science"
           , journal =
-              "AGU 2017 Annual Meeting, San Francisco, CA"
+              "AGU 2019 Annual Meeting, San Francisco, CA"
           , year =
               "December 2019"
           }
