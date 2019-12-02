@@ -111,7 +111,7 @@
             }
           ]
       , title =
-          Some "Objectives"
+          Some "Who am I?"
       }
     , { contents =
           < Cols :
