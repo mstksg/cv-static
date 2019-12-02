@@ -48,12 +48,12 @@
                     Text
                 >.Simple
                 ''
-                I'm looking for a place I can apply my passion for finding the *story*
-                that data has to tell us.  My experience is in a wide collection of tools
-                from *statistics*, *math modeling*, *machine learning*, and *data
-                science* --- tools that I have proven effective in taming data in
-                geosciences, climate, resource allocation, finance, and
-                condensed matter physics.
+                My name is Justin Le, and I'm looking for a place I can apply my
+                passion for finding the *story* that data has to tell us!  My
+                experience is in a wide collection of tools from *statistics*, *math
+                modeling*, *machine learning*, and *data science* --- tools that I
+                have proven effective in taming data in geosciences, climate,
+                resource allocation, finance, and condensed matter physics.
                 ''
             , desc =
                 None Text
@@ -111,7 +111,7 @@
             }
           ]
       , title =
-          Some "Who am I?"
+          Some "About me"
       }
     , { contents =
           < Cols :
