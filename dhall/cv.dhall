@@ -738,7 +738,8 @@
                     Text
                 >.Entry
                 { body =
-                    Some "Atmospheric Research (January 2017)"
+                    Some
+                    "Atmospheric Research <https://www.sciencedirect.com/science/article/pii/S0169809517300157> (January 2017)"
                 , grade =
                     None Text
                 , institution =
