@@ -7,8 +7,8 @@ let objectives =
           passion for finding the *story* that data has to tell us!  My
           experience is in a wide collection of tools from *statistics*, *math
           modeling*, *machine learning*, and *data science* --- tools that I
-          have proven effective in taming data in geosciences, climate,
-          resource allocation, finance, and condensed matter physics.
+          have proven effective in taming data in climate, energy, finance,
+          and condensed matter physics.
           ''
         , ''
           As a *scientist and mathematician*, I focus not only on prediction, but also
