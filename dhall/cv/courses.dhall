@@ -88,10 +88,11 @@
       { body =
           Some
           ''
-          Study of the modern state of high performance computing and big data.
-          In-depth look at parallel and concurrent computing through various
-          approaches, architectures, and network topologies.  Applying cluster and
-          grid computing algorithms to compute-intensive tasks.
+          Survey of remote sensing techniques, including the acquisition,
+          aggregation, processing, analysis, and physical considerations
+          of geophysical satellite data. In-depth look at a wide range
+          phenomenology including meteorological anomalies, dust, fire, and
+          anthropological impacts.
           ''
       , grade =
           None Text
@@ -100,10 +101,10 @@
       , location =
           None Text
       , title =
-          Some "High-Performance Computing"
+          Some "Principles of Remote Sensing"
       }
   , desc =
-      Some "CS 540"
+      Some "Phys 520"
   }
 , { body =
       < Entry :
@@ -124,11 +125,10 @@
       { body =
           Some
           ''
-          Survey of remote sensing techniques, including the acquisition,
-          aggregation, processing, analysis, and physical considerations
-          of geophysical satellite data. In-depth look at a wide range
-          phenomenology including meteorological anomalies, dust, fire, and
-          anthropological impacts.
+          Study of the modern state of high performance computing and big data.
+          In-depth look at parallel and concurrent computing through various
+          approaches, architectures, and network topologies.  Applying cluster and
+          grid computing algorithms to compute-intensive tasks.
           ''
       , grade =
           None Text
@@ -137,9 +137,9 @@
       , location =
           None Text
       , title =
-          Some "Principles of Remote Sensing"
+          Some "High-Performance Computing"
       }
   , desc =
-      Some "Phys 520"
+      Some "CS 540"
   }
 ]
