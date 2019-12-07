@@ -103,9 +103,9 @@
                     Text
                 >.Simple
                 ''
-                I'm someone who is passionate about *building systems* for conquering data
-                and expanding the horizons of what your data can do for you, equipped with
-                both the *cutting edge* and the *tried and tested* tools of the trade.
+                I am excited to *build systems* for conquering data and expanding
+                the horizons of what your data can do for you, equipped with both
+                the *cutting edge* and the *tried and tested* tools of the trade.
                 ''
             , desc =
                 None Text
@@ -707,38 +707,6 @@
                 >.Entry
                 { body =
                     Some
-                    "AGU 2019 Annual Meeting, San Francisco, CA (December 2019)"
-                , grade =
-                    None Text
-                , institution =
-                    Some "H. M. El-Askary"
-                , location =
-                    Some
-                    "\"Interperation of trained Recurrent Neural Networks and its role in advacement of climate science\""
-                , title =
-                    Some "J. A. Le"
-                }
-            , desc =
-                Some "Geoscience & Machine Learning"
-            }
-          , { body =
-                < Entry :
-                    { body :
-                        Optional Text
-                    , grade :
-                        Optional Text
-                    , institution :
-                        Optional Text
-                    , location :
-                        Optional Text
-                    , title :
-                        Optional Text
-                    }
-                | Simple :
-                    Text
-                >.Entry
-                { body =
-                    Some
                     "Atmospheric Research <https://www.sciencedirect.com/science/article/pii/S0169809517300157> (January 2017)"
                 , grade =
                     None Text
@@ -803,7 +771,39 @@
                 >.Entry
                 { body =
                     Some
-                    "AOGS 13^th^ Annual Meeting, Beijing, China (August 2016)"
+                    "Compose Conf 2019, New York, New York <http://talks.jle.im/composeconf-2019/> (May 2019)"
+                , grade =
+                    None Text
+                , institution =
+                    None Text
+                , location =
+                    Some
+                    "\"Applicative Regular Expressions using the Free Alternative\""
+                , title =
+                    Some "J. A. Le"
+                }
+            , desc =
+                Some "Algebra & Comp. Sci."
+            }
+          , { body =
+                < Entry :
+                    { body :
+                        Optional Text
+                    , grade :
+                        Optional Text
+                    , institution :
+                        Optional Text
+                    , location :
+                        Optional Text
+                    , title :
+                        Optional Text
+                    }
+                | Simple :
+                    Text
+                >.Entry
+                { body =
+                    Some
+                    "AOGS 13^th^ Annual Meeting, Beijing, China <http://talks.jle.im/aogs-2016/> (August 2016)"
                 , grade =
                     None Text
                 , institution =
@@ -819,7 +819,186 @@
             }
           ]
       , title =
-          Some "Selected Publications"
+          Some "Selected Publications & Presentations"
+      }
+    , { contents =
+          < Cols :
+              List
+              { body :
+                  < Entry :
+                      { body :
+                          Optional Text
+                      , grade :
+                          Optional Text
+                      , institution :
+                          Optional Text
+                      , location :
+                          Optional Text
+                      , title :
+                          Optional Text
+                      }
+                  | Simple :
+                      Text
+                  >
+              , desc :
+                  Optional Text
+              }
+          | Wide :
+              Text
+          >.Cols
+          [ { body =
+                < Entry :
+                    { body :
+                        Optional Text
+                    , grade :
+                        Optional Text
+                    , institution :
+                        Optional Text
+                    , location :
+                        Optional Text
+                    , title :
+                        Optional Text
+                    }
+                | Simple :
+                    Text
+                >.Entry
+                { body =
+                    None Text
+                , grade =
+                    None Text
+                , institution =
+                    Some "Physics"
+                , location =
+                    Some "Chapman University"
+                , title =
+                    Some "Mechanics & Electromagnetism Lab"
+                }
+            , desc =
+                Some "2014 - 2019"
+            }
+          , { body =
+                < Entry :
+                    { body :
+                        Optional Text
+                    , grade :
+                        Optional Text
+                    , institution :
+                        Optional Text
+                    , location :
+                        Optional Text
+                    , title :
+                        Optional Text
+                    }
+                | Simple :
+                    Text
+                >.Entry
+                { body =
+                    None Text
+                , grade =
+                    None Text
+                , institution =
+                    Some "Computer Science"
+                , location =
+                    Some "Chapman University"
+                , title =
+                    Some "Intro to Computer Science"
+                }
+            , desc =
+                Some "2016 - 2017"
+            }
+          , { body =
+                < Entry :
+                    { body :
+                        Optional Text
+                    , grade :
+                        Optional Text
+                    , institution :
+                        Optional Text
+                    , location :
+                        Optional Text
+                    , title :
+                        Optional Text
+                    }
+                | Simple :
+                    Text
+                >.Entry
+                { body =
+                    None Text
+                , grade =
+                    None Text
+                , institution =
+                    Some "Machine Learning"
+                , location =
+                    Some "Intela Solutions"
+                , title =
+                    Some "Principles of Machine Learning and Data Science"
+                }
+            , desc =
+                Some "2017"
+            }
+          , { body =
+                < Entry :
+                    { body :
+                        Optional Text
+                    , grade :
+                        Optional Text
+                    , institution :
+                        Optional Text
+                    , location :
+                        Optional Text
+                    , title :
+                        Optional Text
+                    }
+                | Simple :
+                    Text
+                >.Entry
+                { body =
+                    None Text
+                , grade =
+                    None Text
+                , institution =
+                    Some "Founding President / Vice President"
+                , location =
+                    Some "Chapman University"
+                , title =
+                    Some "Vietnamese Student Association"
+                }
+            , desc =
+                Some "2015 - 2017"
+            }
+          , { body =
+                < Entry :
+                    { body :
+                        Optional Text
+                    , grade :
+                        Optional Text
+                    , institution :
+                        Optional Text
+                    , location :
+                        Optional Text
+                    , title :
+                        Optional Text
+                    }
+                | Simple :
+                    Text
+                >.Entry
+                { body =
+                    None Text
+                , grade =
+                    None Text
+                , institution =
+                    Some "Computer Science"
+                , location =
+                    Some "Chapman University"
+                , title =
+                    Some "Functional Programming and Haskell"
+                }
+            , desc =
+                Some "2015"
+            }
+          ]
+      , title =
+          Some "Teaching and Leadership"
       }
     , { contents =
           < Cols :
