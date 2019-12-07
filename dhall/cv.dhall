@@ -19,9 +19,9 @@ let objectives =
           *maintainability* and extensibility.
           ''
         , ''
-          I'm someone who is passionate about *building systems* for conquering data
-          and expanding the horizons of what your data can do for you, equipped with
-          both the *cutting edge* and the *tried and tested* tools of the trade.
+          I am excited to *build systems* for conquering data and expanding
+          the horizons of what your data can do for you, equipped with both
+          the *cutting edge* and the *tried and tested* tools of the trade.
           ''
         ]
 
@@ -128,19 +128,6 @@ let publications =
           , author =
               "J. A. Le"
           , secondary =
-              Some [ "H. M. El-Askary" ]
-          , title =
-              "Interperation of trained Recurrent Neural Networks and its role in advacement of climate science"
-          , journal =
-              "AGU 2019 Annual Meeting, San Francisco, CA"
-          , year =
-              "December 2019"
-          }
-        , { subject =
-              "Geoscience & Machine Learning"
-          , author =
-              "J. A. Le"
-          , secondary =
               Some
               [ "H. M. El-Askary"
               , "D. C. Struppa (President, Chapman University)"
@@ -166,6 +153,19 @@ let publications =
               "May 2018"
           }
         , { subject =
+              "Algebra & Comp. Sci."
+          , author =
+              "J. A. Le"
+          , secondary =
+              None Text
+          , title =
+              "Applicative Regular Expressions using the Free Alternative"
+          , journal =
+              "Compose Conf 2019, New York, New York <http://talks.jle.im/composeconf-2019/>"
+          , year =
+              "May 2019"
+          }
+        , { subject =
               "Geoscience & Machine Learning"
           , author =
               "H. M. El-Askary"
@@ -174,11 +174,39 @@ let publications =
           , title =
               "Forecasting Interactions Between ENSO and Extreme Drought Conditions with Recurrent Neural Networks"
           , journal =
-              "AOGS 13^th^ Annual Meeting, Beijing, China"
+              "AOGS 13^th^ Annual Meeting, Beijing, China <http://talks.jle.im/aogs-2016/>"
           , year =
               "August 2016"
           }
         ]
+
+let teaching = ./cv/teaching.dhall
+      [ { year   = "2014 - 2019"
+        , course = "Mechanics & Electromagnetism Lab"
+        , subject = "Physics"
+        , institution = "Chapman University"
+        }
+      , { year   = "2016 - 2017"
+        , course = "Intro to Computer Science"
+        , subject = "Computer Science"
+        , institution = "Chapman University"
+        }
+      , { year   = "2017"
+        , course = "Principles of Machine Learning and Data Science"
+        , subject = "Machine Learning"
+        , institution = "Intela Solutions"
+        }
+      , { year   = "2015 - 2017"
+        , course = "Vietnamese Student Association"
+        , subject = "Founding President / Vice President"
+        , institution = "Chapman University"
+        }
+      , { year   = "2015"
+        , course = "Functional Programming and Haskell"
+        , subject = "Computer Science"
+        , institution = "Chapman University"
+        }
+      ]
 
 in    { title =
           "Justin Le, Ph.D."
@@ -215,9 +243,12 @@ in    { title =
                 types.CVContents.Cols ./cv/projects.dhall
             }
           , { title =
-                Some "Selected Publications"
+                Some "Selected Publications & Presentations"
             , contents =
                 types.CVContents.Cols publications
+            }
+          , { title = Some "Teaching and Leadership"
+            , contents = types.CVContents.Cols teaching
             }
           , { title =
                 Some "Selected Coursework"
