@@ -1,5 +1,4 @@
-let prelude =
-      https://gitlab.com/mstksg/dhall-cv/raw/v1.0.0/package.dhall sha256:01c408d8e0d484088ec5669530c974f220a3cc08391734f078d6a4e98f354cc6
+let prelude = ../prelude.dhall
 
 let types = prelude.types
 
