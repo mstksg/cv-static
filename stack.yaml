@@ -44,9 +44,7 @@ extra-deps:
 - hakyll-sass-0.2.4
 - prettyprinter-1.5.1
 - dhall-1.29.0
-# # - hakyll-dhall-0.2.3.0
-- github: mstksg/hakyll-dhall
-  commit: 728b73908551c58a40f9d020c418ea1a8b4c95f5
+- hakyll-dhall-0.2.4.0
 - gitlib-3.1.2
 - gitlib-libgit2-3.1.2.1
 - github: mstksg/jle-utils
