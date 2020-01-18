@@ -63,43 +63,62 @@ let skills =
           }
         ]
 
-in  [ { title = Some "Objectives", contents = objectives }
-    , { title = Some "Education", contents = contents.education }
-    , { title = Some "Skills", contents = skills }
-    , { title =
-          Some "Selected Work and Research Experience"
-      , contents =
-          [ contents.experience.sdge
-          , contents.experience.rainnets
-          , contents.experience.intela
-          , contents.experience.dynes
-          ]
-      }
-    , { title =
-          Some "Selected Projects"
-      , contents =
-          [ contents.projects.backprop
-          , contents.projects.montecarlo
-          , contents.projects.blog
-          ]
-      }
-    , { title =
-          Some "Selected Publications & Presentations"
-      , contents =
-          prelude.helpers.mkPublications
-            [ contents.publications.atmos2017
-            , contents.publications.functional
-            , contents.publications.regexp
-            , contents.publications.aogs2016
+in  { objectives =
+        { title = Some "Objectives", contents = objectives }
+    , education =
+        { title = Some "Education", contents = contents.education }
+    , skills =
+        { title = Some "Skills", contents = skills }
+    , experience =
+        { title =
+            Some "Selected Work and Research Experience"
+        , contents =
+            [ contents.experience.sdge
+            , contents.experience.rainnets
+            , contents.experience.intela
+            , contents.experience.dynes
             ]
-      }
-    , { title =
-          Some "Selected Coursework"
-      , contents =
-          [ contents.courses.cs611
-          , contents.courses.cs533
-          , contents.courses.phys520
-          , contents.courses.cs540
-          ]
-      }
-    ]
+        }
+    , projects =
+        { title =
+            Some "Selected Projects"
+        , contents =
+            [ contents.projects.backprop
+            , contents.projects.montecarlo
+            , contents.projects.blog
+            ]
+        }
+    , publications =
+        { title =
+            Some "Selected Publications & Presentations"
+        , contents =
+            prelude.helpers.mkPublications
+              [ contents.publications.atmos2017
+              , contents.publications.functional
+              , contents.publications.regexp
+              , contents.publications.aogs2016
+              ]
+        }
+    , teaching =
+        { title =
+            Some "Teaching and Leadership"
+        , contents =
+            prelude.helpers.mkTeachings
+              [ contents.teaching.lab
+              , contents.teaching.cs230
+              , contents.teaching.intela
+              , contents.teaching.vsa
+              , contents.teaching.fp
+              ]
+        }
+    , courses =
+        { title =
+            Some "Selected Coursework"
+        , contents =
+            [ contents.courses.cs611
+            , contents.courses.cs533
+            , contents.courses.phys520
+            , contents.courses.cs540
+            ]
+        }
+    }
