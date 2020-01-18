@@ -11,7 +11,7 @@ import           CV.Render
 import           CV.Types
 import           CV.View
 import           Data.Default
-import           Dhall.TypeCheck
+import           Data.Void
 import           Hakyll
 import           Hakyll.Web.Dhall
 import           Hakyll.Web.Sass
@@ -45,11 +45,11 @@ app conf@Config{..} = do
 
     match "config/**.dhall" $ do
       route idRoute
-      compile $ dExprCompiler @X
+      compile $ dExprCompiler @Void
 
     match "dhall/**.dhall" $ do
       route idRoute
-      compile $ dExprCompiler @X
+      compile $ dExprCompiler @Void
 
     create ["index.html"] $ do
       route idRoute

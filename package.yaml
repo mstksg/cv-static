@@ -27,15 +27,15 @@ ghc-options:
 
 dependencies:
 - base >= 4.7 && < 5
+- dhall >= 1.29
+- hakyll
 
 library:
   source-dirs: src
   dependencies:
   - blaze-html
   - data-default
-  - dhall
   - filepath
-  - hakyll
   - hakyll-dhall
   - hakyll-sass
   - hsass
@@ -53,8 +53,6 @@ executables:
     - -with-rtsopts=-N
     dependencies:
     - cv-static
-    - dhall
-    - hakyll
 
 # tests:
 #   cv-static-test:

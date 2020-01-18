@@ -33,44 +33,32 @@ cvSection
     :: Config
     -> CVSection H.Html
     -> H.Html
-cvSection Config{..} CVSection{..} = titler (H.div ! A.class_ ("cvsection" <> extraClass)) $
-    case cvsContents of
-      CVCWide w  -> do
-        H.div ! A.class_ "grid__col grid__col--6-of-6 cvsection-title" $
-          mapM_ (H.h3 . H.toHtml) cvsTitle
-        H.div ! A.class_ "grid__col grid__col--6-of-6 cvsection-contents" $
-          w
-
-      CVCCols cs -> do
-        H.div ! A.class_ "grid__col grid__col--1-of-8 cvsection-pretitle" $
-          forM_ titleName $ \t ->
-            H.a ! A.href (H.textValue . T.pack $ confHostBase </> T.unpack ("#" <> t)) $
-              "#"
-        H.div ! A.class_ "grid__col grid__col--7-of-8 cvsection-title" $
-          mapM_ (H.h3 . H.toHtml) cvsTitle
-        H.div ! A.class_ "cvsection-contents" $
-          mapM_ (uncurry cvContents) cs
+cvSection Config{..} CVSection{..} = titler (H.div ! A.class_ "cvsection cvs-cols") $ do
+    H.div ! A.class_ "grid__col grid__col--1-of-8 cvsection-pretitle" $
+      forM_ titleName $ \t ->
+        H.a ! A.href (H.textValue . T.pack $ confHostBase </> T.unpack ("#" <> t)) $
+          "#"
+    H.div ! A.class_ "grid__col grid__col--7-of-8 cvsection-title" $
+      mapM_ (H.h3 . H.toHtml) cvsTitle
+    H.div ! A.class_ "cvsection-contents" $
+      mapM_ cvContents cvsContents
   where
     titleName = ("section-" <>) . snaker <$> cvsTitle
     titler = case titleName of
       Nothing -> id
       Just t  -> (! A.id (H.textValue t))
-    extraClass = case cvsContents of
-      CVCWide _ -> " cvs-wide"
-      CVCCols _ -> " cvs-cols"
 
 snaker :: Text -> Text
 snaker = T.intercalate "-" . T.words . T.toLower
 
 cvContents
-    :: Maybe Text
-    -> CVLine H.Html
+    :: CVCol H.Html
     -> H.Html
-cvContents desc body = H.div ! A.class_ "cvline" $ do
+cvContents CVCol{..} = H.div ! A.class_ "cvline" $ do
     H.div ! A.class_ "grid__col grid__col--1-of-8 cvline-desc" $
-      mapM_ (H.h4 . H.toMarkup) desc
+      mapM_ (H.h4 . H.toMarkup) cvcDesc
     H.div ! A.class_ "grid__col grid__col--7-of-8 cvline-body" $
-      case body of
+      case cvcBody of
         CVLSimple x -> x
         CVLEntry  e -> cvEntry e
 
@@ -79,7 +67,8 @@ cvEntry
     -> H.Html
 cvEntry CVEntry{..} = do
     H.div ! A.class_ "cventry-heading" $ do
-      mapM_ ((H.span ! A.class_ "cventry-title") . H.toMarkup) cveTitle
+      H.span ! A.class_ "cventry-title" $
+        H.toMarkup cveTitle
       mapM_ ((H.span ! A.class_ "cventry-institution") . H.toMarkup) cveInstitution
       mapM_ ((H.span ! A.class_ "cventry-location") . H.toMarkup) cveLocation
       mapM_ ((H.span ! A.class_ "cventry-grade") . H.toMarkup) cveGrade

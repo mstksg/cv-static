@@ -17,7 +17,7 @@
 #
 # resolver: ./custom-snapshot.yaml
 # resolver: https://example.com/snapshots/2018-01-01.yaml
-resolver: lts-14.16
+resolver: lts-14.20
 
 # User packages to be built.
 # Various formats can be used as shown in the example below.
@@ -42,11 +42,17 @@ packages:
 extra-deps:
 - hakyll-4.13.0.1
 - hakyll-sass-0.2.4
-- hakyll-dhall-0.2.3.0
+- prettyprinter-1.5.1
+- dhall-1.29.0
+# # - hakyll-dhall-0.2.3.0
+- github: mstksg/hakyll-dhall
+  commit: 728b73908551c58a40f9d020c418ea1a8b4c95f5
 - gitlib-3.1.2
 - gitlib-libgit2-3.1.2.1
 - github: mstksg/jle-utils
   commit: 6d3f85e0e0c3f5e453cd50ab842251b3c8a4d31f
+
+allow-newer: true
 
 # Override default flag values for local packages and extra-deps
 # flags: {}
