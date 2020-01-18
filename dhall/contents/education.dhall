@@ -1,0 +1,65 @@
+[ { body =
+      < Entry :
+          { body : Optional Text
+          , grade : Optional Text
+          , institution : Optional Text
+          , location : Optional Text
+          , title : Text
+          }
+      | Simple : Text
+      >.Entry
+        { body = Some
+            ''
+              Application of Differentiable Programming and Machine
+              Learning to Predictive Weather and Climate Analysis and
+              Forecasting
+            ''
+        , grade = None Text
+        , institution = Some "Chapman University"
+        , location = Some "Orange, CA"
+        , title = "Ph.D., Computational and Data Science"
+        }
+  , desc = Some "2016 - 2019"
+  }
+, { body =
+      < Entry :
+          { body : Optional Text
+          , grade : Optional Text
+          , institution : Optional Text
+          , location : Optional Text
+          , title : Text
+          }
+      | Simple : Text
+      >.Entry
+        { body = None Text
+        , grade = None Text
+        , institution = Some "Chapman University"
+        , location = Some "Orange, CA"
+        , title = "M.S., Computational and Data Science"
+        }
+  , desc = Some "2014 - 2016"
+  }
+, { body =
+      < Entry :
+          { body : Optional Text
+          , grade : Optional Text
+          , institution : Optional Text
+          , location : Optional Text
+          , title : Text
+          }
+      | Simple : Text
+      >.Entry
+        { body = None Text
+        , grade = None Text
+        , institution = Some "University of California, San Diego"
+        , location = Some "La Jolla, CA"
+        , title =
+            ''
+              B.S. in Physics w/ Specialization in
+              Computational Physics; Minor in Computer Science and
+              Engineering
+            ''
+        }
+  , desc = Some "2010 - 2014"
+  }
+]
