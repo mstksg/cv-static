@@ -475,6 +475,100 @@
                 }
             | Simple : Text
             >.Entry
+              { body = None Text
+              , grade = None Text
+              , institution = Some "Physics"
+              , location = Some "Chapman University"
+              , title = "Mechanics & Electromagnetism Lab"
+              }
+        , desc = Some "2014 - 2019"
+        }
+      , { body =
+            < Entry :
+                { body : Optional Text
+                , grade : Optional Text
+                , institution : Optional Text
+                , location : Optional Text
+                , title : Text
+                }
+            | Simple : Text
+            >.Entry
+              { body = None Text
+              , grade = None Text
+              , institution = Some "Computer Science"
+              , location = Some "Chapman University"
+              , title = "Intro to Computer Science"
+              }
+        , desc = Some "2016 - 2017"
+        }
+      , { body =
+            < Entry :
+                { body : Optional Text
+                , grade : Optional Text
+                , institution : Optional Text
+                , location : Optional Text
+                , title : Text
+                }
+            | Simple : Text
+            >.Entry
+              { body = None Text
+              , grade = None Text
+              , institution = Some "Machine Learning"
+              , location = Some "Intela Solutions"
+              , title = "Principles of Machine Learning and Data Science"
+              }
+        , desc = Some "2017"
+        }
+      , { body =
+            < Entry :
+                { body : Optional Text
+                , grade : Optional Text
+                , institution : Optional Text
+                , location : Optional Text
+                , title : Text
+                }
+            | Simple : Text
+            >.Entry
+              { body = None Text
+              , grade = None Text
+              , institution = Some "Founding President / Vice President"
+              , location = Some "Chapman University"
+              , title = "Vietnamese Student Association"
+              }
+        , desc = Some "2015 - 2017"
+        }
+      , { body =
+            < Entry :
+                { body : Optional Text
+                , grade : Optional Text
+                , institution : Optional Text
+                , location : Optional Text
+                , title : Text
+                }
+            | Simple : Text
+            >.Entry
+              { body = None Text
+              , grade = None Text
+              , institution = Some "Computer Science"
+              , location = Some "Chapman University"
+              , title = "Functional Programming and Haskell"
+              }
+        , desc = Some "2015"
+        }
+      ]
+    , title = Some "Teaching and Leadership"
+    }
+  , { contents =
+      [ { body =
+            < Entry :
+                { body : Optional Text
+                , grade : Optional Text
+                , institution : Optional Text
+                , location : Optional Text
+                , title : Text
+                }
+            | Simple : Text
+            >.Entry
               { body = Some
                   ''
                   Study of statistical time series analysis and statitiscal models for
