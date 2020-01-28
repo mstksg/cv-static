@@ -39,7 +39,7 @@ in  { sdge =
               { title =
                   "Climate Analysis with Recurrent Neural Networks"
               , institution =
-                  Some "El-Askari Lab, Schmid College of Science and Technology"
+                  Some "El-Askary Lab, Schmid College of Science and Technology"
               , location =
                   Some "Orange, CA"
               , grade =
