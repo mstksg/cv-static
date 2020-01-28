@@ -3,7 +3,7 @@ let prelude = ../prelude.dhall
 let types = prelude.types
 
 in  [ { desc =
-          Some "2016 - 2019"
+          Some "2016 - 2020"
       , body =
           types.CVLine.Entry
             { title =
