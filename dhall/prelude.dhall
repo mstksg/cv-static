@@ -520,6 +520,7 @@
         { headerSpacing : Optional Double
         , info :
             { address : Text
+            , country : Optional Text
             , email : Text
             , firstName : Text
             , lastName : Text
@@ -557,6 +558,28 @@
         , institution : Optional Text
         , location : Optional Text
         , title : Text
+        }
+    , CVLetter =
+        { body : Text
+        , headerSpacing : Optional Double
+        , leaderHeader :
+            { closing : Text
+            , date : Text
+            , enclosure : { description : Text, type : Optional Text }
+            , opening : Text
+            , recipient : { address : Text, name : Text }
+            }
+        , margin : Optional Double
+        , subtitle : Optional Text
+        , theme :
+            Optional < Blue | Green | Grey | Orange | Purple | Red | Roman >
+        }
+    , CVLetterHeader =
+        { closing : Text
+        , date : Text
+        , enclosure : { description : Text, type : Optional Text }
+        , opening : Text
+        , recipient : { address : Text, name : Text }
         }
     , CVLine =
         < Entry :
