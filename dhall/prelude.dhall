@@ -1,1 +1,1 @@
-https://gitlab.com/mstksg/dhall-cv/raw/v1.3.0/package.dhall sha256:cf5cbf50534e1b40f22be4cd78eae45ed0f421107f78222231752847e3fc441c
+https://gitlab.com/mstksg/dhall-cv/raw/v1.4.0/package.dhall sha256:30420bdc2db093ebfcf1d9d2cd42d16ac9dd4da9451a2b922bb21ae94af2002f
