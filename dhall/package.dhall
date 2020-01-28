@@ -123,7 +123,7 @@
               , location = Some "Orange, CA"
               , title = "Ph.D., Computational and Data Science"
               }
-        , desc = Some "2016 - 2019"
+        , desc = Some "2016 - 2020"
         }
       , { body =
             < Entry :
@@ -602,7 +602,7 @@
                       , location = Some "Orange, CA"
                       , title = "Ph.D., Computational and Data Science"
                       }
-                , desc = Some "2016 - 2019"
+                , desc = Some "2016 - 2020"
                 }
               , { body =
                     < Entry :
@@ -1304,7 +1304,7 @@
                       , location = Some "Orange, CA"
                       , title = "Ph.D., Computational and Data Science"
                       }
-                , desc = Some "2016 - 2019"
+                , desc = Some "2016 - 2020"
                 }
               , { body =
                     < Entry :
