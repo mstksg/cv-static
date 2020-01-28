@@ -561,6 +561,13 @@
         }
     , CVLetter =
         { body : Text
+        , header :
+            { closing : Text
+            , date : Text
+            , enclosure : { description : Text, type : Optional Text }
+            , opening : Text
+            , recipient : { address : Text, name : Text }
+            }
         , headerSpacing : Optional Double
         , info :
             { address : Text
@@ -572,13 +579,6 @@
             , street : Text
             , title : Optional Text
             , website : Text
-            }
-        , letterHeader :
-            { closing : Text
-            , date : Text
-            , enclosure : { description : Text, type : Optional Text }
-            , opening : Text
-            , recipient : { address : Text, name : Text }
             }
         , margin : Optional Double
         , theme :
