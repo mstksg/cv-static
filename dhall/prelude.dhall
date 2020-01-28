@@ -562,6 +562,17 @@
     , CVLetter =
         { body : Text
         , headerSpacing : Optional Double
+        , info :
+            { address : Text
+            , country : Optional Text
+            , email : Text
+            , firstName : Text
+            , lastName : Text
+            , phone : Text
+            , street : Text
+            , title : Optional Text
+            , website : Text
+            }
         , leaderHeader :
             { closing : Text
             , date : Text
@@ -570,7 +581,6 @@
             , recipient : { address : Text, name : Text }
             }
         , margin : Optional Double
-        , subtitle : Optional Text
         , theme :
             Optional < Blue | Green | Grey | Orange | Purple | Red | Roman >
         }
