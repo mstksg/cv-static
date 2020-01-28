@@ -75,7 +75,7 @@ in  { sdge =
                   Some
                   ''
                   Involved in the development of the technology, underlying mathematics,
-                  and user interface for MathDB, an abastracted data store used for
+                  and user interface for MathDB, an abstracted data store used for
                   real-time streaming data analysis.  Assisted in the promotion and
                   integration of MathDB technology in different capacities.  Directed the
                   planning of educational programs in Machine Learning and Data Science
