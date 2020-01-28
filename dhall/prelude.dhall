@@ -573,7 +573,7 @@
             , title : Optional Text
             , website : Text
             }
-        , leaderHeader :
+        , letterHeader :
             { closing : Text
             , date : Text
             , enclosure : { description : Text, type : Optional Text }
