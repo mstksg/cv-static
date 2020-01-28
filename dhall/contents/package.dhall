@@ -243,7 +243,7 @@
                   ''
               , grade = None Text
               , institution = Some
-                  "El-Askari Lab, Schmid College of Science and Technology"
+                  "El-Askary Lab, Schmid College of Science and Technology"
               , location = Some "Orange, CA"
               , title = "Climate Analysis with Recurrent Neural Networks"
               }
