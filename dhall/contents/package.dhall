@@ -247,7 +247,7 @@
               , location = Some "Orange, CA"
               , title = "Climate Analysis with Recurrent Neural Networks"
               }
-        , desc = Some "2015 - 2017"
+        , desc = Some "2015 - 2019"
         }
     , sdge =
         { body =
