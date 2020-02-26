@@ -3,20 +3,14 @@ let prelude = ../prelude.dhall
 let types = prelude.types
 
 in  { sdge =
-        { desc =
-            Some "2016 - 2017"
+        { desc = Some "2016 - 2017"
         , body =
             types.CVLine.Entry
-              { title =
-                  "Machine Learning and Data Science Specialist"
-              , institution =
-                  Some "Schmid College of Science and Technology"
-              , location =
-                  Some "Orange, CA"
-              , grade =
-                  None Text
-              , body =
-                  Some
+              { title = "Machine Learning and Data Science Specialist"
+              , institution = Some "Schmid College of Science and Technology"
+              , location = Some "Orange, CA"
+              , grade = None Text
+              , body = Some
                   ''
                   Developed an ensemble-based Machine Learning system for
                   forecasting and predicting frequency and intensity of power
@@ -32,20 +26,15 @@ in  { sdge =
               }
         }
     , rainnets =
-        { desc =
-            Some "2015 - 2017"
+        { desc = Some "2015 - 2019"
         , body =
             types.CVLine.Entry
-              { title =
-                  "Climate Analysis with Recurrent Neural Networks"
-              , institution =
-                  Some "El-Askary Lab, Schmid College of Science and Technology"
-              , location =
-                  Some "Orange, CA"
-              , grade =
-                  None Text
-              , body =
-                  Some
+              { title = "Climate Analysis with Recurrent Neural Networks"
+              , institution = Some
+                  "El-Askary Lab, Schmid College of Science and Technology"
+              , location = Some "Orange, CA"
+              , grade = None Text
+              , body = Some
                   ''
                   Developed statically verified neural network technology in Haskell for
                   the purpose of performant modeling and analysis of climate trends in
@@ -59,20 +48,14 @@ in  { sdge =
               }
         }
     , intela =
-        { desc =
-            Some "2015 - 2018"
+        { desc = Some "2015 - 2018"
         , body =
             types.CVLine.Entry
-              { title =
-                  "Machine Learning Specialist / Educational Supervisor"
-              , institution =
-                  Some "Intela Solutions"
-              , location =
-                  Some "Irvine, CA"
-              , grade =
-                  None Text
-              , body =
-                  Some
+              { title = "Machine Learning Specialist / Educational Supervisor"
+              , institution = Some "Intela Solutions"
+              , location = Some "Irvine, CA"
+              , grade = None Text
+              , body = Some
                   ''
                   Involved in the development of the technology, underlying mathematics,
                   and user interface for MathDB, an abstracted data store used for
@@ -84,20 +67,14 @@ in  { sdge =
               }
         }
     , dynes =
-        { desc =
-            Some "2014"
+        { desc = Some "2014"
         , body =
             types.CVLine.Entry
-              { title =
-                  "Condensed Matter Modeling and Simulation"
-              , institution =
-                  Some "Dynes Lab, UCSD Physics Department"
-              , location =
-                  Some "La Jolla, CA"
-              , grade =
-                  None Text
-              , body =
-                  Some
+              { title = "Condensed Matter Modeling and Simulation"
+              , institution = Some "Dynes Lab, UCSD Physics Department"
+              , location = Some "La Jolla, CA"
+              , grade = None Text
+              , body = Some
                   ''
                   Modeling complex topologies of superconducting quantum interference
                   devices for magnetoscopic applications, and implementing efficient,
