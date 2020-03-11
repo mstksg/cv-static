@@ -14,15 +14,15 @@ in  { backprop =
               , grade = None Text
               , body = Some
                   ''
-                  Authored and maintained open-source [backprop][], *backprop-learn*
-                  platform/library for the Haskell language, providing automatic
-                  differentiation in support of differentiable programming and machine
-                  learning based projects.  Currently used by many in the Haskell open
-                  source community to build richer data science platforms.  Additionally,
-                  authored the *opto* platform for efficient extensible numerical
+                  Authored and maintained open-source
+                  *[backprop](https://backprop.jle.im/)*, *backprop-learn*
+                  platform/library for the Haskell language, providing
+                  automatic differentiation in support of differentiable
+                  programming and machine learning based projects.  Currently
+                  used by many in the Haskell open source community to build
+                  richer data science platforms.  Additionally, authored the
+                  *opto* platform for efficient extensible numerical
                   optimization.
-
-                  [backprop]: https://backprop.jle.im/
                   ''
               }
         }
@@ -55,12 +55,11 @@ in  { backprop =
               , body = Some
                   ''
                   Maintaining a top Functional Programming and Haskell blog with 50,000
-                  pageviews per year, appearing multiple times on the front page of
-                  high-visibility platforms such as [Hacker News][].  Topics include
-                  mathematical models, functional programming, and dependently-typed and
-                  type-safe programming.
-
-                  [Hacker News]: https://news.ycombinator.com/
+                  pageviews per year, appearing multiple times on the front
+                  page of high-visibility platforms such as *[Hacker
+                  News](https://backprop.jle.im/)*.  Topics include
+                  mathematical models, functional programming, and
+                  dependently-typed and type-safe programming.
                   ''
               }
         }
