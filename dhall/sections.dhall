@@ -29,95 +29,84 @@ let objectives =
 
 let skills =
       prelude.helpers.mkSkills
-        [ { subject =
-              "Computer Science"
+        [ { subject = "Computer Science"
           , skills =
-              [ "Machine Learning (clustering, classification, artificial neural networks)"
-              , "Large-scale data analytics"
-              , "Numerical algorithms (FEM, stochastic methods)"
-              , "Digital signal processing"
-              , "Functional programming"
-              , "Static analysis"
-              , "DSL design"
-              ]
+            [ "Machine Learning (clustering, classification, artificial neural networks)"
+            , "Large-scale data analytics"
+            , "Numerical algorithms (FEM, stochastic methods)"
+            , "Digital signal processing"
+            , "Functional programming"
+            , "Static analysis"
+            , "DSL design"
+            ]
           }
-        , { subject =
-              "Languages"
+        , { subject = "Languages"
           , skills =
-              [ "C++", "Haskell", "Python", "Matlab", "R", "Ruby", "Fortran" ]
+            [ "C++", "Haskell", "Python", "Matlab", "R", "Ruby", "Fortran" ]
           }
-        , { subject =
-              "Mathematics"
+        , { subject = "Mathematics"
           , skills =
-              [ "Multivariate statistics"
-              , "Numerical analysis"
-              , "Real/Complex analysis"
-              , "Stochastic processes"
-              , "Dynamical systems"
-              , "Abstract algebra"
-              , "Differential equations"
-              , "Wavelet analysis"
-              , "Applied Category Theory"
-              ]
+            [ "Multivariate statistics"
+            , "Numerical analysis"
+            , "Real/Complex analysis"
+            , "Stochastic processes"
+            , "Dynamical systems"
+            , "Abstract algebra"
+            , "Differential equations"
+            , "Wavelet analysis"
+            , "Applied Category Theory"
+            ]
           }
         ]
 
-in  { objectives =
-        { title = Some "Objectives", contents = objectives }
-    , education =
-        { title = Some "Education", contents = contents.education }
-    , skills =
-        { title = Some "Skills", contents = skills }
+in  { objectives = { title = Some "Objectives", contents = objectives }
+    , education = { title = Some "Education", contents = contents.education }
+    , skills = { title = Some "Skills", contents = skills }
     , experience =
-        { title =
-            Some "Selected Work and Research Experience"
-        , contents =
-            [ contents.experience.sdge
-            , contents.experience.rainnets
-            , contents.experience.intela
-            , contents.experience.dynes
-            ]
-        }
+      { title = Some "Selected Work and Research Experience"
+      , contents =
+        [ contents.experience.sdge
+        , contents.experience.rainnets
+        , contents.experience.intela
+        , contents.experience.dynes
+        ]
+      }
     , projects =
-        { title =
-            Some "Selected Projects"
-        , contents =
-            [ contents.projects.backprop
-            , contents.projects.montecarlo
-            , contents.projects.blog
-            ]
-        }
+      { title = Some "Selected Projects"
+      , contents =
+        [ contents.projects.backprop
+        , contents.projects.montecarlo
+        , contents.projects.blog
+        ]
+      }
     , publications =
-        { title =
-            Some "Selected Publications & Presentations"
-        , contents =
-            prelude.helpers.mkPublications
-              [ contents.publications.atmos2017
-              , contents.publications.functional
-              , contents.publications.regexp
-              , contents.publications.aogs2016
-              ]
-        }
-    , teaching =
-        { title =
-            Some "Teaching and Leadership"
-        , contents =
-            prelude.helpers.mkTeachings
-              [ contents.teaching.lab
-              , contents.teaching.cs230
-              , contents.teaching.intela
-              , contents.teaching.vsa
-              , contents.teaching.fp
-              ]
-        }
-    , courses =
-        { title =
-            Some "Selected Coursework"
-        , contents =
-            [ contents.courses.cs611
-            , contents.courses.cs533
-            , contents.courses.phys520
-            , contents.courses.cs540
+      { title = Some "Selected Publications & Presentations"
+      , contents =
+          prelude.helpers.mkPublications
+            [ contents.publications.atmos2017
+            , contents.publications.functional
+            , contents.publications.regexp
+            , contents.publications.aogs2016
             ]
-        }
+      }
+    , teaching =
+      { title = Some "Teaching and Leadership"
+      , contents =
+          prelude.helpers.mkTeachings
+            [ contents.teaching.lab
+            , contents.teaching.cs230
+            , contents.teaching.intela
+            , contents.teaching.vsa
+            , contents.teaching.fp
+            ]
+      }
+    , courses =
+      { title = Some "Selected Coursework"
+      , contents =
+        [ contents.courses.cs611
+        , contents.courses.cs533
+        , contents.courses.phys520
+        , contents.courses.cs540
+        ]
+      }
     }
