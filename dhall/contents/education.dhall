@@ -2,7 +2,7 @@ let prelude = ../prelude.dhall
 
 let types = prelude.types
 
-in  [ { desc = Some "2016 - 2020"
+in  [ { desc = Some "2016 - 2021"
       , body =
           types.CVLine.Entry
             { title = "Ph.D., Computational and Data Science"
