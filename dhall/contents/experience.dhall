@@ -13,16 +13,16 @@ in  { simspace =
             , body = Some
                 ''
                 Backend engineer for a large-scale Haskell web-facing
-                application intended for simulating entire corporate internal
-                and external networks for the purpose of realistic mock cyber
-                attacks.  Direct team responsibilities involved bridging
-                user-facing interfaces with complex scheduling and execution
-                of applications and processes (namely, attack agents) across
-                multiple virtual machines, building informational data
-                summaries and assessments, and coordinating with cloud
-                services and APIs.  In the capacity of a Haskell programmer,
-                implemented large type-safety and type-directed code
-                generation initiatives company wide for greater internal
+                application simulating entire corporate internal and external
+                networks for the purpose of realistic mock cyber attacks.
+                Direct team responsibilities involved bridging user-facing
+                interfaces with complex scheduling and execution of
+                applications and processes (namely, attack agents) across
+                multiple virtual machines, analyzing and assessing results of
+                attacks in a data visualization pipeline, and coordinating
+                with cloud services and APIs.  In the capacity of a Haskell
+                programmer, implemented large type-safety and type-directed
+                code generation initiatives company wide for greater internal
                 correctness guarantees and more robust channels of
                 communication between front-end and back-end.
                 ''
