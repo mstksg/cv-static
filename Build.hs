@@ -1,14 +1,14 @@
 #!/usr/bin/env stack
--- stack --install-ghc runghc --resolver lts-18 --package shake --package hsass
-
--- stack --install-ghc runghc --package shake --resolver lts-18
--- stack --install-ghc runghc --package shake --package jle-utils --
+-- stack --install-ghc runghc --resolver lts-19 --package shake --package hsass --package shake-dhall
 
 {-# LANGUAGE BlockArguments #-}
 
 import Control.Exception
+import Control.Monad
 import Data.Foldable
+import Data.Traversable
 import Development.Shake
+import Development.Shake.Dhall
 import Development.Shake.FilePath
 import qualified Text.Sass as Sass
 
@@ -21,24 +21,33 @@ opts = shakeOptions { shakeFiles     = "_build"
 siteDir :: FilePath
 siteDir = "_site"
 
--- TODO:
--- * only build scss files on change
--- * push dhall server
-
 main :: IO ()
 main = shakeArgs opts $ do
-    want ["build"]
-
-    "build" ~> do
-      need ["static", "scss", siteDir </> "index.html", siteDir </> "CNAME"]
+    want [siteDir </> "index.html", siteDir </> "CNAME"]
 
     "deploy" ~> do
-      need ["build"]
       cmd_ "jle-update-gh-pages _site"
       cmd_ "git push origin gh-pages"
 
+    forward_ "static//*" (`replaceDirectory1` siteDir) $ \src dest ->
+      copyFileChanged src dest
+
+    forward_ "scss//*.scss" ((-<.> "css") . (siteDir </>) . (`replaceDirectory1` "css")) $ \src dest -> do
+      putVerbose $ "Compiling sass from " <> src <> " to " <> dest
+      res <- liftIO $ Sass.compileFile src sassOpts
+      case res of
+        Left e  -> fail =<< liftIO (Sass.errorMessage e)
+        Right r -> writeFileChanged dest r
+
+    forward_ "dhall//*.dhall" (siteDir </>) $ \src dest -> do
+      putVerbose $ "Compiling dhall from " <> src <> " to " <> dest
+      needDhall [src]
+      Stdout sto <- cmd "dhall resolve" ["--file", src]
+      Stdout str <- cmd "dhall normalize" (Stdin sto)
+      writeFileChanged dest str
+
     (siteDir </> "index.html") %> \fp -> do
-        need . map ("dhall" </>) =<< getDirectoryFiles "dhall" ["//*"]
+        needDhallCli ["dhall/render.dhall"]
         putVerbose "Compiling static html file"
         cmd_ "dhall-text-shell"
             ["--argCmd", "pandoc -f markdown -t html"]
@@ -50,23 +59,6 @@ main = shakeArgs opts $ do
       cmd_ "dhall text"
           ["--output",fp]
           (Stdin "(./dhall/config.dhall).hostBase")
-
-    "static" ~> do
-      staticFiles <- getDirectoryFiles "static" ["//*"]
-      for_ staticFiles \fp ->
-        copyFileChanged ("static" </> fp) (siteDir </> fp)
-    
-    "scss" ~> do
-      scssFiles <- getDirectoryFiles "scss" ["//*.scss"]
-      for_ scssFiles \fp -> do
-        let fromFile = "scss" </> fp
-            toFile   = siteDir </> "css" </> fp -<.> "css"
-        need [fromFile]
-        putVerbose $ "Compiling sass from " <> fromFile <> " to " <> toFile
-        res <- liftIO $ Sass.compileFile fromFile sassOpts
-        case res of
-          Left e  -> fail =<< liftIO (Sass.errorMessage e)
-          Right r -> writeFileChanged toFile r
 
     "clean" ~> do
       removeFilesAfter "_build" ["//*"]
@@ -86,3 +78,14 @@ sassOpts = Sass.defaultSassOptions
           Sass.SassList [Sass.SassString l] _ -> Sass.SassString $ "url(\"" ++ l ++ "\")"
           _            -> v
 
+forward :: FilePattern -> (FilePath -> FilePath) -> (FilePath -> FilePath -> Action ()) -> Rules [FilePath]
+forward fp mkTarg act = do
+    affectedFiles <- liftIO $ getDirectoryFilesIO "" [fp]
+    for affectedFiles $ \afp -> do
+      let targ = mkTarg afp
+      action $ need [targ]
+      targ %> \_ -> need [afp] *> act afp targ
+      pure targ
+
+forward_ :: FilePattern -> (FilePath -> FilePath) -> (FilePath -> FilePath -> Action ()) -> Rules ()
+forward_ fp mkTarg = void . forward fp mkTarg
