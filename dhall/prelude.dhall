@@ -3,8 +3,8 @@ let cv =
         sha256:0faa0f7a67a124d97790fd3535eadf09d7e845ae618b72999655384adbb0822c
 
 let web =
-      https://github.com/mstksg/dhall-cv-web/raw/v1.2.0/package.dhall
-        sha256:8a165c2a9f60141a8d78cf7a847ddd69f5b59c20a554ced46ce417d39e86270f
+      https://github.com/mstksg/dhall-cv-web/raw/v1.2.1/package.dhall
+        sha256:5a2f7174406ea568666b2a23fa20c8e01a086beeba245a76904fbf8701f5cd92
 
 let personal =
       https://raw.githubusercontent.com/mstksg/dhall-cv-personal/66d36d78440e32ef5adfd4e1b68e53be7140f974/package.dhall
