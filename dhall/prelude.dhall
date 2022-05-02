@@ -3456,8 +3456,8 @@
   }
 , web =
   { fullRender =
-      λ(_ : Text → Text) →
-      λ ( _
+      λ(markdownToHtml : Text → Text) →
+      λ ( conf
         : { desc : Text
           , googleAnalytics : Optional Text
           , hostBase : Text
@@ -3465,8 +3465,8 @@
           , twitter : Optional Text
           }
         ) →
-      λ(_ : { cssImports : List Text, photoImport : Text }) →
-      λ ( _
+      λ(rconf : { cssImports : List Text, photoImport : Text }) →
+      λ ( p
         : { lastModified : Optional Date
           , links : { rawMarkdown : Text }
           , sections :
@@ -3542,7 +3542,7 @@
                                   _.rawText " "
                               ]
                             , Some =
-                                λ(_ : Text) →
+                                λ(x : Text) →
                                   [ λ(_ : Type) →
                                     λ ( _
                                       : { element :
@@ -3562,6 +3562,10 @@
                                       _.element
                                         { attributes =
                                           [ { mapKey = "async", mapValue = "" }
+                                          , { mapKey = "src"
+                                            , mapValue =
+                                                "https://www.googletagmanager.com/gtag/js?id=${x}"
+                                            }
                                           ]
                                         , content = [] : List _@1
                                         , name = "script"
@@ -3594,14 +3598,14 @@
                                               window.dataLayer = window.dataLayer || [];
                                               function gtag(){dataLayer.push(arguments);}
                                               gtag('js', new Date());
-                                              gtag('config', ${_@2});
+                                              gtag('config', ${x});
                                               ''
                                           ]
                                         , name = "script"
                                         }
                                   ]
                             }
-                            _@4.googleAnalytics
+                            conf.googleAnalytics
                         # [ λ(_ : Type) →
                             λ ( _
                               : { element :
@@ -3618,7 +3622,7 @@
                               _.element
                                 { attributes =
                                   [ { mapKey = "name", mapValue = "title" }
-                                  , { mapKey = "content", mapValue = _@6.name }
+                                  , { mapKey = "content", mapValue = conf.name }
                                   ]
                                 , content = [] : List _@1
                                 , name = "meta"
@@ -3641,7 +3645,7 @@
                                   [ { mapKey = "name"
                                     , mapValue = "description"
                                     }
-                                  , { mapKey = "content", mapValue = _@6.desc }
+                                  , { mapKey = "content", mapValue = conf.desc }
                                   ]
                                 , content = [] : List _@1
                                 , name = "meta"
@@ -3741,7 +3745,7 @@
                                         , mapValue = "og:description"
                                         }
                                       , { mapKey = "content"
-                                        , mapValue = _@6.desc
+                                        , mapValue = conf.desc
                                         }
                                       ]
                                     , content = [] : List _@1
@@ -3768,7 +3772,7 @@
                                         }
                                       , { mapKey = "content"
                                         , mapValue =
-                                            "${_@6.hostBase}/${_@5.photoImport}"
+                                            "${conf.hostBase}/${rconf.photoImport}"
                                         }
                                       ]
                                     , content = [] : List _@1
@@ -3820,7 +3824,7 @@
                                         , mapValue = "og:site_name"
                                         }
                                       , { mapKey = "content"
-                                        , mapValue = _@6.name
+                                        , mapValue = conf.name
                                         }
                                       ]
                                     , content = [] : List _@1
@@ -3846,7 +3850,7 @@
                                         , mapValue = "og:title"
                                         }
                                       , { mapKey = "content"
-                                        , mapValue = _@6.name
+                                        , mapValue = conf.name
                                         }
                                       ]
                                     , content = [] : List _@1
@@ -3896,7 +3900,7 @@
                                     { attributes =
                                       [ { mapKey = "name", mapValue = "og:url" }
                                       , { mapKey = "content"
-                                        , mapValue = _@6.hostBase
+                                        , mapValue = conf.hostBase
                                         }
                                       ]
                                     , content = [] : List _@1
@@ -3948,7 +3952,7 @@
                                         , mapValue = "twitter:description"
                                         }
                                       , { mapKey = "content"
-                                        , mapValue = _@6.desc
+                                        , mapValue = conf.desc
                                         }
                                       ]
                                     , content = [] : List _@1
@@ -3975,7 +3979,7 @@
                                         }
                                       , { mapKey = "content"
                                         , mapValue =
-                                            "${_@6.hostBase}/${_@5.photoImport}"
+                                            "${conf.hostBase}/${rconf.photoImport}"
                                         }
                                       ]
                                     , content = [] : List _@1
@@ -4027,7 +4031,7 @@
                                         , mapValue = "twitter:title"
                                         }
                                       , { mapKey = "content"
-                                        , mapValue = _@6.name
+                                        , mapValue = conf.name
                                         }
                                       ]
                                     , content = [] : List _@1
@@ -4053,7 +4057,7 @@
                                         , mapValue = "twitter:url"
                                         }
                                       , { mapKey = "content"
-                                        , mapValue = _@6.hostBase
+                                        , mapValue = conf.hostBase
                                         }
                                       ]
                                     , content = [] : List _@1
@@ -4081,7 +4085,7 @@
                                       _.rawText " "
                                   ]
                                 , Some =
-                                    λ(_ : Text) →
+                                    λ(x : Text) →
                                       [ λ(_ : Type) →
                                         λ ( _
                                           : { element :
@@ -4104,7 +4108,7 @@
                                                 , mapValue = "twitter:site"
                                                 }
                                               , { mapKey = "content"
-                                                , mapValue = _@2
+                                                , mapValue = x
                                                 }
                                               ]
                                             , content = [] : List _@1
@@ -4132,7 +4136,7 @@
                                                 , mapValue = "twitter:creator"
                                                 }
                                               , { mapKey = "content"
-                                                , mapValue = _@2
+                                                , mapValue = x
                                                 }
                                               ]
                                             , content = [] : List _@1
@@ -4140,11 +4144,11 @@
                                             }
                                       ]
                                 }
-                                _@4.twitter
+                                conf.twitter
                           )
                         # List/fold
                             Text
-                            _@3.cssImports
+                            rconf.cssImports
                             ( List
                                 ( Type →
                                   { element :
@@ -4314,8 +4318,7 @@
                                                              { mapKey : Text
                                                              , mapValue : Text
                                                              }
-                                                  , content =
-                                                    [ _.text _@4.title ]
+                                                  , content = [ _.text p.title ]
                                                   , name = "h1"
                                                   }
                                             ]
@@ -4341,7 +4344,7 @@
                                                     _.rawText " "
                                                 ]
                                               , Some =
-                                                  λ(_ : Text) →
+                                                  λ(x : Text) →
                                                     [ λ(_ : Type) →
                                                       λ ( _
                                                         : { element :
@@ -4369,12 +4372,12 @@
                                                                          Text
                                                                      }
                                                           , content =
-                                                            [ _.text _@2 ]
+                                                            [ _.text x ]
                                                           , name = "h2"
                                                           }
                                                     ]
                                               }
-                                              _@2.subtitle
+                                              p.subtitle
                                           # [ λ(_ : Type) →
                                               λ ( _
                                                 : { element :
@@ -4399,8 +4402,8 @@
                                                     ]
                                                   , content =
                                                     [ _.rawText
-                                                        ( _@7
-                                                            _@4.links.rawMarkdown
+                                                        ( markdownToHtml
+                                                            p.links.rawMarkdown
                                                         )
                                                     ]
                                                   , name = "div"
@@ -4540,7 +4543,7 @@
                                                       }
                                                 , title : Optional Text
                                                 }
-                                                _@2.sections
+                                                p.sections
                                                 ( List
                                                     { contents :
                                                         List
@@ -5081,7 +5084,7 @@
                                                                                                         }
                                                                                                       ) →
                                                                                                       _.rawText
-                                                                                                        ( _@13
+                                                                                                        ( markdownToHtml
                                                                                                             _@2.rawMarkdown
                                                                                                         )
                                                                                                   )
@@ -5196,7 +5199,7 @@
                                                                                           }
                                                                                         ) →
                                                                                         _.rawText
-                                                                                          ( _@12
+                                                                                          ( markdownToHtml
                                                                                               _@2.rawMarkdown
                                                                                           )
                                                                                     )
@@ -5507,13 +5510,13 @@
                                                                                Text
                                                                            }
                                                                 , Some =
-                                                                    λ ( _
+                                                                    λ ( x
                                                                       : Text
                                                                       ) →
                                                                       [ { mapKey =
                                                                             "id"
                                                                         , mapValue =
-                                                                            _
+                                                                            x
                                                                         }
                                                                       ]
                                                                 }
@@ -5706,7 +5709,7 @@
                                                                                 " "
                                                                           ]
                                                                         , Some =
-                                                                            λ ( _
+                                                                            λ ( x
                                                                               : Text
                                                                               ) →
                                                                               [ λ ( _
@@ -5741,7 +5744,7 @@
                                                                                       [ { mapKey =
                                                                                             "href"
                                                                                         , mapValue =
-                                                                                            "${_@11.hostBase}/#${_@2}"
+                                                                                            "${conf.hostBase}/#${x}"
                                                                                         }
                                                                                       ]
                                                                                     , content =
@@ -5984,7 +5987,7 @@
                                                                                 " "
                                                                           ]
                                                                         , Some =
-                                                                            λ ( _
+                                                                            λ ( x
                                                                               : Text
                                                                               ) →
                                                                               [ λ ( _
@@ -6024,7 +6027,7 @@
                                                                                                }
                                                                                     , content =
                                                                                       [ _.text
-                                                                                          _@2
+                                                                                          x
                                                                                       ]
                                                                                     , name =
                                                                                         "h3"
@@ -6415,7 +6418,7 @@
                                                                                                             " "
                                                                                                       ]
                                                                                                     , Some =
-                                                                                                        λ ( _
+                                                                                                        λ ( x
                                                                                                           : Text
                                                                                                           ) →
                                                                                                           [ λ ( _
@@ -6455,7 +6458,7 @@
                                                                                                                            }
                                                                                                                 , content =
                                                                                                                   [ _.text
-                                                                                                                      _@2
+                                                                                                                      x
                                                                                                                   ]
                                                                                                                 , name =
                                                                                                                     "h4"
@@ -6546,7 +6549,7 @@
                                                                                                 )
                                                                                                 ( merge
                                                                                                     { Entry =
-                                                                                                        λ ( _
+                                                                                                        λ ( e
                                                                                                           : { body :
                                                                                                                 Optional
                                                                                                                   ( Type →
@@ -6686,7 +6689,7 @@
                                                                                                                                   ]
                                                                                                                                 , content =
                                                                                                                                   [ _.text
-                                                                                                                                      _@4.title
+                                                                                                                                      e.title
                                                                                                                                   ]
                                                                                                                                 , name =
                                                                                                                                     "span"
@@ -6751,7 +6754,7 @@
                                                                                                                                         " "
                                                                                                                                   ]
                                                                                                                                 , Some =
-                                                                                                                                    λ ( _
+                                                                                                                                    λ ( x
                                                                                                                                       : Text
                                                                                                                                       ) →
                                                                                                                                       [ λ ( _
@@ -6791,14 +6794,14 @@
                                                                                                                                               ]
                                                                                                                                             , content =
                                                                                                                                               [ _.text
-                                                                                                                                                  _@2
+                                                                                                                                                  x
                                                                                                                                               ]
                                                                                                                                             , name =
                                                                                                                                                 "span"
                                                                                                                                             }
                                                                                                                                       ]
                                                                                                                                 }
-                                                                                                                                _@2.institution
+                                                                                                                                e.institution
                                                                                                                             )
                                                                                                                             ( List
                                                                                                                                 ( Type →
@@ -6944,7 +6947,7 @@
                                                                                                                                             " "
                                                                                                                                       ]
                                                                                                                                     , Some =
-                                                                                                                                        λ ( _
+                                                                                                                                        λ ( x
                                                                                                                                           : Text
                                                                                                                                           ) →
                                                                                                                                           [ λ ( _
@@ -6984,14 +6987,14 @@
                                                                                                                                                   ]
                                                                                                                                                 , content =
                                                                                                                                                   [ _.text
-                                                                                                                                                      _@2
+                                                                                                                                                      x
                                                                                                                                                   ]
                                                                                                                                                 , name =
                                                                                                                                                     "span"
                                                                                                                                                 }
                                                                                                                                           ]
                                                                                                                                     }
-                                                                                                                                    _@2.location
+                                                                                                                                    e.location
                                                                                                                                 )
                                                                                                                                 ( List
                                                                                                                                     ( Type →
@@ -7137,7 +7140,7 @@
                                                                                                                                                 " "
                                                                                                                                           ]
                                                                                                                                         , Some =
-                                                                                                                                            λ ( _
+                                                                                                                                            λ ( x
                                                                                                                                               : Text
                                                                                                                                               ) →
                                                                                                                                               [ λ ( _
@@ -7177,14 +7180,14 @@
                                                                                                                                                       ]
                                                                                                                                                     , content =
                                                                                                                                                       [ _.text
-                                                                                                                                                          _@2
+                                                                                                                                                          x
                                                                                                                                                       ]
                                                                                                                                                     , name =
                                                                                                                                                         "span"
                                                                                                                                                     }
                                                                                                                                               ]
                                                                                                                                         }
-                                                                                                                                        _@2.grade
+                                                                                                                                        e.grade
                                                                                                                                     )
                                                                                                                                     ( List
                                                                                                                                         ( Type →
@@ -7441,7 +7444,7 @@
                                                                                                                                   " "
                                                                                                                             ]
                                                                                                                           , Some =
-                                                                                                                              λ ( _
+                                                                                                                              λ ( x
                                                                                                                                 : Type →
                                                                                                                                   { element :
                                                                                                                                       { attributes :
@@ -7467,10 +7470,10 @@
                                                                                                                                   } →
                                                                                                                                     _@1
                                                                                                                                 ) →
-                                                                                                                                [ _
+                                                                                                                                [ x
                                                                                                                                 ]
                                                                                                                           }
-                                                                                                                          _@2.body
+                                                                                                                          e.body
                                                                                                                       )
                                                                                                                       ( List
                                                                                                                           _@1
@@ -7519,7 +7522,7 @@
                                                                                                                 }
                                                                                                           ]
                                                                                                     , Simple =
-                                                                                                        λ ( _
+                                                                                                        λ ( b
                                                                                                           : Type →
                                                                                                             { element :
                                                                                                                 { attributes :
@@ -7545,7 +7548,7 @@
                                                                                                             } →
                                                                                                               _@1
                                                                                                           ) →
-                                                                                                          [ _
+                                                                                                          [ b
                                                                                                           ]
                                                                                                     }
                                                                                                     _@3.body
@@ -7735,8 +7738,8 @@
           , name = "html"
           }
   , fullRenderAsText =
-      λ(_ : Text → Text) →
-      λ ( _
+      λ(markdownToHtml : Text → Text) →
+      λ ( conf
         : { desc : Text
           , googleAnalytics : Optional Text
           , hostBase : Text
@@ -7744,8 +7747,8 @@
           , twitter : Optional Text
           }
         ) →
-      λ(_ : { cssImports : List Text, photoImport : Text }) →
-      λ ( _
+      λ(rconf : { cssImports : List Text, photoImport : Text }) →
+      λ ( p
         : { lastModified : Optional Date
           , links : { rawMarkdown : Text }
           , sections :
@@ -7813,7 +7816,7 @@
                                                  _.rawText " "
                                              ]
                                            , Some =
-                                               λ(_ : Text) →
+                                               λ(x : Text) →
                                                  [ λ(_ : Type) →
                                                    λ ( _
                                                      : { element :
@@ -7835,6 +7838,10 @@
                                                        { attributes =
                                                          [ { mapKey = "async"
                                                            , mapValue = ""
+                                                           }
+                                                         , { mapKey = "src"
+                                                           , mapValue =
+                                                               "https://www.googletagmanager.com/gtag/js?id=${x}"
                                                            }
                                                          ]
                                                        , content = [] : List _@1
@@ -7871,14 +7878,14 @@
                                                              window.dataLayer = window.dataLayer || [];
                                                              function gtag(){dataLayer.push(arguments);}
                                                              gtag('js', new Date());
-                                                             gtag('config', ${_@2});
+                                                             gtag('config', ${x});
                                                              ''
                                                          ]
                                                        , name = "script"
                                                        }
                                                  ]
                                            }
-                                           _@2.googleAnalytics
+                                           conf.googleAnalytics
                                        # [ λ(_ : Type) →
                                            λ ( _
                                              : { element :
@@ -7901,7 +7908,7 @@
                                                    , mapValue = "title"
                                                    }
                                                  , { mapKey = "content"
-                                                   , mapValue = _@4.name
+                                                   , mapValue = conf.name
                                                    }
                                                  ]
                                                , content = [] : List _@1
@@ -7929,7 +7936,7 @@
                                                    , mapValue = "description"
                                                    }
                                                  , { mapKey = "content"
-                                                   , mapValue = _@4.desc
+                                                   , mapValue = conf.desc
                                                    }
                                                  ]
                                                , content = [] : List _@1
@@ -8045,7 +8052,7 @@
                                                            "og:description"
                                                        }
                                                      , { mapKey = "content"
-                                                       , mapValue = _@4.desc
+                                                       , mapValue = conf.desc
                                                        }
                                                      ]
                                                    , content = [] : List _@1
@@ -8074,7 +8081,7 @@
                                                        }
                                                      , { mapKey = "content"
                                                        , mapValue =
-                                                           "${_@4.hostBase}/${_@3.photoImport}"
+                                                           "${conf.hostBase}/${rconf.photoImport}"
                                                        }
                                                      ]
                                                    , content = [] : List _@1
@@ -8131,7 +8138,7 @@
                                                            "og:site_name"
                                                        }
                                                      , { mapKey = "content"
-                                                       , mapValue = _@4.name
+                                                       , mapValue = conf.name
                                                        }
                                                      ]
                                                    , content = [] : List _@1
@@ -8159,7 +8166,7 @@
                                                        , mapValue = "og:title"
                                                        }
                                                      , { mapKey = "content"
-                                                       , mapValue = _@4.name
+                                                       , mapValue = conf.name
                                                        }
                                                      ]
                                                    , content = [] : List _@1
@@ -8215,7 +8222,8 @@
                                                        , mapValue = "og:url"
                                                        }
                                                      , { mapKey = "content"
-                                                       , mapValue = _@4.hostBase
+                                                       , mapValue =
+                                                           conf.hostBase
                                                        }
                                                      ]
                                                    , content = [] : List _@1
@@ -8273,7 +8281,7 @@
                                                            "twitter:description"
                                                        }
                                                      , { mapKey = "content"
-                                                       , mapValue = _@4.desc
+                                                       , mapValue = conf.desc
                                                        }
                                                      ]
                                                    , content = [] : List _@1
@@ -8303,7 +8311,7 @@
                                                        }
                                                      , { mapKey = "content"
                                                        , mapValue =
-                                                           "${_@4.hostBase}/${_@3.photoImport}"
+                                                           "${conf.hostBase}/${rconf.photoImport}"
                                                        }
                                                      ]
                                                    , content = [] : List _@1
@@ -8361,7 +8369,7 @@
                                                            "twitter:title"
                                                        }
                                                      , { mapKey = "content"
-                                                       , mapValue = _@4.name
+                                                       , mapValue = conf.name
                                                        }
                                                      ]
                                                    , content = [] : List _@1
@@ -8390,7 +8398,8 @@
                                                            "twitter:url"
                                                        }
                                                      , { mapKey = "content"
-                                                       , mapValue = _@4.hostBase
+                                                       , mapValue =
+                                                           conf.hostBase
                                                        }
                                                      ]
                                                    , content = [] : List _@1
@@ -8419,7 +8428,7 @@
                                                      _.rawText " "
                                                  ]
                                                , Some =
-                                                   λ(_ : Text) →
+                                                   λ(x : Text) →
                                                      [ λ(_ : Type) →
                                                        λ ( _
                                                          : { element :
@@ -8448,7 +8457,7 @@
                                                                }
                                                              , { mapKey =
                                                                    "content"
-                                                               , mapValue = _@2
+                                                               , mapValue = x
                                                                }
                                                              ]
                                                            , content =
@@ -8483,7 +8492,7 @@
                                                                }
                                                              , { mapKey =
                                                                    "content"
-                                                               , mapValue = _@2
+                                                               , mapValue = x
                                                                }
                                                              ]
                                                            , content =
@@ -8492,11 +8501,11 @@
                                                            }
                                                      ]
                                                }
-                                               _@2.twitter
+                                               conf.twitter
                                          )
                                        # List/fold
                                            Text
-                                           _@1.cssImports
+                                           rconf.cssImports
                                            ( List
                                                ( Type →
                                                  { element :
@@ -8741,7 +8750,7 @@
                                                  _.rawText " "
                                              ]
                                            , Some =
-                                               λ(_ : Text) →
+                                               λ(x : Text) →
                                                  [ λ(_ : Type) →
                                                    λ ( _
                                                      : { element :
@@ -8763,6 +8772,10 @@
                                                        { attributes =
                                                          [ { mapKey = "async"
                                                            , mapValue = ""
+                                                           }
+                                                         , { mapKey = "src"
+                                                           , mapValue =
+                                                               "https://www.googletagmanager.com/gtag/js?id=${x}"
                                                            }
                                                          ]
                                                        , content = [] : List _@1
@@ -8799,14 +8812,14 @@
                                                              window.dataLayer = window.dataLayer || [];
                                                              function gtag(){dataLayer.push(arguments);}
                                                              gtag('js', new Date());
-                                                             gtag('config', ${_@2});
+                                                             gtag('config', ${x});
                                                              ''
                                                          ]
                                                        , name = "script"
                                                        }
                                                  ]
                                            }
-                                           _@2.googleAnalytics
+                                           conf.googleAnalytics
                                        # [ λ(_ : Type) →
                                            λ ( _
                                              : { element :
@@ -8829,7 +8842,7 @@
                                                    , mapValue = "title"
                                                    }
                                                  , { mapKey = "content"
-                                                   , mapValue = _@4.name
+                                                   , mapValue = conf.name
                                                    }
                                                  ]
                                                , content = [] : List _@1
@@ -8857,7 +8870,7 @@
                                                    , mapValue = "description"
                                                    }
                                                  , { mapKey = "content"
-                                                   , mapValue = _@4.desc
+                                                   , mapValue = conf.desc
                                                    }
                                                  ]
                                                , content = [] : List _@1
@@ -8973,7 +8986,7 @@
                                                            "og:description"
                                                        }
                                                      , { mapKey = "content"
-                                                       , mapValue = _@4.desc
+                                                       , mapValue = conf.desc
                                                        }
                                                      ]
                                                    , content = [] : List _@1
@@ -9002,7 +9015,7 @@
                                                        }
                                                      , { mapKey = "content"
                                                        , mapValue =
-                                                           "${_@4.hostBase}/${_@3.photoImport}"
+                                                           "${conf.hostBase}/${rconf.photoImport}"
                                                        }
                                                      ]
                                                    , content = [] : List _@1
@@ -9059,7 +9072,7 @@
                                                            "og:site_name"
                                                        }
                                                      , { mapKey = "content"
-                                                       , mapValue = _@4.name
+                                                       , mapValue = conf.name
                                                        }
                                                      ]
                                                    , content = [] : List _@1
@@ -9087,7 +9100,7 @@
                                                        , mapValue = "og:title"
                                                        }
                                                      , { mapKey = "content"
-                                                       , mapValue = _@4.name
+                                                       , mapValue = conf.name
                                                        }
                                                      ]
                                                    , content = [] : List _@1
@@ -9143,7 +9156,8 @@
                                                        , mapValue = "og:url"
                                                        }
                                                      , { mapKey = "content"
-                                                       , mapValue = _@4.hostBase
+                                                       , mapValue =
+                                                           conf.hostBase
                                                        }
                                                      ]
                                                    , content = [] : List _@1
@@ -9201,7 +9215,7 @@
                                                            "twitter:description"
                                                        }
                                                      , { mapKey = "content"
-                                                       , mapValue = _@4.desc
+                                                       , mapValue = conf.desc
                                                        }
                                                      ]
                                                    , content = [] : List _@1
@@ -9231,7 +9245,7 @@
                                                        }
                                                      , { mapKey = "content"
                                                        , mapValue =
-                                                           "${_@4.hostBase}/${_@3.photoImport}"
+                                                           "${conf.hostBase}/${rconf.photoImport}"
                                                        }
                                                      ]
                                                    , content = [] : List _@1
@@ -9289,7 +9303,7 @@
                                                            "twitter:title"
                                                        }
                                                      , { mapKey = "content"
-                                                       , mapValue = _@4.name
+                                                       , mapValue = conf.name
                                                        }
                                                      ]
                                                    , content = [] : List _@1
@@ -9318,7 +9332,8 @@
                                                            "twitter:url"
                                                        }
                                                      , { mapKey = "content"
-                                                       , mapValue = _@4.hostBase
+                                                       , mapValue =
+                                                           conf.hostBase
                                                        }
                                                      ]
                                                    , content = [] : List _@1
@@ -9347,7 +9362,7 @@
                                                      _.rawText " "
                                                  ]
                                                , Some =
-                                                   λ(_ : Text) →
+                                                   λ(x : Text) →
                                                      [ λ(_ : Type) →
                                                        λ ( _
                                                          : { element :
@@ -9376,7 +9391,7 @@
                                                                }
                                                              , { mapKey =
                                                                    "content"
-                                                               , mapValue = _@2
+                                                               , mapValue = x
                                                                }
                                                              ]
                                                            , content =
@@ -9411,7 +9426,7 @@
                                                                }
                                                              , { mapKey =
                                                                    "content"
-                                                               , mapValue = _@2
+                                                               , mapValue = x
                                                                }
                                                              ]
                                                            , content =
@@ -9420,11 +9435,11 @@
                                                            }
                                                      ]
                                                }
-                                               _@2.twitter
+                                               conf.twitter
                                          )
                                        # List/fold
                                            Text
-                                           _@1.cssImports
+                                           rconf.cssImports
                                            ( List
                                                ( Type →
                                                  { element :
@@ -9695,7 +9710,7 @@
                                                                                                                                                                                                                       }
                                                                                                                                                                                                            , content =
                                                                                                                                                                                                              [ _.text
-                                                                                                                                                                                                                 _@2.title
+                                                                                                                                                                                                                 p.title
                                                                                                                                                                                                              ]
                                                                                                                                                                                                            , name =
                                                                                                                                                                                                                "h1"
@@ -9734,7 +9749,7 @@
                                                                                                                                                                                                                " "
                                                                                                                                                                                                          ]
                                                                                                                                                                                                        , Some =
-                                                                                                                                                                                                           λ ( _
+                                                                                                                                                                                                           λ ( x
                                                                                                                                                                                                              : Text
                                                                                                                                                                                                              ) →
                                                                                                                                                                                                              [ λ ( _
@@ -9774,14 +9789,14 @@
                                                                                                                                                                                                                               }
                                                                                                                                                                                                                    , content =
                                                                                                                                                                                                                      [ _.text
-                                                                                                                                                                                                                         _@2
+                                                                                                                                                                                                                         x
                                                                                                                                                                                                                      ]
                                                                                                                                                                                                                    , name =
                                                                                                                                                                                                                        "h2"
                                                                                                                                                                                                                    }
                                                                                                                                                                                                              ]
                                                                                                                                                                                                        }
-                                                                                                                                                                                                       _.subtitle
+                                                                                                                                                                                                       p.subtitle
                                                                                                                                                                                                    # [ λ ( _
                                                                                                                                                                                                          : Type
                                                                                                                                                                                                          ) →
@@ -9819,8 +9834,8 @@
                                                                                                                                                                                                              ]
                                                                                                                                                                                                            , content =
                                                                                                                                                                                                              [ _.rawText
-                                                                                                                                                                                                                 ( _@5
-                                                                                                                                                                                                                     _@2.links.rawMarkdown
+                                                                                                                                                                                                                 ( markdownToHtml
+                                                                                                                                                                                                                     p.links.rawMarkdown
                                                                                                                                                                                                                  )
                                                                                                                                                                                                              ]
                                                                                                                                                                                                            , name =
@@ -10029,7 +10044,7 @@
                                                                                                                                                                                                                       }
                                                                                                                                                                                                            , content =
                                                                                                                                                                                                              [ _.text
-                                                                                                                                                                                                                 _@2.title
+                                                                                                                                                                                                                 p.title
                                                                                                                                                                                                              ]
                                                                                                                                                                                                            , name =
                                                                                                                                                                                                                "h1"
@@ -10068,7 +10083,7 @@
                                                                                                                                                                                                                " "
                                                                                                                                                                                                          ]
                                                                                                                                                                                                        , Some =
-                                                                                                                                                                                                           λ ( _
+                                                                                                                                                                                                           λ ( x
                                                                                                                                                                                                              : Text
                                                                                                                                                                                                              ) →
                                                                                                                                                                                                              [ λ ( _
@@ -10108,14 +10123,14 @@
                                                                                                                                                                                                                               }
                                                                                                                                                                                                                    , content =
                                                                                                                                                                                                                      [ _.text
-                                                                                                                                                                                                                         _@2
+                                                                                                                                                                                                                         x
                                                                                                                                                                                                                      ]
                                                                                                                                                                                                                    , name =
                                                                                                                                                                                                                        "h2"
                                                                                                                                                                                                                    }
                                                                                                                                                                                                              ]
                                                                                                                                                                                                        }
-                                                                                                                                                                                                       _.subtitle
+                                                                                                                                                                                                       p.subtitle
                                                                                                                                                                                                    # [ λ ( _
                                                                                                                                                                                                          : Type
                                                                                                                                                                                                          ) →
@@ -10153,8 +10168,8 @@
                                                                                                                                                                                                              ]
                                                                                                                                                                                                            , content =
                                                                                                                                                                                                              [ _.rawText
-                                                                                                                                                                                                                 ( _@5
-                                                                                                                                                                                                                     _@2.links.rawMarkdown
+                                                                                                                                                                                                                 ( markdownToHtml
+                                                                                                                                                                                                                     p.links.rawMarkdown
                                                                                                                                                                                                                  )
                                                                                                                                                                                                              ]
                                                                                                                                                                                                            , name =
@@ -10447,7 +10462,7 @@
                                                                                                                                                                                                                                                             Optional
                                                                                                                                                                                                                                                               Text
                                                                                                                                                                                                                                                         }
-                                                                                                                                                                                                                                                        _.sections
+                                                                                                                                                                                                                                                        p.sections
                                                                                                                                                                                                                                                         ( List
                                                                                                                                                                                                                                                             { contents :
                                                                                                                                                                                                                                                                 List
@@ -11003,7 +11018,7 @@
                                                                                                                                                                                                                                                                                                                 }
                                                                                                                                                                                                                                                                                                               ) →
                                                                                                                                                                                                                                                                                                               _.rawText
-                                                                                                                                                                                                                                                                                                                ( _@11
+                                                                                                                                                                                                                                                                                                                ( markdownToHtml
                                                                                                                                                                                                                                                                                                                     _@2.rawMarkdown
                                                                                                                                                                                                                                                                                                                 )
                                                                                                                                                                                                                                                                                                           )
@@ -11118,7 +11133,7 @@
                                                                                                                                                                                                                                                                                                   }
                                                                                                                                                                                                                                                                                                 ) →
                                                                                                                                                                                                                                                                                                 _.rawText
-                                                                                                                                                                                                                                                                                                  ( _@10
+                                                                                                                                                                                                                                                                                                  ( markdownToHtml
                                                                                                                                                                                                                                                                                                       _@2.rawMarkdown
                                                                                                                                                                                                                                                                                                   )
                                                                                                                                                                                                                                                                                             )
@@ -11467,13 +11482,13 @@
                                                                                                                                                                                                                                                                                        Text
                                                                                                                                                                                                                                                                                    }
                                                                                                                                                                                                                                                                         , Some =
-                                                                                                                                                                                                                                                                            λ ( _
+                                                                                                                                                                                                                                                                            λ ( x
                                                                                                                                                                                                                                                                               : Text
                                                                                                                                                                                                                                                                               ) →
                                                                                                                                                                                                                                                                               [ { mapKey =
                                                                                                                                                                                                                                                                                     "id"
                                                                                                                                                                                                                                                                                 , mapValue =
-                                                                                                                                                                                                                                                                                    _
+                                                                                                                                                                                                                                                                                    x
                                                                                                                                                                                                                                                                                 }
                                                                                                                                                                                                                                                                               ]
                                                                                                                                                                                                                                                                         }
@@ -11666,7 +11681,7 @@
                                                                                                                                                                                                                                                                                         " "
                                                                                                                                                                                                                                                                                   ]
                                                                                                                                                                                                                                                                                 , Some =
-                                                                                                                                                                                                                                                                                    λ ( _
+                                                                                                                                                                                                                                                                                    λ ( x
                                                                                                                                                                                                                                                                                       : Text
                                                                                                                                                                                                                                                                                       ) →
                                                                                                                                                                                                                                                                                       [ λ ( _
@@ -11701,7 +11716,7 @@
                                                                                                                                                                                                                                                                                               [ { mapKey =
                                                                                                                                                                                                                                                                                                     "href"
                                                                                                                                                                                                                                                                                                 , mapValue =
-                                                                                                                                                                                                                                                                                                    "${_@9.hostBase}/#${_@2}"
+                                                                                                                                                                                                                                                                                                    "${conf.hostBase}/#${x}"
                                                                                                                                                                                                                                                                                                 }
                                                                                                                                                                                                                                                                                               ]
                                                                                                                                                                                                                                                                                             , content =
@@ -11947,7 +11962,7 @@
                                                                                                                                                                                                                                                                                         " "
                                                                                                                                                                                                                                                                                   ]
                                                                                                                                                                                                                                                                                 , Some =
-                                                                                                                                                                                                                                                                                    λ ( _
+                                                                                                                                                                                                                                                                                    λ ( x
                                                                                                                                                                                                                                                                                       : Text
                                                                                                                                                                                                                                                                                       ) →
                                                                                                                                                                                                                                                                                       [ λ ( _
@@ -11987,7 +12002,7 @@
                                                                                                                                                                                                                                                                                                        }
                                                                                                                                                                                                                                                                                             , content =
                                                                                                                                                                                                                                                                                               [ _.text
-                                                                                                                                                                                                                                                                                                  _@2
+                                                                                                                                                                                                                                                                                                  x
                                                                                                                                                                                                                                                                                               ]
                                                                                                                                                                                                                                                                                             , name =
                                                                                                                                                                                                                                                                                                 "h3"
@@ -12381,7 +12396,7 @@
                                                                                                                                                                                                                                                                                                                     " "
                                                                                                                                                                                                                                                                                                               ]
                                                                                                                                                                                                                                                                                                             , Some =
-                                                                                                                                                                                                                                                                                                                λ ( _
+                                                                                                                                                                                                                                                                                                                λ ( x
                                                                                                                                                                                                                                                                                                                   : Text
                                                                                                                                                                                                                                                                                                                   ) →
                                                                                                                                                                                                                                                                                                                   [ λ ( _
@@ -12421,7 +12436,7 @@
                                                                                                                                                                                                                                                                                                                                    }
                                                                                                                                                                                                                                                                                                                         , content =
                                                                                                                                                                                                                                                                                                                           [ _.text
-                                                                                                                                                                                                                                                                                                                              _@2
+                                                                                                                                                                                                                                                                                                                              x
                                                                                                                                                                                                                                                                                                                           ]
                                                                                                                                                                                                                                                                                                                         , name =
                                                                                                                                                                                                                                                                                                                             "h4"
@@ -12512,7 +12527,7 @@
                                                                                                                                                                                                                                                                                                         )
                                                                                                                                                                                                                                                                                                         ( merge
                                                                                                                                                                                                                                                                                                             { Entry =
-                                                                                                                                                                                                                                                                                                                λ ( _
+                                                                                                                                                                                                                                                                                                                λ ( e
                                                                                                                                                                                                                                                                                                                   : { body :
                                                                                                                                                                                                                                                                                                                         Optional
                                                                                                                                                                                                                                                                                                                           ( Type →
@@ -12652,7 +12667,7 @@
                                                                                                                                                                                                                                                                                                                                           ]
                                                                                                                                                                                                                                                                                                                                         , content =
                                                                                                                                                                                                                                                                                                                                           [ _.text
-                                                                                                                                                                                                                                                                                                                                              _@4.title
+                                                                                                                                                                                                                                                                                                                                              e.title
                                                                                                                                                                                                                                                                                                                                           ]
                                                                                                                                                                                                                                                                                                                                         , name =
                                                                                                                                                                                                                                                                                                                                             "span"
@@ -12717,7 +12732,7 @@
                                                                                                                                                                                                                                                                                                                                                 " "
                                                                                                                                                                                                                                                                                                                                           ]
                                                                                                                                                                                                                                                                                                                                         , Some =
-                                                                                                                                                                                                                                                                                                                                            λ ( _
+                                                                                                                                                                                                                                                                                                                                            λ ( x
                                                                                                                                                                                                                                                                                                                                               : Text
                                                                                                                                                                                                                                                                                                                                               ) →
                                                                                                                                                                                                                                                                                                                                               [ λ ( _
@@ -12757,14 +12772,14 @@
                                                                                                                                                                                                                                                                                                                                                       ]
                                                                                                                                                                                                                                                                                                                                                     , content =
                                                                                                                                                                                                                                                                                                                                                       [ _.text
-                                                                                                                                                                                                                                                                                                                                                          _@2
+                                                                                                                                                                                                                                                                                                                                                          x
                                                                                                                                                                                                                                                                                                                                                       ]
                                                                                                                                                                                                                                                                                                                                                     , name =
                                                                                                                                                                                                                                                                                                                                                         "span"
                                                                                                                                                                                                                                                                                                                                                     }
                                                                                                                                                                                                                                                                                                                                               ]
                                                                                                                                                                                                                                                                                                                                         }
-                                                                                                                                                                                                                                                                                                                                        _@2.institution
+                                                                                                                                                                                                                                                                                                                                        e.institution
                                                                                                                                                                                                                                                                                                                                     )
                                                                                                                                                                                                                                                                                                                                     ( List
                                                                                                                                                                                                                                                                                                                                         ( Type →
@@ -12910,7 +12925,7 @@
                                                                                                                                                                                                                                                                                                                                                     " "
                                                                                                                                                                                                                                                                                                                                               ]
                                                                                                                                                                                                                                                                                                                                             , Some =
-                                                                                                                                                                                                                                                                                                                                                λ ( _
+                                                                                                                                                                                                                                                                                                                                                λ ( x
                                                                                                                                                                                                                                                                                                                                                   : Text
                                                                                                                                                                                                                                                                                                                                                   ) →
                                                                                                                                                                                                                                                                                                                                                   [ λ ( _
@@ -12950,14 +12965,14 @@
                                                                                                                                                                                                                                                                                                                                                           ]
                                                                                                                                                                                                                                                                                                                                                         , content =
                                                                                                                                                                                                                                                                                                                                                           [ _.text
-                                                                                                                                                                                                                                                                                                                                                              _@2
+                                                                                                                                                                                                                                                                                                                                                              x
                                                                                                                                                                                                                                                                                                                                                           ]
                                                                                                                                                                                                                                                                                                                                                         , name =
                                                                                                                                                                                                                                                                                                                                                             "span"
                                                                                                                                                                                                                                                                                                                                                         }
                                                                                                                                                                                                                                                                                                                                                   ]
                                                                                                                                                                                                                                                                                                                                             }
-                                                                                                                                                                                                                                                                                                                                            _@2.location
+                                                                                                                                                                                                                                                                                                                                            e.location
                                                                                                                                                                                                                                                                                                                                         )
                                                                                                                                                                                                                                                                                                                                         ( List
                                                                                                                                                                                                                                                                                                                                             ( Type →
@@ -13103,7 +13118,7 @@
                                                                                                                                                                                                                                                                                                                                                         " "
                                                                                                                                                                                                                                                                                                                                                   ]
                                                                                                                                                                                                                                                                                                                                                 , Some =
-                                                                                                                                                                                                                                                                                                                                                    λ ( _
+                                                                                                                                                                                                                                                                                                                                                    λ ( x
                                                                                                                                                                                                                                                                                                                                                       : Text
                                                                                                                                                                                                                                                                                                                                                       ) →
                                                                                                                                                                                                                                                                                                                                                       [ λ ( _
@@ -13143,14 +13158,14 @@
                                                                                                                                                                                                                                                                                                                                                               ]
                                                                                                                                                                                                                                                                                                                                                             , content =
                                                                                                                                                                                                                                                                                                                                                               [ _.text
-                                                                                                                                                                                                                                                                                                                                                                  _@2
+                                                                                                                                                                                                                                                                                                                                                                  x
                                                                                                                                                                                                                                                                                                                                                               ]
                                                                                                                                                                                                                                                                                                                                                             , name =
                                                                                                                                                                                                                                                                                                                                                                 "span"
                                                                                                                                                                                                                                                                                                                                                             }
                                                                                                                                                                                                                                                                                                                                                       ]
                                                                                                                                                                                                                                                                                                                                                 }
-                                                                                                                                                                                                                                                                                                                                                _@2.grade
+                                                                                                                                                                                                                                                                                                                                                e.grade
                                                                                                                                                                                                                                                                                                                                             )
                                                                                                                                                                                                                                                                                                                                             ( List
                                                                                                                                                                                                                                                                                                                                                 ( Type →
@@ -13407,7 +13422,7 @@
                                                                                                                                                                                                                                                                                                                                           " "
                                                                                                                                                                                                                                                                                                                                     ]
                                                                                                                                                                                                                                                                                                                                   , Some =
-                                                                                                                                                                                                                                                                                                                                      λ ( _
+                                                                                                                                                                                                                                                                                                                                      λ ( x
                                                                                                                                                                                                                                                                                                                                         : Type →
                                                                                                                                                                                                                                                                                                                                           { element :
                                                                                                                                                                                                                                                                                                                                               { attributes :
@@ -13433,10 +13448,10 @@
                                                                                                                                                                                                                                                                                                                                           } →
                                                                                                                                                                                                                                                                                                                                             _@1
                                                                                                                                                                                                                                                                                                                                         ) →
-                                                                                                                                                                                                                                                                                                                                        [ _
+                                                                                                                                                                                                                                                                                                                                        [ x
                                                                                                                                                                                                                                                                                                                                         ]
                                                                                                                                                                                                                                                                                                                                   }
-                                                                                                                                                                                                                                                                                                                                  _@2.body
+                                                                                                                                                                                                                                                                                                                                  e.body
                                                                                                                                                                                                                                                                                                                               )
                                                                                                                                                                                                                                                                                                                               ( List
                                                                                                                                                                                                                                                                                                                                   _@1
@@ -13485,7 +13500,7 @@
                                                                                                                                                                                                                                                                                                                         }
                                                                                                                                                                                                                                                                                                                   ]
                                                                                                                                                                                                                                                                                                             , Simple =
-                                                                                                                                                                                                                                                                                                                λ ( _
+                                                                                                                                                                                                                                                                                                                λ ( b
                                                                                                                                                                                                                                                                                                                   : Type →
                                                                                                                                                                                                                                                                                                                     { element :
                                                                                                                                                                                                                                                                                                                         { attributes :
@@ -13511,7 +13526,7 @@
                                                                                                                                                                                                                                                                                                                     } →
                                                                                                                                                                                                                                                                                                                       _@1
                                                                                                                                                                                                                                                                                                                   ) →
-                                                                                                                                                                                                                                                                                                                  [ _
+                                                                                                                                                                                                                                                                                                                  [ b
                                                                                                                                                                                                                                                                                                                   ]
                                                                                                                                                                                                                                                                                                             }
                                                                                                                                                                                                                                                                                                             _@3.body
@@ -13953,7 +13968,7 @@
                                                                                                                                                                                                                                                             Optional
                                                                                                                                                                                                                                                               Text
                                                                                                                                                                                                                                                         }
-                                                                                                                                                                                                                                                        _.sections
+                                                                                                                                                                                                                                                        p.sections
                                                                                                                                                                                                                                                         ( List
                                                                                                                                                                                                                                                             { contents :
                                                                                                                                                                                                                                                                 List
@@ -14509,7 +14524,7 @@
                                                                                                                                                                                                                                                                                                                 }
                                                                                                                                                                                                                                                                                                               ) →
                                                                                                                                                                                                                                                                                                               _.rawText
-                                                                                                                                                                                                                                                                                                                ( _@11
+                                                                                                                                                                                                                                                                                                                ( markdownToHtml
                                                                                                                                                                                                                                                                                                                     _@2.rawMarkdown
                                                                                                                                                                                                                                                                                                                 )
                                                                                                                                                                                                                                                                                                           )
@@ -14624,7 +14639,7 @@
                                                                                                                                                                                                                                                                                                   }
                                                                                                                                                                                                                                                                                                 ) →
                                                                                                                                                                                                                                                                                                 _.rawText
-                                                                                                                                                                                                                                                                                                  ( _@10
+                                                                                                                                                                                                                                                                                                  ( markdownToHtml
                                                                                                                                                                                                                                                                                                       _@2.rawMarkdown
                                                                                                                                                                                                                                                                                                   )
                                                                                                                                                                                                                                                                                             )
@@ -14973,13 +14988,13 @@
                                                                                                                                                                                                                                                                                        Text
                                                                                                                                                                                                                                                                                    }
                                                                                                                                                                                                                                                                         , Some =
-                                                                                                                                                                                                                                                                            λ ( _
+                                                                                                                                                                                                                                                                            λ ( x
                                                                                                                                                                                                                                                                               : Text
                                                                                                                                                                                                                                                                               ) →
                                                                                                                                                                                                                                                                               [ { mapKey =
                                                                                                                                                                                                                                                                                     "id"
                                                                                                                                                                                                                                                                                 , mapValue =
-                                                                                                                                                                                                                                                                                    _
+                                                                                                                                                                                                                                                                                    x
                                                                                                                                                                                                                                                                                 }
                                                                                                                                                                                                                                                                               ]
                                                                                                                                                                                                                                                                         }
@@ -15172,7 +15187,7 @@
                                                                                                                                                                                                                                                                                         " "
                                                                                                                                                                                                                                                                                   ]
                                                                                                                                                                                                                                                                                 , Some =
-                                                                                                                                                                                                                                                                                    λ ( _
+                                                                                                                                                                                                                                                                                    λ ( x
                                                                                                                                                                                                                                                                                       : Text
                                                                                                                                                                                                                                                                                       ) →
                                                                                                                                                                                                                                                                                       [ λ ( _
@@ -15207,7 +15222,7 @@
                                                                                                                                                                                                                                                                                               [ { mapKey =
                                                                                                                                                                                                                                                                                                     "href"
                                                                                                                                                                                                                                                                                                 , mapValue =
-                                                                                                                                                                                                                                                                                                    "${_@9.hostBase}/#${_@2}"
+                                                                                                                                                                                                                                                                                                    "${conf.hostBase}/#${x}"
                                                                                                                                                                                                                                                                                                 }
                                                                                                                                                                                                                                                                                               ]
                                                                                                                                                                                                                                                                                             , content =
@@ -15453,7 +15468,7 @@
                                                                                                                                                                                                                                                                                         " "
                                                                                                                                                                                                                                                                                   ]
                                                                                                                                                                                                                                                                                 , Some =
-                                                                                                                                                                                                                                                                                    λ ( _
+                                                                                                                                                                                                                                                                                    λ ( x
                                                                                                                                                                                                                                                                                       : Text
                                                                                                                                                                                                                                                                                       ) →
                                                                                                                                                                                                                                                                                       [ λ ( _
@@ -15493,7 +15508,7 @@
                                                                                                                                                                                                                                                                                                        }
                                                                                                                                                                                                                                                                                             , content =
                                                                                                                                                                                                                                                                                               [ _.text
-                                                                                                                                                                                                                                                                                                  _@2
+                                                                                                                                                                                                                                                                                                  x
                                                                                                                                                                                                                                                                                               ]
                                                                                                                                                                                                                                                                                             , name =
                                                                                                                                                                                                                                                                                                 "h3"
@@ -15887,7 +15902,7 @@
                                                                                                                                                                                                                                                                                                                     " "
                                                                                                                                                                                                                                                                                                               ]
                                                                                                                                                                                                                                                                                                             , Some =
-                                                                                                                                                                                                                                                                                                                λ ( _
+                                                                                                                                                                                                                                                                                                                λ ( x
                                                                                                                                                                                                                                                                                                                   : Text
                                                                                                                                                                                                                                                                                                                   ) →
                                                                                                                                                                                                                                                                                                                   [ λ ( _
@@ -15927,7 +15942,7 @@
                                                                                                                                                                                                                                                                                                                                    }
                                                                                                                                                                                                                                                                                                                         , content =
                                                                                                                                                                                                                                                                                                                           [ _.text
-                                                                                                                                                                                                                                                                                                                              _@2
+                                                                                                                                                                                                                                                                                                                              x
                                                                                                                                                                                                                                                                                                                           ]
                                                                                                                                                                                                                                                                                                                         , name =
                                                                                                                                                                                                                                                                                                                             "h4"
@@ -16018,7 +16033,7 @@
                                                                                                                                                                                                                                                                                                         )
                                                                                                                                                                                                                                                                                                         ( merge
                                                                                                                                                                                                                                                                                                             { Entry =
-                                                                                                                                                                                                                                                                                                                λ ( _
+                                                                                                                                                                                                                                                                                                                λ ( e
                                                                                                                                                                                                                                                                                                                   : { body :
                                                                                                                                                                                                                                                                                                                         Optional
                                                                                                                                                                                                                                                                                                                           ( Type →
@@ -16158,7 +16173,7 @@
                                                                                                                                                                                                                                                                                                                                           ]
                                                                                                                                                                                                                                                                                                                                         , content =
                                                                                                                                                                                                                                                                                                                                           [ _.text
-                                                                                                                                                                                                                                                                                                                                              _@4.title
+                                                                                                                                                                                                                                                                                                                                              e.title
                                                                                                                                                                                                                                                                                                                                           ]
                                                                                                                                                                                                                                                                                                                                         , name =
                                                                                                                                                                                                                                                                                                                                             "span"
@@ -16223,7 +16238,7 @@
                                                                                                                                                                                                                                                                                                                                                 " "
                                                                                                                                                                                                                                                                                                                                           ]
                                                                                                                                                                                                                                                                                                                                         , Some =
-                                                                                                                                                                                                                                                                                                                                            λ ( _
+                                                                                                                                                                                                                                                                                                                                            λ ( x
                                                                                                                                                                                                                                                                                                                                               : Text
                                                                                                                                                                                                                                                                                                                                               ) →
                                                                                                                                                                                                                                                                                                                                               [ λ ( _
@@ -16263,14 +16278,14 @@
                                                                                                                                                                                                                                                                                                                                                       ]
                                                                                                                                                                                                                                                                                                                                                     , content =
                                                                                                                                                                                                                                                                                                                                                       [ _.text
-                                                                                                                                                                                                                                                                                                                                                          _@2
+                                                                                                                                                                                                                                                                                                                                                          x
                                                                                                                                                                                                                                                                                                                                                       ]
                                                                                                                                                                                                                                                                                                                                                     , name =
                                                                                                                                                                                                                                                                                                                                                         "span"
                                                                                                                                                                                                                                                                                                                                                     }
                                                                                                                                                                                                                                                                                                                                               ]
                                                                                                                                                                                                                                                                                                                                         }
-                                                                                                                                                                                                                                                                                                                                        _@2.institution
+                                                                                                                                                                                                                                                                                                                                        e.institution
                                                                                                                                                                                                                                                                                                                                     )
                                                                                                                                                                                                                                                                                                                                     ( List
                                                                                                                                                                                                                                                                                                                                         ( Type →
@@ -16416,7 +16431,7 @@
                                                                                                                                                                                                                                                                                                                                                     " "
                                                                                                                                                                                                                                                                                                                                               ]
                                                                                                                                                                                                                                                                                                                                             , Some =
-                                                                                                                                                                                                                                                                                                                                                λ ( _
+                                                                                                                                                                                                                                                                                                                                                λ ( x
                                                                                                                                                                                                                                                                                                                                                   : Text
                                                                                                                                                                                                                                                                                                                                                   ) →
                                                                                                                                                                                                                                                                                                                                                   [ λ ( _
@@ -16456,14 +16471,14 @@
                                                                                                                                                                                                                                                                                                                                                           ]
                                                                                                                                                                                                                                                                                                                                                         , content =
                                                                                                                                                                                                                                                                                                                                                           [ _.text
-                                                                                                                                                                                                                                                                                                                                                              _@2
+                                                                                                                                                                                                                                                                                                                                                              x
                                                                                                                                                                                                                                                                                                                                                           ]
                                                                                                                                                                                                                                                                                                                                                         , name =
                                                                                                                                                                                                                                                                                                                                                             "span"
                                                                                                                                                                                                                                                                                                                                                         }
                                                                                                                                                                                                                                                                                                                                                   ]
                                                                                                                                                                                                                                                                                                                                             }
-                                                                                                                                                                                                                                                                                                                                            _@2.location
+                                                                                                                                                                                                                                                                                                                                            e.location
                                                                                                                                                                                                                                                                                                                                         )
                                                                                                                                                                                                                                                                                                                                         ( List
                                                                                                                                                                                                                                                                                                                                             ( Type →
@@ -16609,7 +16624,7 @@
                                                                                                                                                                                                                                                                                                                                                         " "
                                                                                                                                                                                                                                                                                                                                                   ]
                                                                                                                                                                                                                                                                                                                                                 , Some =
-                                                                                                                                                                                                                                                                                                                                                    λ ( _
+                                                                                                                                                                                                                                                                                                                                                    λ ( x
                                                                                                                                                                                                                                                                                                                                                       : Text
                                                                                                                                                                                                                                                                                                                                                       ) →
                                                                                                                                                                                                                                                                                                                                                       [ λ ( _
@@ -16649,14 +16664,14 @@
                                                                                                                                                                                                                                                                                                                                                               ]
                                                                                                                                                                                                                                                                                                                                                             , content =
                                                                                                                                                                                                                                                                                                                                                               [ _.text
-                                                                                                                                                                                                                                                                                                                                                                  _@2
+                                                                                                                                                                                                                                                                                                                                                                  x
                                                                                                                                                                                                                                                                                                                                                               ]
                                                                                                                                                                                                                                                                                                                                                             , name =
                                                                                                                                                                                                                                                                                                                                                                 "span"
                                                                                                                                                                                                                                                                                                                                                             }
                                                                                                                                                                                                                                                                                                                                                       ]
                                                                                                                                                                                                                                                                                                                                                 }
-                                                                                                                                                                                                                                                                                                                                                _@2.grade
+                                                                                                                                                                                                                                                                                                                                                e.grade
                                                                                                                                                                                                                                                                                                                                             )
                                                                                                                                                                                                                                                                                                                                             ( List
                                                                                                                                                                                                                                                                                                                                                 ( Type →
@@ -16913,7 +16928,7 @@
                                                                                                                                                                                                                                                                                                                                           " "
                                                                                                                                                                                                                                                                                                                                     ]
                                                                                                                                                                                                                                                                                                                                   , Some =
-                                                                                                                                                                                                                                                                                                                                      λ ( _
+                                                                                                                                                                                                                                                                                                                                      λ ( x
                                                                                                                                                                                                                                                                                                                                         : Type →
                                                                                                                                                                                                                                                                                                                                           { element :
                                                                                                                                                                                                                                                                                                                                               { attributes :
@@ -16939,10 +16954,10 @@
                                                                                                                                                                                                                                                                                                                                           } →
                                                                                                                                                                                                                                                                                                                                             _@1
                                                                                                                                                                                                                                                                                                                                         ) →
-                                                                                                                                                                                                                                                                                                                                        [ _
+                                                                                                                                                                                                                                                                                                                                        [ x
                                                                                                                                                                                                                                                                                                                                         ]
                                                                                                                                                                                                                                                                                                                                   }
-                                                                                                                                                                                                                                                                                                                                  _@2.body
+                                                                                                                                                                                                                                                                                                                                  e.body
                                                                                                                                                                                                                                                                                                                               )
                                                                                                                                                                                                                                                                                                                               ( List
                                                                                                                                                                                                                                                                                                                                   _@1
@@ -16991,7 +17006,7 @@
                                                                                                                                                                                                                                                                                                                         }
                                                                                                                                                                                                                                                                                                                   ]
                                                                                                                                                                                                                                                                                                             , Simple =
-                                                                                                                                                                                                                                                                                                                λ ( _
+                                                                                                                                                                                                                                                                                                                λ ( b
                                                                                                                                                                                                                                                                                                                   : Type →
                                                                                                                                                                                                                                                                                                                     { element :
                                                                                                                                                                                                                                                                                                                         { attributes :
@@ -17017,7 +17032,7 @@
                                                                                                                                                                                                                                                                                                                     } →
                                                                                                                                                                                                                                                                                                                       _@1
                                                                                                                                                                                                                                                                                                                   ) →
-                                                                                                                                                                                                                                                                                                                  [ _
+                                                                                                                                                                                                                                                                                                                  [ b
                                                                                                                                                                                                                                                                                                                   ]
                                                                                                                                                                                                                                                                                                             }
                                                                                                                                                                                                                                                                                                             _@3.body
@@ -17329,7 +17344,7 @@
         ''
   , layout =
     { col =
-        λ ( _
+        λ ( c
           : { body :
                 < Entry :
                     { body :
@@ -17423,7 +17438,7 @@
                                   _.rawText " "
                               ]
                             , Some =
-                                λ(_ : Text) →
+                                λ(x : Text) →
                                   [ λ(_ : Type) →
                                     λ ( _
                                       : { element :
@@ -17446,12 +17461,12 @@
                                                    { mapKey : Text
                                                    , mapValue : Text
                                                    }
-                                        , content = [ _.text _@2 ]
+                                        , content = [ _.text x ]
                                         , name = "h4"
                                         }
                                   ]
                             }
-                            _@2.desc
+                            c.desc
                         )
                         (List _@1)
                         ( λ ( _
@@ -17497,7 +17512,7 @@
                         )
                         ( merge
                             { Entry =
-                                λ ( _
+                                λ ( e
                                   : { body :
                                         Optional
                                           ( Type →
@@ -17588,7 +17603,7 @@
                                                             }
                                                           ]
                                                         , content =
-                                                          [ _.text _@4.title ]
+                                                          [ _.text e.title ]
                                                         , name = "span"
                                                         }
                                                   ]
@@ -17637,7 +17652,7 @@
                                                               _.rawText " "
                                                           ]
                                                         , Some =
-                                                            λ(_ : Text) →
+                                                            λ(x : Text) →
                                                               [ λ(_ : Type) →
                                                                 λ ( _
                                                                   : { element :
@@ -17672,15 +17687,14 @@
                                                                         }
                                                                       ]
                                                                     , content =
-                                                                      [ _.text
-                                                                          _@2
+                                                                      [ _.text x
                                                                       ]
                                                                     , name =
                                                                         "span"
                                                                     }
                                                               ]
                                                         }
-                                                        _@2.institution
+                                                        e.institution
                                                     )
                                                     ( List
                                                         ( Type →
@@ -17796,7 +17810,7 @@
                                                                   _.rawText " "
                                                               ]
                                                             , Some =
-                                                                λ(_ : Text) →
+                                                                λ(x : Text) →
                                                                   [ λ ( _
                                                                       : Type
                                                                       ) →
@@ -17834,14 +17848,14 @@
                                                                           ]
                                                                         , content =
                                                                           [ _.text
-                                                                              _@2
+                                                                              x
                                                                           ]
                                                                         , name =
                                                                             "span"
                                                                         }
                                                                   ]
                                                             }
-                                                            _@2.location
+                                                            e.location
                                                         )
                                                         ( List
                                                             ( Type →
@@ -17970,7 +17984,7 @@
                                                                         " "
                                                                   ]
                                                                 , Some =
-                                                                    λ ( _
+                                                                    λ ( x
                                                                       : Text
                                                                       ) →
                                                                       [ λ ( _
@@ -18010,14 +18024,14 @@
                                                                               ]
                                                                             , content =
                                                                               [ _.text
-                                                                                  _@2
+                                                                                  x
                                                                               ]
                                                                             , name =
                                                                                 "span"
                                                                             }
                                                                       ]
                                                                 }
-                                                                _@2.grade
+                                                                e.grade
                                                             )
                                                             ( List
                                                                 ( Type →
@@ -18213,7 +18227,7 @@
                                                         _.rawText " "
                                                     ]
                                                   , Some =
-                                                      λ ( _
+                                                      λ ( x
                                                         : Type →
                                                           { element :
                                                               { attributes :
@@ -18232,9 +18246,9 @@
                                                           } →
                                                             _@1
                                                         ) →
-                                                        [ _ ]
+                                                        [ x ]
                                                   }
-                                                  _@2.body
+                                                  e.body
                                               )
                                               (List _@1)
                                               ( λ ( _
@@ -18262,7 +18276,7 @@
                                         }
                                   ]
                             , Simple =
-                                λ ( _
+                                λ ( b
                                   : Type →
                                     { element :
                                         { attributes :
@@ -18277,9 +18291,9 @@
                                     } →
                                       _@1
                                   ) →
-                                  [ _ ]
+                                  [ b ]
                             }
-                            _@2.body
+                            c.body
                         )
                         (List _@1)
                         ( λ ( _
@@ -18306,7 +18320,7 @@
             , name = "div"
             }
     , entry =
-        λ ( _
+        λ ( e
           : { body :
                 Optional
                   ( Type →
@@ -18376,7 +18390,7 @@
                                     , mapValue = "cventry-title"
                                     }
                                   ]
-                                , content = [ _.text _@4.title ]
+                                , content = [ _.text e.title ]
                                 , name = "span"
                                 }
                           ]
@@ -18415,7 +18429,7 @@
                                       _.rawText " "
                                   ]
                                 , Some =
-                                    λ(_ : Text) →
+                                    λ(x : Text) →
                                       [ λ(_ : Type) →
                                         λ ( _
                                           : { element :
@@ -18439,12 +18453,12 @@
                                                     "cventry-institution"
                                                 }
                                               ]
-                                            , content = [ _.text _@2 ]
+                                            , content = [ _.text x ]
                                             , name = "span"
                                             }
                                       ]
                                 }
-                                _@2.institution
+                                e.institution
                             )
                             ( List
                                 ( Type →
@@ -18534,7 +18548,7 @@
                                           _.rawText " "
                                       ]
                                     , Some =
-                                        λ(_ : Text) →
+                                        λ(x : Text) →
                                           [ λ(_ : Type) →
                                             λ ( _
                                               : { element :
@@ -18558,12 +18572,12 @@
                                                         "cventry-location"
                                                     }
                                                   ]
-                                                , content = [ _.text _@2 ]
+                                                , content = [ _.text x ]
                                                 , name = "span"
                                                 }
                                           ]
                                     }
-                                    _@2.location
+                                    e.location
                                 )
                                 ( List
                                     ( Type →
@@ -18659,7 +18673,7 @@
                                               _.rawText " "
                                           ]
                                         , Some =
-                                            λ(_ : Text) →
+                                            λ(x : Text) →
                                               [ λ(_ : Type) →
                                                 λ ( _
                                                   : { element :
@@ -18683,12 +18697,12 @@
                                                             "cventry-grade"
                                                         }
                                                       ]
-                                                    , content = [ _.text _@2 ]
+                                                    , content = [ _.text x ]
                                                     , name = "span"
                                                     }
                                               ]
                                         }
-                                        _@2.grade
+                                        e.grade
                                     )
                                     ( List
                                         ( Type →
@@ -18837,7 +18851,7 @@
                                 _.rawText " "
                             ]
                           , Some =
-                              λ ( _
+                              λ ( x
                                 : Type →
                                   { element :
                                       { attributes :
@@ -18852,9 +18866,9 @@
                                   } →
                                     _@1
                                 ) →
-                                [ _ ]
+                                [ x ]
                           }
-                          _@2.body
+                          e.body
                       )
                       (List _@1)
                       ( λ ( _
@@ -18879,7 +18893,7 @@
                 }
           ]
     , page =
-        λ ( _
+        λ ( conf
           : { desc : Text
             , googleAnalytics : Optional Text
             , hostBase : Text
@@ -18887,7 +18901,7 @@
             , twitter : Optional Text
             }
           ) →
-        λ ( _
+        λ ( page
           : { lastModified : Optional Date
             , links :
                 Type →
@@ -19001,7 +19015,7 @@
                               _.element
                                 { attributes =
                                     [] : List { mapKey : Text, mapValue : Text }
-                                , content = [ _.text _@4.title ]
+                                , content = [ _.text page.title ]
                                 , name = "h1"
                                 }
                           ]
@@ -19024,7 +19038,7 @@
                                   _.rawText " "
                               ]
                             , Some =
-                                λ(_ : Text) →
+                                λ(x : Text) →
                                   [ λ(_ : Type) →
                                     λ ( _
                                       : { element :
@@ -19047,12 +19061,12 @@
                                                    { mapKey : Text
                                                    , mapValue : Text
                                                    }
-                                        , content = [ _.text _@2 ]
+                                        , content = [ _.text x ]
                                         , name = "h2"
                                         }
                                   ]
                             }
-                            _@2.subtitle
+                            page.subtitle
                         # [ λ(_ : Type) →
                             λ ( _
                               : { element :
@@ -19069,7 +19083,7 @@
                               _.element
                                 { attributes =
                                   [ { mapKey = "class", mapValue = "links" } ]
-                                , content = [ _@4.links _@1 _ ]
+                                , content = [ page.links _@1 _ ]
                                 , name = "div"
                                 }
                           ]
@@ -19173,7 +19187,7 @@
                                 }
                           , title : Optional Text
                           }
-                          _@2.sections
+                          page.sections
                           ( List
                               ( Type →
                                 { element :
@@ -19286,9 +19300,9 @@
                                                          , mapValue : Text
                                                          }
                                               , Some =
-                                                  λ(_ : Text) →
+                                                  λ(x : Text) →
                                                     [ { mapKey = "id"
-                                                      , mapValue = _
+                                                      , mapValue = x
                                                       }
                                                     ]
                                               }
@@ -19460,7 +19474,7 @@
                                                             _.rawText " "
                                                         ]
                                                       , Some =
-                                                          λ(_ : Text) →
+                                                          λ(x : Text) →
                                                             [ λ(_ : Type) →
                                                               λ ( _
                                                                 : { element :
@@ -19488,7 +19502,7 @@
                                                                     [ { mapKey =
                                                                           "href"
                                                                       , mapValue =
-                                                                          "${_@10.hostBase}/#${_@2}"
+                                                                          "${conf.hostBase}/#${x}"
                                                                       }
                                                                     ]
                                                                   , content =
@@ -19692,7 +19706,7 @@
                                                             _.rawText " "
                                                         ]
                                                       , Some =
-                                                          λ(_ : Text) →
+                                                          λ(x : Text) →
                                                             [ λ(_ : Type) →
                                                               λ ( _
                                                                 : { element :
@@ -19724,8 +19738,7 @@
                                                                                  Text
                                                                              }
                                                                   , content =
-                                                                    [ _.text _@2
-                                                                    ]
+                                                                    [ _.text x ]
                                                                   , name = "h3"
                                                                   }
                                                             ]
@@ -20064,7 +20077,7 @@
                                                                                           " "
                                                                                     ]
                                                                                   , Some =
-                                                                                      λ ( _
+                                                                                      λ ( x
                                                                                         : Text
                                                                                         ) →
                                                                                         [ λ ( _
@@ -20104,7 +20117,7 @@
                                                                                                          }
                                                                                               , content =
                                                                                                 [ _.text
-                                                                                                    _@2
+                                                                                                    x
                                                                                                 ]
                                                                                               , name =
                                                                                                   "h4"
@@ -20195,7 +20208,7 @@
                                                                               )
                                                                               ( merge
                                                                                   { Entry =
-                                                                                      λ ( _
+                                                                                      λ ( e
                                                                                         : { body :
                                                                                               Optional
                                                                                                 ( Type →
@@ -20335,7 +20348,7 @@
                                                                                                                 ]
                                                                                                               , content =
                                                                                                                 [ _.text
-                                                                                                                    _@4.title
+                                                                                                                    e.title
                                                                                                                 ]
                                                                                                               , name =
                                                                                                                   "span"
@@ -20400,7 +20413,7 @@
                                                                                                                       " "
                                                                                                                 ]
                                                                                                               , Some =
-                                                                                                                  λ ( _
+                                                                                                                  λ ( x
                                                                                                                     : Text
                                                                                                                     ) →
                                                                                                                     [ λ ( _
@@ -20440,14 +20453,14 @@
                                                                                                                             ]
                                                                                                                           , content =
                                                                                                                             [ _.text
-                                                                                                                                _@2
+                                                                                                                                x
                                                                                                                             ]
                                                                                                                           , name =
                                                                                                                               "span"
                                                                                                                           }
                                                                                                                     ]
                                                                                                               }
-                                                                                                              _@2.institution
+                                                                                                              e.institution
                                                                                                           )
                                                                                                           ( List
                                                                                                               ( Type →
@@ -20593,7 +20606,7 @@
                                                                                                                           " "
                                                                                                                     ]
                                                                                                                   , Some =
-                                                                                                                      λ ( _
+                                                                                                                      λ ( x
                                                                                                                         : Text
                                                                                                                         ) →
                                                                                                                         [ λ ( _
@@ -20633,14 +20646,14 @@
                                                                                                                                 ]
                                                                                                                               , content =
                                                                                                                                 [ _.text
-                                                                                                                                    _@2
+                                                                                                                                    x
                                                                                                                                 ]
                                                                                                                               , name =
                                                                                                                                   "span"
                                                                                                                               }
                                                                                                                         ]
                                                                                                                   }
-                                                                                                                  _@2.location
+                                                                                                                  e.location
                                                                                                               )
                                                                                                               ( List
                                                                                                                   ( Type →
@@ -20786,7 +20799,7 @@
                                                                                                                               " "
                                                                                                                         ]
                                                                                                                       , Some =
-                                                                                                                          λ ( _
+                                                                                                                          λ ( x
                                                                                                                             : Text
                                                                                                                             ) →
                                                                                                                             [ λ ( _
@@ -20826,14 +20839,14 @@
                                                                                                                                     ]
                                                                                                                                   , content =
                                                                                                                                     [ _.text
-                                                                                                                                        _@2
+                                                                                                                                        x
                                                                                                                                     ]
                                                                                                                                   , name =
                                                                                                                                       "span"
                                                                                                                                   }
                                                                                                                             ]
                                                                                                                       }
-                                                                                                                      _@2.grade
+                                                                                                                      e.grade
                                                                                                                   )
                                                                                                                   ( List
                                                                                                                       ( Type →
@@ -21090,7 +21103,7 @@
                                                                                                                 " "
                                                                                                           ]
                                                                                                         , Some =
-                                                                                                            λ ( _
+                                                                                                            λ ( x
                                                                                                               : Type →
                                                                                                                 { element :
                                                                                                                     { attributes :
@@ -21116,10 +21129,10 @@
                                                                                                                 } →
                                                                                                                   _@1
                                                                                                               ) →
-                                                                                                              [ _
+                                                                                                              [ x
                                                                                                               ]
                                                                                                         }
-                                                                                                        _@2.body
+                                                                                                        e.body
                                                                                                     )
                                                                                                     ( List
                                                                                                         _@1
@@ -21168,7 +21181,7 @@
                                                                                               }
                                                                                         ]
                                                                                   , Simple =
-                                                                                      λ ( _
+                                                                                      λ ( b
                                                                                         : Type →
                                                                                           { element :
                                                                                               { attributes :
@@ -21194,7 +21207,7 @@
                                                                                           } →
                                                                                             _@1
                                                                                         ) →
-                                                                                        [ _
+                                                                                        [ b
                                                                                         ]
                                                                                   }
                                                                                   _@3.body
@@ -21349,7 +21362,7 @@
                 }
           ]
     , renderPage =
-        λ ( _
+        λ ( conf
           : { desc : Text
             , googleAnalytics : Optional Text
             , hostBase : Text
@@ -21357,8 +21370,8 @@
             , twitter : Optional Text
             }
           ) →
-        λ(_ : { cssImports : List Text, photoImport : Text }) →
-        λ ( _
+        λ(rconf : { cssImports : List Text, photoImport : Text }) →
+        λ ( body
           : List
               ( Type →
                 { element :
@@ -21426,7 +21439,7 @@
                                     _.rawText " "
                                 ]
                               , Some =
-                                  λ(_ : Text) →
+                                  λ(x : Text) →
                                     [ λ(_ : Type) →
                                       λ ( _
                                         : { element :
@@ -21447,6 +21460,10 @@
                                           { attributes =
                                             [ { mapKey = "async"
                                               , mapValue = ""
+                                              }
+                                            , { mapKey = "src"
+                                              , mapValue =
+                                                  "https://www.googletagmanager.com/gtag/js?id=${x}"
                                               }
                                             ]
                                           , content = [] : List _@1
@@ -21480,14 +21497,14 @@
                                                 window.dataLayer = window.dataLayer || [];
                                                 function gtag(){dataLayer.push(arguments);}
                                                 gtag('js', new Date());
-                                                gtag('config', ${_@2});
+                                                gtag('config', ${x});
                                                 ''
                                             ]
                                           , name = "script"
                                           }
                                     ]
                               }
-                              _@4.googleAnalytics
+                              conf.googleAnalytics
                           # [ λ(_ : Type) →
                               λ ( _
                                 : { element :
@@ -21506,7 +21523,7 @@
                                   { attributes =
                                     [ { mapKey = "name", mapValue = "title" }
                                     , { mapKey = "content"
-                                      , mapValue = _@6.name
+                                      , mapValue = conf.name
                                       }
                                     ]
                                   , content = [] : List _@1
@@ -21532,7 +21549,7 @@
                                       , mapValue = "description"
                                       }
                                     , { mapKey = "content"
-                                      , mapValue = _@6.desc
+                                      , mapValue = conf.desc
                                       }
                                     ]
                                   , content = [] : List _@1
@@ -21638,7 +21655,7 @@
                                           , mapValue = "og:description"
                                           }
                                         , { mapKey = "content"
-                                          , mapValue = _@6.desc
+                                          , mapValue = conf.desc
                                           }
                                         ]
                                       , content = [] : List _@1
@@ -21667,7 +21684,7 @@
                                           }
                                         , { mapKey = "content"
                                           , mapValue =
-                                              "${_@6.hostBase}/${_@5.photoImport}"
+                                              "${conf.hostBase}/${rconf.photoImport}"
                                           }
                                         ]
                                       , content = [] : List _@1
@@ -21723,7 +21740,7 @@
                                           , mapValue = "og:site_name"
                                           }
                                         , { mapKey = "content"
-                                          , mapValue = _@6.name
+                                          , mapValue = conf.name
                                           }
                                         ]
                                       , content = [] : List _@1
@@ -21751,7 +21768,7 @@
                                           , mapValue = "og:title"
                                           }
                                         , { mapKey = "content"
-                                          , mapValue = _@6.name
+                                          , mapValue = conf.name
                                           }
                                         ]
                                       , content = [] : List _@1
@@ -21807,7 +21824,7 @@
                                           , mapValue = "og:url"
                                           }
                                         , { mapKey = "content"
-                                          , mapValue = _@6.hostBase
+                                          , mapValue = conf.hostBase
                                           }
                                         ]
                                       , content = [] : List _@1
@@ -21863,7 +21880,7 @@
                                           , mapValue = "twitter:description"
                                           }
                                         , { mapKey = "content"
-                                          , mapValue = _@6.desc
+                                          , mapValue = conf.desc
                                           }
                                         ]
                                       , content = [] : List _@1
@@ -21892,7 +21909,7 @@
                                           }
                                         , { mapKey = "content"
                                           , mapValue =
-                                              "${_@6.hostBase}/${_@5.photoImport}"
+                                              "${conf.hostBase}/${rconf.photoImport}"
                                           }
                                         ]
                                       , content = [] : List _@1
@@ -21948,7 +21965,7 @@
                                           , mapValue = "twitter:title"
                                           }
                                         , { mapKey = "content"
-                                          , mapValue = _@6.name
+                                          , mapValue = conf.name
                                           }
                                         ]
                                       , content = [] : List _@1
@@ -21976,7 +21993,7 @@
                                           , mapValue = "twitter:url"
                                           }
                                         , { mapKey = "content"
-                                          , mapValue = _@6.hostBase
+                                          , mapValue = conf.hostBase
                                           }
                                         ]
                                       , content = [] : List _@1
@@ -22004,7 +22021,7 @@
                                         _.rawText " "
                                     ]
                                   , Some =
-                                      λ(_ : Text) →
+                                      λ(x : Text) →
                                         [ λ(_ : Type) →
                                           λ ( _
                                             : { element :
@@ -22027,7 +22044,7 @@
                                                   , mapValue = "twitter:site"
                                                   }
                                                 , { mapKey = "content"
-                                                  , mapValue = _@2
+                                                  , mapValue = x
                                                   }
                                                 ]
                                               , content = [] : List _@1
@@ -22055,7 +22072,7 @@
                                                   , mapValue = "twitter:creator"
                                                   }
                                                 , { mapKey = "content"
-                                                  , mapValue = _@2
+                                                  , mapValue = x
                                                   }
                                                 ]
                                               , content = [] : List _@1
@@ -22063,11 +22080,11 @@
                                               }
                                         ]
                                   }
-                                  _@4.twitter
+                                  conf.twitter
                             )
                           # List/fold
                               Text
-                              _@3.cssImports
+                              rconf.cssImports
                               ( List
                                   ( Type →
                                     { element :
@@ -22210,7 +22227,7 @@
                                       } →
                                         _@1
                                     )
-                                    _@2
+                                    body
                                     (List _@1)
                                     ( λ ( _
                                         : Type →
@@ -22245,7 +22262,7 @@
             , name = "html"
             }
     , section =
-        λ ( _
+        λ ( conf
           : { desc : Text
             , googleAnalytics : Optional Text
             , hostBase : Text
@@ -22253,7 +22270,7 @@
             , twitter : Optional Text
             }
           ) →
-        λ ( _
+        λ ( sec
           : { contents :
                 List
                   { body :
@@ -22315,7 +22332,7 @@
                   [ { mapKey = "class", mapValue = "cvsection cvs-cols" } ]
                 # merge
                     { None = [] : List { mapKey : Text, mapValue : Text }
-                    , Some = λ(_ : Text) → [ { mapKey = "id", mapValue = _ } ]
+                    , Some = λ(x : Text) → [ { mapKey = "id", mapValue = x } ]
                     }
                     ( merge
                         { None = None Text
@@ -22431,7 +22448,7 @@
                                                  )
                                              )}"
                         }
-                        _@2.title
+                        sec.title
                     )
             , content =
               [ _.element
@@ -22475,7 +22492,7 @@
                                   _.rawText " "
                               ]
                             , Some =
-                                λ(_ : Text) →
+                                λ(x : Text) →
                                   [ λ(_ : Type) →
                                     λ ( _
                                       : { element :
@@ -22496,7 +22513,7 @@
                                         { attributes =
                                           [ { mapKey = "href"
                                             , mapValue =
-                                                "${_@6.hostBase}/#${_@2}"
+                                                "${conf.hostBase}/#${x}"
                                             }
                                           ]
                                         , content = [ _.text "#" ]
@@ -22618,7 +22635,7 @@
                                                          )
                                                      )}"
                                 }
-                                _@2.title
+                                sec.title
                             )
                         )
                         (List _@1)
@@ -22682,7 +22699,7 @@
                                   _.rawText " "
                               ]
                             , Some =
-                                λ(_ : Text) →
+                                λ(x : Text) →
                                   [ λ(_ : Type) →
                                     λ ( _
                                       : { element :
@@ -22705,12 +22722,12 @@
                                                    { mapKey : Text
                                                    , mapValue : Text
                                                    }
-                                        , content = [ _.text _@2 ]
+                                        , content = [ _.text x ]
                                         , name = "h3"
                                         }
                                   ]
                             }
-                            _@2.title
+                            sec.title
                         )
                         (List _@1)
                         ( λ ( _
@@ -22794,7 +22811,7 @@
                                 >
                             , desc : Optional Text
                             }
-                            _@2.contents
+                            sec.contents
                             ( List
                                 ( Type →
                                   { element :
@@ -22952,7 +22969,7 @@
                                                               _.rawText " "
                                                           ]
                                                         , Some =
-                                                            λ(_ : Text) →
+                                                            λ(x : Text) →
                                                               [ λ(_ : Type) →
                                                                 λ ( _
                                                                   : { element :
@@ -22987,8 +23004,7 @@
                                                                                    Text
                                                                                }
                                                                     , content =
-                                                                      [ _.text
-                                                                          _@2
+                                                                      [ _.text x
                                                                       ]
                                                                     , name =
                                                                         "h4"
@@ -23051,7 +23067,7 @@
                                                     )
                                                     ( merge
                                                         { Entry =
-                                                            λ ( _
+                                                            λ ( e
                                                               : { body :
                                                                     Optional
                                                                       ( Type →
@@ -23188,7 +23204,7 @@
                                                                                       ]
                                                                                     , content =
                                                                                       [ _.text
-                                                                                          _@4.title
+                                                                                          e.title
                                                                                       ]
                                                                                     , name =
                                                                                         "span"
@@ -23253,7 +23269,7 @@
                                                                                             " "
                                                                                       ]
                                                                                     , Some =
-                                                                                        λ ( _
+                                                                                        λ ( x
                                                                                           : Text
                                                                                           ) →
                                                                                           [ λ ( _
@@ -23293,14 +23309,14 @@
                                                                                                   ]
                                                                                                 , content =
                                                                                                   [ _.text
-                                                                                                      _@2
+                                                                                                      x
                                                                                                   ]
                                                                                                 , name =
                                                                                                     "span"
                                                                                                 }
                                                                                           ]
                                                                                     }
-                                                                                    _@2.institution
+                                                                                    e.institution
                                                                                 )
                                                                                 ( List
                                                                                     ( Type →
@@ -23446,7 +23462,7 @@
                                                                                                 " "
                                                                                           ]
                                                                                         , Some =
-                                                                                            λ ( _
+                                                                                            λ ( x
                                                                                               : Text
                                                                                               ) →
                                                                                               [ λ ( _
@@ -23486,14 +23502,14 @@
                                                                                                       ]
                                                                                                     , content =
                                                                                                       [ _.text
-                                                                                                          _@2
+                                                                                                          x
                                                                                                       ]
                                                                                                     , name =
                                                                                                         "span"
                                                                                                     }
                                                                                               ]
                                                                                         }
-                                                                                        _@2.location
+                                                                                        e.location
                                                                                     )
                                                                                     ( List
                                                                                         ( Type →
@@ -23639,7 +23655,7 @@
                                                                                                     " "
                                                                                               ]
                                                                                             , Some =
-                                                                                                λ ( _
+                                                                                                λ ( x
                                                                                                   : Text
                                                                                                   ) →
                                                                                                   [ λ ( _
@@ -23679,14 +23695,14 @@
                                                                                                           ]
                                                                                                         , content =
                                                                                                           [ _.text
-                                                                                                              _@2
+                                                                                                              x
                                                                                                           ]
                                                                                                         , name =
                                                                                                             "span"
                                                                                                         }
                                                                                                   ]
                                                                                             }
-                                                                                            _@2.grade
+                                                                                            e.grade
                                                                                         )
                                                                                         ( List
                                                                                             ( Type →
@@ -23941,7 +23957,7 @@
                                                                                       " "
                                                                                 ]
                                                                               , Some =
-                                                                                  λ ( _
+                                                                                  λ ( x
                                                                                     : Type →
                                                                                       { element :
                                                                                           { attributes :
@@ -23967,10 +23983,10 @@
                                                                                       } →
                                                                                         _@1
                                                                                     ) →
-                                                                                    [ _
+                                                                                    [ x
                                                                                     ]
                                                                               }
-                                                                              _@2.body
+                                                                              e.body
                                                                           )
                                                                           ( List
                                                                               _@1
@@ -24019,7 +24035,7 @@
                                                                     }
                                                               ]
                                                         , Simple =
-                                                            λ ( _
+                                                            λ ( b
                                                               : Type →
                                                                 { element :
                                                                     { attributes :
@@ -24042,7 +24058,7 @@
                                                                 } →
                                                                   _@1
                                                               ) →
-                                                              [ _ ]
+                                                              [ b ]
                                                         }
                                                         _@3.body
                                                     )
