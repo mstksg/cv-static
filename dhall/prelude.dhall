@@ -7,8 +7,8 @@ let web =
         sha256:5a2f7174406ea568666b2a23fa20c8e01a086beeba245a76904fbf8701f5cd92
 
 let personal =
-      https://raw.githubusercontent.com/mstksg/dhall-cv-personal/66d36d78440e32ef5adfd4e1b68e53be7140f974/package.dhall
-        sha256:d47a10d226bd57c1362ca293d8ccc4450893d890297ca2a4cd525bacbb778300
+      https://raw.githubusercontent.com/mstksg/dhall-cv-personal/c1c13f82b9b0382ebddffd99e6fea3d5603dca0c/package.dhall
+        sha256:660377994748a8ae4089cec3b0de19946d209a2f2ddcc9769784257349b8b7d4
 
 let types = cv.types ∧ web.types
 
