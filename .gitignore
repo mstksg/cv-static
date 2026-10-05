@@ -1,7 +1,4 @@
-.stack-work/
-.history
-cv-static.cabal
-_site
-_cache
-_build
+result
+result-*
+.direnv
 *~

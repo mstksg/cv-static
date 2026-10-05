@@ -1,0 +1,12 @@
+// Plain-Sass replacements for the native libsass functions the old
+// hsass-based build registered (get-breakpoint() and render-url($x)).
+// Defining them here lets the site compile with any standard Sass
+// implementation (e.g. dart-sass) instead of requiring libsass.
+
+@function get-breakpoint() {
+  @return 640px;
+}
+
+@function render-url($x) {
+  @return url($x);
+}

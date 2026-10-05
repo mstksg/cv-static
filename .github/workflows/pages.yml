@@ -1,0 +1,52 @@
+name: Deploy CV to Pages
+
+on:
+  push:
+    branches: ["master"]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Build Pages derivation
+        id: build
+        run: |
+          set -euo pipefail
+          nix build --show-trace -j4 .#pages
+          public_dir="${RUNNER_TEMP:-/tmp}/public"
+          rm -rf "$public_dir"
+          mkdir -p "$public_dir"
+          cp -R --dereference --no-preserve=mode,ownership result/. "$public_dir/"
+          chmod -R u+rwX "$public_dir"
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ runner.temp }}/public
+
+  deploy:
+    runs-on: self-hosted
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
