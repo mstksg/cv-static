@@ -157,65 +157,25 @@
                 , title : Text
                 }
             | Simple : { rawMarkdown : Text }
-            >.Simple
-              { rawMarkdown =
-                  "Machine Learning (clustering, classification, artificial neural networks), Large-scale data analytics, Numerical algorithms (FEM, stochastic methods), Digital signal processing, Functional programming, Static analysis, DSL design"
-              }
-        , desc = Some "Computer Science"
-        }
-      , { body =
-            < Entry :
-                { body : Optional { rawMarkdown : Text }
-                , grade : Optional Text
-                , institution : Optional Text
-                , location : Optional Text
-                , title : Text
-                }
-            | Simple : { rawMarkdown : Text }
-            >.Simple
-              { rawMarkdown = "C++, Haskell, Python, Matlab, R, Ruby, Fortran" }
-        , desc = Some "Languages"
-        }
-      , { body =
-            < Entry :
-                { body : Optional { rawMarkdown : Text }
-                , grade : Optional Text
-                , institution : Optional Text
-                , location : Optional Text
-                , title : Text
-                }
-            | Simple : { rawMarkdown : Text }
-            >.Simple
-              { rawMarkdown =
-                  "Multivariate statistics, Numerical analysis, Real/Complex analysis, Stochastic processes, Dynamical systems, Abstract algebra, Differential equations, Wavelet analysis, Applied Category Theory"
-              }
-        , desc = Some "Mathematics"
-        }
-      ]
-    , title = Some "Skills"
-    }
-  , { contents =
-      [ { body =
-            < Entry :
-                { body : Optional { rawMarkdown : Text }
-                , grade : Optional Text
-                , institution : Optional Text
-                , location : Optional Text
-                , title : Text
-                }
-            | Simple : { rawMarkdown : Text }
             >.Entry
               { body = Some
                 { rawMarkdown =
                     ''
                     Information-theoretical statically verifiable data privacy
                     guarantees in machine learning algorithms and deployments.
+                    Robust multi-layered infrastructure for large-scale data
+                    analytics pipelines and tooling, involved in all aspects of
+                    engineering and product design, algorithm design, maintenance,
+                    instrumentation, monitoring, migration, and incident
+                    mitigation. Planned and designed systems for a unified
+                    abstraction of data extraction and aggregation to and from
+                    vendors, sources, and sinks.
                     ''
                 }
               , grade = None Text
               , institution = Some "Google"
               , location = Some "Irvine, CA"
-              , title = "Cloud Data & Machine Learning Engineer"
+              , title = "Google Ads & Analytics Engineer"
               }
         , desc = Some "2022 - Current"
         }
@@ -342,6 +302,55 @@
         }
       ]
     , title = Some "Selected Work and Research Experience"
+    }
+  , { contents =
+      [ { body =
+            < Entry :
+                { body : Optional { rawMarkdown : Text }
+                , grade : Optional Text
+                , institution : Optional Text
+                , location : Optional Text
+                , title : Text
+                }
+            | Simple : { rawMarkdown : Text }
+            >.Simple
+              { rawMarkdown =
+                  "Machine Learning (clustering, classification, artificial neural networks), Large-scale data analytics, Numerical algorithms (FEM, stochastic methods), Digital signal processing, Functional programming, Static analysis, DSL design, Differential Privacy"
+              }
+        , desc = Some "Computer Science"
+        }
+      , { body =
+            < Entry :
+                { body : Optional { rawMarkdown : Text }
+                , grade : Optional Text
+                , institution : Optional Text
+                , location : Optional Text
+                , title : Text
+                }
+            | Simple : { rawMarkdown : Text }
+            >.Simple
+              { rawMarkdown =
+                  "Java, Haskell, Python, Matlab, R, C++, Ruby, Fortran"
+              }
+        , desc = Some "Languages"
+        }
+      , { body =
+            < Entry :
+                { body : Optional { rawMarkdown : Text }
+                , grade : Optional Text
+                , institution : Optional Text
+                , location : Optional Text
+                , title : Text
+                }
+            | Simple : { rawMarkdown : Text }
+            >.Simple
+              { rawMarkdown =
+                  "Multivariate statistics, Numerical analysis, Real/Complex analysis, Stochastic processes, Dynamical systems, Abstract algebra, Differential equations, Wavelet analysis, Applied Category Theory"
+              }
+        , desc = Some "Mathematics"
+        }
+      ]
+    , title = Some "Skills"
     }
   , { contents =
       [ { body =
@@ -731,6 +740,7 @@
     , title = Some "Selected Coursework"
     }
   ]
-, subtitle = Some "Predictive Analytics, Machine Learning & Data Science"
+, subtitle = Some
+    "Predictive Analytics, Machine Learning, Data Science & Infrastructure"
 , title = "Justin Lê, Ph.D."
 }
