@@ -38,5 +38,5 @@ A `devShells.default` is also provided (`dhall`, `pandoc`, `dart-sass`,
         --file dhall/render.dhall --fixed-output-derivations .
     ```
     and copy the resulting `dependencies` list into `nix/dhall-deps.nix`.
-4.  `nix build .#pages` to confirm, then push.
+4.  `nix build .#pages` to confirm.
 
