@@ -17,6 +17,7 @@ html {
   line-height: 125%;
   font-family: $serif;
   color: #1a1a1a;
+  scroll-behavior: smooth;
 }
 
 p {
@@ -87,6 +88,7 @@ h4 {
 
 .cvsection {
   margin: 0 0 2em 0;
+  scroll-margin-top: 20px;
 }
 
 .cvs-wide p {
@@ -158,5 +160,70 @@ div#main-container {
   margin-top: 0.1em;
   @media (max-width: $breakpoint) {
     display: none;
+  }
+}
+
+.toc {
+  display: none;
+
+  @media (min-width: 1280px) {
+    display: block;
+    position: fixed;
+    top: 40px;
+    right: 40px;
+    // Never wider than the actual gap to the right of the content column
+    // (content maxes out at 860px + 20px padding, so its right edge sits
+    // at ~880px; 40px matches the sidebar's own `right` offset, plus a
+    // 20px buffer), so the hit-area can never overlap/steal clicks from
+    // the CV content itself.
+    width: min(440px, calc(100vw - 940px));
+    font-family: $serif;
+    font-style: italic;
+    text-align: right;
+
+    a {
+      display: block;
+      width: 100%;
+      padding: 0.5em 0;
+      border-bottom: none;
+      color: #888;
+      font-size: 110%;
+      line-height: 1.3;
+      white-space: nowrap;
+      transform: scale(1);
+      transform-origin: right center;
+      transition: transform 0.25s ease-out, color 0.25s ease-out;
+    }
+
+    // Proximity "magnification": the hovered link grows the most, and
+    // its neighbors grow progressively less the farther away they are,
+    // like a dock-style magnify effect. Uses `transform: scale` rather
+    // than `font-size` so growing an item never changes its layout box
+    // height, which would otherwise shift every row below it and make
+    // the hit-area feel unstable while moving the mouse. Color darkens
+    // from a resting grey to full black the same way.
+    a:hover {
+      transform: scale(1.36);
+      color: #1a1a1a;
+      background-color: transparent;
+    }
+
+    a:hover + a,
+    a:has(+ a:hover) {
+      transform: scale(1.2);
+      color: #333;
+    }
+
+    a:hover + a + a,
+    a:has(+ a + a:hover) {
+      transform: scale(1.11);
+      color: #555;
+    }
+
+    a:hover + a + a + a,
+    a:has(+ a + a + a:hover) {
+      transform: scale(1.05);
+      color: #777;
+    }
   }
 }
