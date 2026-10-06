@@ -17,6 +17,7 @@ html {
   line-height: 125%;
   font-family: $serif;
   color: #1a1a1a;
+  scroll-behavior: smooth;
 }
 
 p {
@@ -169,20 +170,39 @@ div#main-container {
     position: fixed;
     top: 40px;
     right: 40px;
-    width: 180px;
+    width: 200px;
     font-family: $serif;
-    font-size: 85%;
     font-style: italic;
 
     a {
       display: block;
       padding: 0.3em 0;
       border-bottom: none;
-      color: #447;
+      color: #1a1a1a;
+      font-size: 95%;
+      transition: font-size 0.25s ease-out;
     }
 
+    // Proximity "magnification": the hovered link grows the most, and
+    // its neighbors grow progressively less the farther away they are,
+    // like a dock-style magnify effect.
     a:hover {
-      background-color: #eee;
+      font-size: 150%;
+    }
+
+    a:hover + a,
+    a:has(+ a:hover) {
+      font-size: 125%;
+    }
+
+    a:hover + a + a,
+    a:has(+ a + a:hover) {
+      font-size: 112%;
+    }
+
+    a:hover + a + a + a,
+    a:has(+ a + a + a:hover) {
+      font-size: 103%;
     }
   }
 }
