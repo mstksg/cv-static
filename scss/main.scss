@@ -165,52 +165,54 @@ div#main-container {
 .toc {
   display: none;
 
-  @media (min-width: 1200px) {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+  @media (min-width: 1500px) {
+    display: block;
     position: fixed;
     top: 40px;
     right: 40px;
-    width: 200px;
+    width: 440px;
     font-family: $serif;
     font-style: italic;
     text-align: right;
 
     a {
       display: block;
-      flex-shrink: 0;
-      padding: 0.5em 1em;
-      margin-right: -1em;
+      width: 100%;
+      padding: 0.5em 0;
       border-bottom: none;
       color: #1a1a1a;
       font-size: 95%;
       line-height: 1.3;
       white-space: nowrap;
-      transition: font-size 0.25s ease-out;
+      transform: scale(1);
+      transform-origin: right center;
+      transition: transform 0.25s ease-out;
     }
 
     // Proximity "magnification": the hovered link grows the most, and
     // its neighbors grow progressively less the farther away they are,
-    // like a dock-style magnify effect.
+    // like a dock-style magnify effect. Uses `transform: scale` rather
+    // than `font-size` so growing an item never changes its layout box
+    // height, which would otherwise shift every row below it and make
+    // the hit-area feel unstable while moving the mouse.
     a:hover {
-      font-size: 150%;
+      transform: scale(1.58);
       background-color: transparent;
     }
 
     a:hover + a,
     a:has(+ a:hover) {
-      font-size: 125%;
+      transform: scale(1.32);
     }
 
     a:hover + a + a,
     a:has(+ a + a:hover) {
-      font-size: 112%;
+      transform: scale(1.18);
     }
 
     a:hover + a + a + a,
     a:has(+ a + a + a:hover) {
-      font-size: 103%;
+      transform: scale(1.08);
     }
   }
 }
