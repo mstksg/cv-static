@@ -166,20 +166,27 @@ div#main-container {
   display: none;
 
   @media (min-width: 1200px) {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
     position: fixed;
     top: 40px;
     right: 40px;
     width: 200px;
     font-family: $serif;
     font-style: italic;
+    text-align: right;
 
     a {
       display: block;
-      padding: 0.3em 0;
+      flex-shrink: 0;
+      padding: 0.5em 1em;
+      margin-right: -1em;
       border-bottom: none;
       color: #1a1a1a;
       font-size: 95%;
+      line-height: 1.3;
+      white-space: nowrap;
       transition: font-size 0.25s ease-out;
     }
 
@@ -188,6 +195,7 @@ div#main-container {
     // like a dock-style magnify effect.
     a:hover {
       font-size: 150%;
+      background-color: transparent;
     }
 
     a:hover + a,
