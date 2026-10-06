@@ -160,3 +160,29 @@ div#main-container {
     display: none;
   }
 }
+
+.toc {
+  display: none;
+
+  @media (min-width: 1200px) {
+    display: block;
+    position: fixed;
+    top: 40px;
+    right: 40px;
+    width: 180px;
+    font-family: $serif;
+    font-size: 85%;
+    font-style: italic;
+
+    a {
+      display: block;
+      padding: 0.3em 0;
+      border-bottom: none;
+      color: #447;
+    }
+
+    a:hover {
+      background-color: #eee;
+    }
+  }
+}
