@@ -202,23 +202,23 @@ div#main-container {
     // height, which would otherwise shift every row below it and make
     // the hit-area feel unstable while moving the mouse.
     a:hover {
-      transform: scale(1.58);
+      transform: scale(1.36);
       background-color: transparent;
     }
 
     a:hover + a,
     a:has(+ a:hover) {
-      transform: scale(1.32);
+      transform: scale(1.2);
     }
 
     a:hover + a + a,
     a:has(+ a + a:hover) {
-      transform: scale(1.18);
+      transform: scale(1.11);
     }
 
     a:hover + a + a + a,
     a:has(+ a + a + a:hover) {
-      transform: scale(1.08);
+      transform: scale(1.05);
     }
   }
 }
