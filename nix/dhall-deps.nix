@@ -22,9 +22,9 @@
     dhallHash = "sha256:0faa0f7a67a124d97790fd3535eadf09d7e845ae618b72999655384adbb0822c";
   })
   (dhallPackages.buildDhallUrl {
-    url = "https://github.com/mstksg/dhall-cv-web/raw/v1.2.1/package.dhall";
-    hash = "sha256-Wi9xdEBupWhmayoj+iDI4BoIa+66JFp2kE+/hwH1zZI=";
-    dhallHash = "sha256:5a2f7174406ea568666b2a23fa20c8e01a086beeba245a76904fbf8701f5cd92";
+    url = "https://github.com/mstksg/dhall-cv-web/raw/v1.3.0/package.dhall";
+    hash = "sha256-H1y34KhlL5nSV4RsIrDp5rOz4FPlQWRgFjFP8r00el4=";
+    dhallHash = "sha256:1f5cb7e0a8652f99d257846c22b0e9e6b3b3e053e541646016314ff2bd347a5e";
   })
   (dhallPackages.buildDhallUrl {
     url = "https://raw.githubusercontent.com/mstksg/dhall-cv-personal/1fdb0fad960930052a22a550b82993b29e067b0f/package.dhall";
