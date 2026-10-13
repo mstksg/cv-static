@@ -11,7 +11,11 @@
 #     dhall-to-nixpkgs directory --name cv-static-dhall \
 #       --file dhall/render.dhall --fixed-output-derivations .
 #
-# and copy the resulting `dependencies` list back in here.
+# and copy the resulting `dependencies` list back in here. (dhall/render.dhall
+# and dhall/render-pdf.dhall both resolve to the exact same dependency set:
+# dhall-cv-latex's own nested imports, dhall-bhat and dhall-lang, get fully
+# resolved and flattened into its own cached unit, so they never need a
+# separate top-level entry here.)
 
 { dhallPackages }:
 
@@ -27,8 +31,13 @@
     dhallHash = "sha256:1f5cb7e0a8652f99d257846c22b0e9e6b3b3e053e541646016314ff2bd347a5e";
   })
   (dhallPackages.buildDhallUrl {
-    url = "https://raw.githubusercontent.com/mstksg/dhall-cv-personal/1fdb0fad960930052a22a550b82993b29e067b0f/package.dhall";
-    hash = "sha256-ocN7Fi2ZgQK/TJ4YKJ2PxI7pt0a1qBdu0WY9zcQ5FCc=";
-    dhallHash = "sha256:a1c37b162d998102bf4c9e18289d8fc48ee9b746b5a8176ed1663dcdc4391427";
+    url = "https://github.com/mstksg/dhall-cv-latex/raw/v2.3.0/package.dhall";
+    hash = "sha256-ve8dKllFAgkIzZs6rFIuroArz82GjQtYVjU90ScM+5k=";
+    dhallHash = "sha256:bdef1d2a5945020908cd9b3aac522eae802bcfcd868d0b5856353dd1270cfb99";
+  })
+  (dhallPackages.buildDhallUrl {
+    url = "https://raw.githubusercontent.com/mstksg/dhall-cv-personal/6401a6e0ac0f78a632e77601969ed96a6b68b43d/package.dhall";
+    hash = "sha256-7hcWJQVT9XZ0CGNbo5Ae2aXyASZcVNa5rMY6i/LBvOI=";
+    dhallHash = "sha256:ee1716250553f5767408635ba3901ed9a5f201265c54d6b9acc63a8bf2c1bce2";
   })
 ]
