@@ -20,7 +20,8 @@ The whole site is a single, reproducible Nix flake output.
 
 ```
 nix build .#pages
-# result/ now contains the full static site (index.html, css/, fonts, CNAME, ...)
+# result/ now contains the full static site (index.html, css/, fonts, CNAME,
+# cv_phd-public.pdf, ...)
 ```
 
 A `devShells.default` is also provided (`dhall`, `pandoc`, `dart-sass`,
