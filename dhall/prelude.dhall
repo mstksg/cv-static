@@ -11,8 +11,8 @@ let latex =
         sha256:bdef1d2a5945020908cd9b3aac522eae802bcfcd868d0b5856353dd1270cfb99
 
 let personal =
-      https://raw.githubusercontent.com/mstksg/dhall-cv-personal/6401a6e0ac0f78a632e77601969ed96a6b68b43d/package.dhall
-        sha256:ee1716250553f5767408635ba3901ed9a5f201265c54d6b9acc63a8bf2c1bce2
+      https://raw.githubusercontent.com/mstksg/dhall-cv-personal/fe0e77f8d2680f5f4a25ffa57f5dce4b8ce83906/package.dhall
+        sha256:ce221a732ebc9c011dd2f55ef6218907409d5eefa38f4fe5b603a09ae7563511
 
 let types = cv.types ∧ web.types ∧ latex.types
 
